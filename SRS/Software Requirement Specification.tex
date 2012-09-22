@@ -87,6 +87,18 @@ CWRU Services:  The CWRU services are the services enumerated in Diagram 1 with 
 \end{enumerate}
 \section{System Features}
 \subsection{Schedule Courses}
+\subsubsection{Description and Priority}
+A CWRUtility User may search for CWRU courses by semester and course name. Duplicate courses in a semester are returned as a drop down list. The User may then choose to add that course to his or her current schedule. Information for CWRU courses are pulled from the Student Information System Service. The User may also delete courses from his or her current schedule. The system displays the User's schedule in a standard calendar format.
+\subsubsection{Stimulus/Response Sequences}
+\begin{description}\itemsep1pt
+\item[Stimulus:] User searches for a course with a specified semester and course.
+\item[Response:] System queries SIS for detailed course information and relays it to user. If more than one course match the given semester and course name, results are displayed in a dropdown list.
+\item[Stimulus:] User adds chosen course to schedule
+\item[Response:] System plots course on user's current schedule.
+\item[Stimulus:] User selects a course to remove from schedule.
+\item[Response:] System removes selected course from schedule.
+\end{description}
+\subsubsection{Functional Requirements}
 \subsection{Map}
 \subsection{Description and Priority}
 All relevant campus buildings should be accurately labelled on the map. This includes not only academic buildings but residence halls, cafeterias, and other miscellaneous CWRU-owned buildings as well.\\
