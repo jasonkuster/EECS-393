@@ -83,14 +83,33 @@ CWRU Services:  The CWRU services are the services enumerated in Diagram 1 with 
 \item User's Windows Phone 7/8 device is equipped with an internet connection.
 \end{enumerate}
 \begin{enumerate}[DE-1:]
-\item This application depends on the continuing functionality of the connected services (e.g. NextBust.com, eSuds.com, and SIS)
+\item This application depends on the continuing functionality of the connected services (e.g. NextBus.com, eSuds.com, and SIS)
 \end{enumerate}
 \section{System Features}
 \subsection{Schedule Courses}
-\subsection{nextbus}
 \subsubsection{Description and Priority}
-A user will be presented with the Case Western University nextbus webpage which presents an active timer until busses arrive. Users can specify which bus route, which stop, and which direction 
-\subsection{title}
+A CWRUtility User may search for CWRU courses by semester and course name. Duplicate courses in a semester are returned as a drop down list. The User may then choose to add that course to his or her current schedule. Information for CWRU courses are pulled from the Student Information System Service. The User may also delete courses from his or her current schedule. The system displays the User's schedule in a standard calendar format.
+\subsubsection{Stimulus/Response Sequences}
+\begin{description}\itemsep1pt
+\item[Stimulus:] User searches for a course with a specified semester and course.
+\item[Response:] System queries SIS for detailed course information and relays it to user. If more than one course match the given semester and course name, results are displayed in a dropdown list.
+\item[Stimulus:] User adds chosen course to schedule
+\item[Response:] System plots course on user's current schedule.
+\item[Stimulus:] User selects a course to remove from schedule.
+\item[Response:] System removes selected course from schedule.
+\end{description}
+\subsubsection{Functional Requirements}
+\subsection{Map}
+\subsection{Description and Priority}
+All relevant campus buildings should be accurately labelled on the map. This includes not only academic buildings but residence halls, cafeterias, and other miscellaneous CWRU-owned buildings as well.\\
+Upon being opened, if the user has entered in courses, the map should predict their next destination and offer a map perspective encompassing both their current location and their projected next location.\\
+The map will offer the student the ability to navigate from their current location to their next class, or to an alternate location.
+\subsubsection{Stimulus/Response Sequences}
+Stimulus: User opens map.\\
+Response: App queries its stored information regarding whether the student has a class, then sets the starting map coordinates and zoom level accordingly.\\
+Stimulus: User requests directions.\\
+Response: Map provides directions from the user's current location to the specified location.\\
+\subsubsection{Functional Requirements}
 \begin{table}[h]
 \begin{tabularx}{\textwidth }[t]{|l|Y|Y|Y|}
 \hline
@@ -108,6 +127,9 @@ FE-10 & Not implemented & Fully implemented & ~ \\
 \hline
 \end{tabularx}
 \end{table}
+\subsection{nextbus}
+\subsubsection{Description and Priority}
+A user will be presented with the Case Western University nextbus webpage which presents an active timer until busses arrive. Users can specify which bus route, which stop, and which direction 
 \subsection{Limitations and Exclusions}
 \begin{enumerate}[L{I}-1:]
 \item Requires functioning internet connection.
