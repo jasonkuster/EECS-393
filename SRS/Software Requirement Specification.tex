@@ -140,23 +140,6 @@ Response: App queries its stored information regarding whether the student has a
 Stimulus: User requests directions.\\
 Response: Map provides directions from the user's current location to the specified location.\\
 \subsubsection{Functional Requirements}
-\begin{table}[h]
-\begin{tabularx}{\textwidth }[t]{|l|Y|Y|Y|}
-\hline
-\bfseries Feature & \bfseries\hspace{1cm}Release 1 & \bfseries\hspace{1cm}Release 2 & \bfseries\hspace{1cm}Release 3 \\ \hline
-FE-1 & Fully implemented & ~ & ~ \\ \hline
-FE-2 & Basic map & Integrated with course schedule & Provides directions \\ \hline
-FE-3 & Basic functionality with NextBus & Full integration with NextBus (if needed) & Integration with Map \\ \hline
-FE-4 & Fully implemented & ~ & ~ \\ \hline
-FE-5 & Not implemented & Fully implemented & ~ \\ \hline
-FE-6 & Fully implemented & ~ & ~ \\ \hline
-FE-7 & Not implemented & Fully implemented & ~ \\ \hline
-FE-8 & Not implemented & Basic information displays & Integrates with phone's notification system \\ \hline
-FE-9 & Table of events & ~ & Integrated with course schedule \\ \hline
-FE-10 & Not implemented & Fully implemented & ~ \\
-\hline
-\end{tabularx}
-\end{table}
 \subsection{Nextbus}
 \subsubsection{Description and Priority}
 A user will be presented with the Case Western University nextbus webpage which presents an active timer until busses arrive. Users can specify which bus route, which stop, and which direction 
@@ -202,7 +185,100 @@ The system will display the semester menu's for both major campus dining halls, 
 ~&~\\
 Menu.Display & System will display the menu for a selected campus dining hall.\\ 
 ~&~\\
-Menu.Display.Select & System will switch displayed menu based on which tab is selcted\\
+Menu.Display.Select & System will switch displayed menu based on which tab is selected. \emph{The Case Daily}\\
+~&~\\
+\hline
+\end{tabularx}
+\end{table}
+\FloatBarrier
+\subsection{Case News}
+\subsubsection{Description and Priority}
+The system will list recent news from CWRU and allow the user to select a news story to discover more information about it. The two main sources for these stories will be the \emph{The Case Daily} and \emph{The Observer}. Priority: low.
+\subsubsection{Stimulus/Response Sequences}
+\begin{description}\itemsep1pt
+\item[Stimulus:] User swipes to this feature.
+\item[Response:] System displays a list of clickable panels that display the title and source of a news story.
+\item[Stimulus:] User selects a news story from the list.
+\item[Response:] System switches to a new window that displays the article or story in full.
+\end{description}
+\subsubsection{Functional Requirements}
+\begin{table}[!h]
+\begin{tabularx}{\textwidth}[t]{|l Y|}
+\hline
+~&~\\
+News.Display & System displays the list of current news.\\
+~&~\\
+News.Display.Story & Stories are displayed as panels that show their title and source.\\
+~&~\\
+News.Display.Update & The list of stories are updated daily to reflect new stories from either \emph{The Observer} or \emph{The Case Daily}.\\
+~&~\\
+\hline
+\end{tabularx}
+\end{table}
+\begin{table}[!h]
+\begin{tabularx}{\textwidth}[t]{|l Y|}
+\hline
+~&~\\
+News.Story & If a user selects a story from the list, a new window appears that displays detailed information about the story.\\
+~&~\\
+News.Story.Query & To obtain information for a specific story, the system queries the corresponding source.\\
+~&~\\
+\hline
+\end{tabularx}
+\end{table}
+\FloatBarrier
+\subsection{eSuds}
+\subsubsection{Description and Priority}
+The system will allow the user to view laundry information for all of the residence halls at CWRU. The user will select a residence hall from a list to view that hall's specific laundry information.
+\subsubsection{Stimulus/Response Sequences}
+\begin{description}\itemsep1pt
+\item[Stimulus:] User swipes to this feature.
+\item[Response:] System displays the laundry information for the user's last selected residence hall. If this is the first time the user has used the eSuds feature, a default residence hall will be displayed.
+\item[Stimulus:] User selects a residence hall from a drop down list.
+\item[Response:] The system will update the current laundry information with the laundry information for the selected residence hall.
+\end{description}
+\subsubsection{Functional Requirements}
+\begin{table}[!h]
+\begin{tabularx}{\textwidth}[t]{|l Y|}
+\hline
+~&~\\
+eSuds.Display & System displays laundry information and a drop-down list of CWRU residence halls.\\ 
+~&~\\
+eSuds.Display.Laundry & Laundry information includes numbers of washers, dryers, and how much time is remaining on each of the different machines \\
+~&~\\
+eSuds.Display.DropDown & On the eSuds display there will be a dropdown menu that allows the user to select different CWRU residence halls.\\
+~&~\\
+\hline
+\end{tabularx}
+\end{table}
+\begin{table}[!h]
+\begin{tabularx}{\textwidth}[t]{|l Y|}
+\hline
+~&~\\
+eSuds.Connection & System maintains a constant connection to the eSuds.com webservice in order to provide up-to-date information on laundry.\\
+~&~\\
+\hline
+\end{tabularx}
+\end{table}
+\FloatBarrier
+\subsection{5YearCal}
+\subsubsection{Description and Priority}
+The system will display the current CWRU 5-year academic calendar as provided by the university. The system will query the CWRU official website at the beginning of every Fall term to obtain the latest edition of the calendar. Priority: low.
+\subsubsection{Stimulus/Response Sequences}
+\begin{description}\itemsep1pt
+\item[Stimulus:] User swipes to this feature.
+\item[Response:] System displays the current 5-year academic calendar.
+\item[Stimulus:] Fall semester begins.
+\item[Response:] System queries the CWRU website for the most up-to-date calendar.
+\end{description}
+\subsubsection{Functional Requirements}
+\begin{table}[!h]
+\begin{tabularx}{\textwidth}[t]{|l Y|}
+\hline
+~&~\\
+5YearCal.Display & System displays the current CWRU 5-year academic calendar\\ 
+~&~\\
+5YearCal.Display.Update & At the beginning of each Fall semester, the system will obtain the most recent 5-year academic calendar from the CWRU website.\\
 ~&~\\
 \hline
 \end{tabularx}
