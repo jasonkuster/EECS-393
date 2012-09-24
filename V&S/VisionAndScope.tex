@@ -4,6 +4,7 @@
 \usepackage{tabularx}
 \usepackage{graphicx}
 \usepackage{array}
+\usepackage{placeins}
 \usepackage[justification=justified,singlelinecheck=false]{caption}
 \pagestyle{fancy}
 \makeatletter
@@ -23,15 +24,14 @@
 {\huge  VISION AND SCOPE\\[1cm]}
 {\Large for\\[1cm]}
 {\huge CWRUtility\large{\footnote[1]{Working title}}\\[4cm]}
-{\large Prepared by\\Jason Kuster, Stuart Long, and William Ordivay\\[1cm]
-Version 1.1 approved\\[1cm]
+{\large Prepared by\\Jason Kuster, Stuart Long, and William Ordiway\\[1cm]
+Version 1.2 approved\\[1cm]
 KOALAA Development\\[1cm]
 September 19, 2012}}
 \end{flushright}
 \end{titlepage}
 \tableofcontents{}
-\vspace{5cm}
-\begin{table}[h]
+\begin{table}[!h]
 \caption*{\bfseries Revision History}
 \begin{tabularx}{\textwidth }[t]{|l|Y|Y|Y|}
 \hline
@@ -39,8 +39,10 @@ September 19, 2012}}
 Kuster, Long, Ordivay & 9/17/2012 & Initial Draft & 1.0 draft 1\\ \hline
 Long, Kuster & 9/18/2012 & Changes after inspection & 1.0 approved\\ \hline
 Ordivay & 9/18/2012 & Changes after inspection & 1.1 approved\\ \hline
+Long & 9/23/2012 & Changes that arose while completing SRS & 1.2 approved\\ \hline
 \end{tabularx}
 \end{table}
+\FloatBarrier
 \newpage
 \section{Business Requirements}
 \subsection{Background, Opportunity, and Customer Needs}
@@ -77,13 +79,11 @@ For students who currently struggle with knowing where their classes are, gettin
 \item Integrates with the Student Information System to schedule students' courses.
 \item Provide map of CWRU campus with detailed information on students' course locations.
 \item Integrates with NextBus, Inc. to provide a schedule for the "greenie" system.
-\item Displays hours, locations, and other  such information for Case services
+\item Displays hours, locations, and phone numbers for Case services
 \item Displays menus for both major dining halls.
-\item Lists phone numbers of important Case resources, such as campus security.
-\item Integrates with \emph{The Case Daily} to display daily news.
+\item Integrates with \emph{The Case Daily} and \emph{The Observer} to display daily news.
 \item Integrates with the e-Suds system to provide laundry information.
 \item Provides the current 5-year academic calendar.
-\item Displays the RSS feed of the \emph{Case Western Observer}.
 \end{enumerate} 
 \subsection{Assumptions and Dependencies}
 \begin{enumerate}[{A}S-1:]
@@ -94,23 +94,21 @@ For students who currently struggle with knowing where their classes are, gettin
 \end{enumerate}
 \section{Scope and Limitations}
 \subsection{Scope of Initial and Subsequent Releases}
-\begin{table}[h]
-\begin{tabularx}{\textwidth }[t]{|l|Y|Y|Y|}
+\begin{table}[!h]
+\begin{tabularx}{\textwidth }[t]{|l|Y|Y|}
 \hline
-\bfseries Feature & \bfseries\hspace{1cm}Release 1 & \bfseries\hspace{1cm}Release 2 & \bfseries\hspace{1cm}Release 3 \\ \hline
-FE-1 & Fully implemented & ~ & ~ \\ \hline
-FE-2 & Basic map & Integrated with course schedule & Provides directions \\ \hline
-FE-3 & Basic functionality with NextBus & Full integration with NextBus (if needed) & Integration with Map \\ \hline
-FE-4 & Fully implemented & ~ & ~ \\ \hline
-FE-5 & Not implemented & Fully implemented & ~ \\ \hline
-FE-6 & Fully implemented & ~ & ~ \\ \hline
-FE-7 & Not implemented & Fully implemented & ~ \\ \hline
-FE-8 & Not implemented & Basic information displays & Integrates with phone's notification system \\ \hline
-FE-9 & Table of events & ~ & Integrated with course schedule \\ \hline
-FE-10 & Not implemented & Fully implemented & ~ \\
-\hline
+\bfseries Feature & \bfseries\hspace{1cm}Release 1 & \bfseries\hspace{1cm}Release 2\\ \hline
+FE-1 & Fully implemented & ~\\ \hline
+FE-2 & Basic map & Fully Implemented\\ \hline
+FE-3 & Basic functionality with NextBus & Full integration with NextBus and Map\\ \hline
+FE-4 & Fully implemented & ~ \\ \hline
+FE-5 & Not implemented & Fully implemented\\ \hline
+FE-7 & Not implemented & Fully implemented\\ \hline
+FE-8 & Not implemented & Basic information displays\\ \hline
+FE-9 & Table of events & Integrated with course schedule \\ \hline
 \end{tabularx}
 \end{table}
+\FloatBarrier
 \subsection{Limitations and Exclusions}
 \begin{enumerate}[L{I}-1:]
 \item Requires functioning internet connection.
@@ -126,7 +124,7 @@ FE-10 & Not implemented & Fully implemented & ~ \\
 \hline
 \bfseries User & \bfseries Value & \bfseries Interests & \bfseries Constraints\\ \hline
 CWRU community members & More efficient and centralized use of CWRU services and resources & Ease of use; reliability; simplicity & Required to have a Windows Phone 7/8 with internet access \\ \hline
-CWRU service providers & increased discoverability and utilization of their services & Appropriate representation of services in software & Potential for communication with CWRUtility to malfunction after service updates \\ \hline
+CWRU service providers & increased discoverability and utilization of their services & Appropriate representation of services in software & Service updates could interrupt communication with system. \\ \hline
 \end{tabularx}
 \end{table}
 
