@@ -5,6 +5,7 @@
 \usepackage{graphicx}
 \usepackage{array}
 \usepackage[justification=justified,singlelinecheck=false]{caption}
+\usepackage{placeins}
 \pagestyle{fancy}
 \makeatletter
   \renewcommand\@seccntformat[1]{\csname the#1\endcsname.\quad}
@@ -99,7 +100,7 @@ A CWRUtility User may search for CWRU courses by semester and course name. Dupli
 \item[Response:] System removes selected course from schedule.
 \end{description}
 \subsubsection{Functional Requirements}
-\begin{table}[h]
+\begin{table}[!h]
 \begin{tabularx}{\textwidth }[t]{|l Y|}
 \hline
 ~&~\\
@@ -109,7 +110,14 @@ Courses.Search.Invalid & If the user enters an invalid course name or semester, 
 ~&~\\
 Courses.Search.Return & If a course is found that matches the user criteria, the system shows the course and its information. \\
 ~&~\\
-Courses.Search.Multiple & If more than one course matches the user criteria, the system will display the courses in a drop-down list that allows the user to select an appropriate course.\\ \hline
+Courses.Search.Multiple & If more than one course matches the user criteria, the system will display the courses in a drop-down list that allows the user to select an appropriate course.\\
+~&~\\
+\hline
+\end{tabularx}
+\end{table}
+\begin{table}[!h]
+\begin{tabularx}{\textwidth }[t]{|l Y|}
+\hline
 ~&~\\
 Courses.Schedule & The system will display user added courses on a calendar formatted schedule.\\
 ~&~\\
@@ -117,10 +125,10 @@ Courses.Schedule.Add & Courses selected to be added to the schedule will be adde
 ~&~\\
 Courses.Schedule.Remove & The system will allow users to remove any and all courses from the user's schedule.\\
 ~&~\\
-
 \hline
 \end{tabularx}
 \end{table}
+\FloatBarrier
 \subsection{Map}
 \subsubsection{Description and Priority}
 All relevant campus buildings should be accurately labelled on the map. This includes not only academic buildings but residence halls, cafeterias, and other miscellaneous CWRU-owned buildings as well.\\
@@ -159,25 +167,46 @@ The system will include a directory that lists hours, location, and phone number
 \begin{description}\itemsep1pt
 \item[Stimulus:] Users selects a service from the directory.
 \item[Response:] System queries its own database/backend and displays the stored information about that service to the user.
+\item[Stimulus:] Users clicks on a the phone number of some selected service
+\item[Response:] System attempts to place a mobile phone call using selected phone number
 \end{description}
-\subsection{Limitations and Exclusions}
-\begin{enumerate}[L{I}-1:]
-\item Requires functioning internet connection.
-\item Dependency on external services.
-\end{enumerate}
-\begin{enumerate}[EX-1:]
-\item Available only for Windows Phone 7 / Windows Phone 8 mobile devices.
-\end{enumerate}
-\section{Business Context}
-\subsection{User Profile}
-\begin{table}[h]
-\begin{tabularx}{\textwidth}[t]{|Y|Y|Y|Y|}
+\subsubsection{Functional Requirements}
+\begin{table}[!h]
+\begin{tabularx}{\textwidth }[t]{|l Y|}
 \hline
-\bfseries User & \bfseries Value & \bfseries Interests & \bfseries Constraints\\ \hline
-CWRU community members & More efficient and centralized use of CWRU services and resources & Ease of use; reliability; simplicity & Required to have a Windows Phone 7/8 with internet access \\ \hline
-CWRU service providers & increased discoverability and utilization of their services & Appropriate representation of services in software & Potential for communication with CWRUtility to malfunction after service updates \\ \hline
+~&~\\
+Directory.Browse & The system will allow the user to browse through CWRU services\\ 
+~&~\\
+Directory.Browse.Select & If the user selects a service from the directory, system displays descriptive information about the service, e.g. hours. location, and phone number.\\
+~&~\\
+\hline
+~&~\\
+Directory.Call & After selecting the service, if the user clicks that service's phone number, the cell phone the system is implemented dials that phone number\\
+~&~\\
+\hline
 \end{tabularx}
 \end{table}
-
+\FloatBarrier
+\subsection{Menu}
+\subsubsection{Description and Priority}
+The system will display the semester menu's for both major campus dining halls, Fribley Dining Hall and Leutner Dining Hall. The system will layout of the menus in a tabular format, so at anytime the menu portion of the application will either display the Leutner menu or the Fribley menu, depending on which dining is selected.
+\subsubsection{Stimulus/Response Sequences}
+\begin{description}\itemsep1pt
+\item[Stimulus:] User selects a dining hall whose menu the user wants to view.
+\item[Response:] The system displays the menu for the specified dining hall.
+\end{description}
+\subsubsection{Functional Requirements}
+\begin{table}[!h]
+\begin{tabularx}{\textwidth }[t]{|l Y|}
+\hline
+~&~\\
+Menu.Display & System will display the menu for a selected campus dining hall.\\ 
+~&~\\
+Menu.Display.Select & System will switch displayed menu based on which tab is selcted\\
+~&~\\
+\hline
+\end{tabularx}
+\end{table}
+\FloatBarrier
 \lfoot{\includegraphics[height=1cm]{DarkKoala.png}}
 \end{document}
