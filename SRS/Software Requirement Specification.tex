@@ -50,7 +50,7 @@ CWRUtility will allow CWRU students, faculty, and staff to easily access CWRU se
 
 \subsection{References}
 \begin{enumerate}[1.]
-\item Kuster et al. \emph{Vision and Scope Document for CWRUtility}, https://github.com/jasonkuster/EECS-393/blob/master/V%26S/VisionAndScope.pdf
+\item Kuster et al. \emph{Vision and Scope Document for CWRUtility}, https://github\\.com/jasonkuster/EECS-393/blob/master/V%26S/VisionAndScope.pdf
 \end{enumerate}
 
 \section{Overall Description}
@@ -92,6 +92,8 @@ CWRU Services:  The CWRU services are the services enumerated in Diagram 1 with 
 A CWRUtility User may search for CWRU courses by semester and course name. Duplicate courses in a semester are returned as a drop down list. The User may then choose to add that course to his or her current schedule. Information for CWRU courses are pulled from the Student Information System Service. The User may also delete courses from his or her current schedule. The system displays the User's schedule in a standard calendar format. Priority: High
 \subsubsection{Stimulus/Response Sequences}
 \begin{description}\itemsep1pt
+\item[Stimulus:] User switches to this feature.
+\item[Response:] System displays user's current schedule.
 \item[Stimulus:] User searches for a course with a specified semester and course.
 \item[Response:] System queries SIS for detailed course information and relays it to user. If more than one course match the given semester and course name, results are displayed in a dropdown list.
 \item[Stimulus:] User adds chosen course to schedule
@@ -145,9 +147,11 @@ Response: Map provides directions from the user's current location to the specif
 A user will be presented with the Case Western University nextbus webpage which presents an active timer until busses arrive. Users can specify which bus route, which stop, and which direction 
 \subsection{Directory}
 \subsubsection{Description and Priority}
-The system will include a directory that lists hours, location, and phone numbers of campus resources. The user will be able to browse the directory and select a resource to see the above information about it. The directory will be designed such that more resources can be added easily. 
+The system will include a directory that lists hours, location, and phone numbers of campus resources. The user will be able to browse the directory and select a resource to see the above information about it. The directory will be designed such that more resources can be added easily. Priority: medium.
 \subsubsection{Stimulus/Response Sequences}
 \begin{description}\itemsep1pt
+\item[Stimulus:] User switches to directory feature.
+\item[Response:] System displays list of CWRU services in the directory.
 \item[Stimulus:] Users selects a service from the directory.
 \item[Response:] System queries its own database/backend and displays the stored information about that service to the user.
 \item[Stimulus:] Users clicks on a the phone number of some selected service
@@ -163,6 +167,11 @@ Directory.Browse & The system will allow the user to browse through CWRU service
 Directory.Browse.Select & If the user selects a service from the directory, system displays descriptive information about the service, e.g. hours. location, and phone number.\\
 ~&~\\
 \hline
+\end{tabularx}
+\end{table}
+\begin{table}[!h]
+\begin{tabularx}{\textwidth }[t]{|l Y|}
+\hline
 ~&~\\
 Directory.Call & After selecting the service, if the user clicks that service's phone number, the cell phone the system is implemented dials that phone number\\
 ~&~\\
@@ -172,9 +181,11 @@ Directory.Call & After selecting the service, if the user clicks that service's 
 \FloatBarrier
 \subsection{Menu}
 \subsubsection{Description and Priority}
-The system will display the semester menu's for both major campus dining halls, Fribley Dining Hall and Leutner Dining Hall. The system will layout of the menus in a tabular format, so at anytime the menu portion of the application will either display the Leutner menu or the Fribley menu, depending on which dining is selected.
+The system will display the semester menu's for both major campus dining halls, Fribley Dining Hall and Leutner Dining Hall. The system will layout of the menus in a tabular format, so at anytime the menu portion of the application will either display the Leutner menu or the Fribley menu, depending on which dining is selected. Priority: low
 \subsubsection{Stimulus/Response Sequences}
 \begin{description}\itemsep1pt
+\item[Stimulus:] User switches to this feature.
+\item[Response:] System displays last menu user viewed, or a default menu if first use.
 \item[Stimulus:] User selects a dining hall whose menu the user wants to view.
 \item[Response:] The system displays the menu for the specified dining hall.
 \end{description}
@@ -196,7 +207,7 @@ Menu.Display.Select & System will switch displayed menu based on which tab is se
 The system will list recent news from CWRU and allow the user to select a news story to discover more information about it. The two main sources for these stories will be the \emph{The Case Daily} and \emph{The Observer}. Priority: low.
 \subsubsection{Stimulus/Response Sequences}
 \begin{description}\itemsep1pt
-\item[Stimulus:] User swipes to this feature.
+\item[Stimulus:] User switches to this feature.
 \item[Response:] System displays a list of clickable panels that display the title and source of a news story.
 \item[Stimulus:] User selects a news story from the list.
 \item[Response:] System switches to a new window that displays the article or story in full.
@@ -229,10 +240,10 @@ News.Story.Query & To obtain information for a specific story, the system querie
 \FloatBarrier
 \subsection{eSuds}
 \subsubsection{Description and Priority}
-The system will allow the user to view laundry information for all of the residence halls at CWRU. The user will select a residence hall from a list to view that hall's specific laundry information.
+The system will allow the user to view laundry information for all of the residence halls at CWRU. The user will select a residence hall from a list to view that hall's specific laundry information. Priority: medium
 \subsubsection{Stimulus/Response Sequences}
 \begin{description}\itemsep1pt
-\item[Stimulus:] User swipes to this feature.
+\item[Stimulus:] User switches to this feature.
 \item[Response:] System displays the laundry information for the user's last selected residence hall. If this is the first time the user has used the eSuds feature, a default residence hall will be displayed.
 \item[Stimulus:] User selects a residence hall from a drop down list.
 \item[Response:] The system will update the current laundry information with the laundry information for the selected residence hall.
@@ -266,7 +277,7 @@ eSuds.Connection & System maintains a constant connection to the eSuds.com webse
 The system will display the current CWRU 5-year academic calendar as provided by the university. The system will query the CWRU official website at the beginning of every Fall term to obtain the latest edition of the calendar. Priority: low.
 \subsubsection{Stimulus/Response Sequences}
 \begin{description}\itemsep1pt
-\item[Stimulus:] User swipes to this feature.
+\item[Stimulus:] User switches to this feature.
 \item[Response:] System displays the current 5-year academic calendar.
 \item[Stimulus:] Fall semester begins.
 \item[Response:] System queries the CWRU website for the most up-to-date calendar.
@@ -311,5 +322,6 @@ TBD
 \subsection{Reliability Requirements}
 \subsection{Software Quality Attributes}
 \section*{Appendix A: Data Dictionary and Data Model}
+I don't think we need this section.
 \lfoot{\includegraphics[height=1cm]{DarkKoala.png}}
 \end{document}
