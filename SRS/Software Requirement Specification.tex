@@ -159,7 +159,29 @@ Map.Navigate & The map will display walking directions from the user's current l
 \end{table}
 \subsection{Nextbus}
 \subsubsection{Description and Priority}
-A user will be presented with the Case Western University nextbus webpage which presents an active timer until busses arrive. Users can specify which bus route, which stop, and which direction 
+A user will be presented with the Case Western University Nextbus webpage which presents an active timer until busses arrive. Users can specify which bus route and which direction they want to view the times for at an expected time for at a specified stop. These choices are made through the nextbus.
+
+\subsubsection{Stimulus/Response Sequences}
+\begin{description}\itemsep1pt
+\item[Stimulus:] User opens Nextbus application\\
+\item[Response:] nextbus webpage is loaded\\
+\item[Stimulus:] User interfaces with the nextbus webpage to specify what bus they would like information for.\\
+\item[Response:] nextbus handles all requests as if it weren't being run through the CWRUtility app.\\
+\end{description}
+\subsubsection{Functional Requirements}
+\begin{table}[!h]
+\begin{tabularx}{\textwidth }[t]{|l Y|}
+\hline
+~&~\\
+Nestbus.Load &  the user is connected to the internet, either by a data plan or wifi\\ 
+~&~\\
+Nextbus.View & The user's screen is functional and permits viewing of the nextbus website \\
+~&~\\
+\hline
+\end{tabularx}
+\end{table}
+
+
 \subsection{Directory}
 \subsubsection{Description and Priority}
 The system will include a directory that lists hours, location, and phone numbers of campus resources. The user will be able to browse the directory and select a resource to see the above information about it. The directory will be designed such that more resources can be added easily. Priority: medium.
