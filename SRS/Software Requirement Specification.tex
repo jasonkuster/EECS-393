@@ -137,11 +137,26 @@ All relevant campus buildings should be accurately labelled on the map. This inc
 Upon being opened, if the user has entered in courses, the map should predict their next destination and offer a map perspective encompassing both their current location and their projected next location.\\
 The map will offer the student the ability to navigate from their current location to their next class, or to an alternate location.
 \subsubsection{Stimulus/Response Sequences}
-Stimulus: User opens map.\\
-Response: App queries its stored information regarding whether the student has a class, then sets the starting map coordinates and zoom level accordingly.\\
-Stimulus: User requests directions.\\
-Response: Map provides directions from the user's current location to the specified location.\\
+\begin{description}\itemsep1pt
+\item[Stimulus:] User opens map
+\item[Response:] App queries its stored information regarding whether the student has a class, then sets the starting map coordinates and zoom level accordingly.\\
+\item[Stimulus:] User requests directions.\\
+\item[Response:] Map provides directions from the user's current location to the specified location.\\
+\end{description}
 \subsubsection{Functional Requirements}
+\begin{table}[!h]
+\begin{tabularx}{\textwidth }[t]{|l Y|}
+\hline
+~&~\\
+Map.View & The map will display and contain an overlay of the names of the CWRU buildings. \\ 
+~&~\\
+Map.Predict & If the user has courses, the map will examine the current time and schedule and center itself over the predicted next destination. \\
+~&~\\
+Map.Navigate & The map will display walking directions from the user's current location or a specified location to another specified location. \\
+~&~\\
+\hline
+\end{tabularx}
+\end{table}
 \subsection{Nextbus}
 \subsubsection{Description and Priority}
 A user will be presented with the Case Western University nextbus webpage which presents an active timer until busses arrive. Users can specify which bus route, which stop, and which direction 
