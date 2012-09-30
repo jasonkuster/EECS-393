@@ -43,7 +43,7 @@ Kuster, Long, Ordiway & 9/22/2012 & Initial Draft & 1.0 draft 1\\ \hline
 \newpage
 \section{Introduction}
 \subsection{Purpose}
-This Software Requirements Specification describes the software functional and nonfunctional requirements for release 1.0 of CWRUtility. This specification document is intended for the solo use of the members of the project team that will implement and verify the correct functioning of the system. Unless otherwise specified, all requirements documented here are committed for release 1.0, unless otherwise specified.
+This Software Requirements Specification describes the software functional and nonfunctional requirements for release 1.0 of CWRUtility. This specification document is intended for the sole use of the members of the project team that will implement and verify the correct functioning of the system. Unless otherwise specified, all requirements documented here are committed for release 1.0, unless otherwise specified.
 
 \subsection{Project Scope and Product Features}
 CWRUtility will allow CWRU students, faculty, and staff to easily access CWRU services and information in an easy-to-use way. A detailed project description is available in the \emph{CWRUTility Vision and Scope Document}[1]. The section in that document titled "Scope of initial and subsequent releases" lists the features that are scheduled for full or partial implementation in this release.
@@ -67,7 +67,7 @@ CWRU Services:  The CWRU services are the services enumerated in Diagram 1 with 
 \end{figure}
 \subsection{Operating Environment}
 \begin{enumerate}[{O}E-1:]
-\item CWRUtility willll operate on the Windows Phone 7 and Windows Phone 8 operating systems.
+\item CWRUtility will operate on the Windows Phone 7 and Windows Phone 8 operating systems.
 \end{enumerate}
 \subsection{Design and Implementation Constraints}
 \begin{enumerate}[CO-1:]
@@ -135,7 +135,7 @@ Courses.Schedule.Remove & The system will allow users to remove any and all cour
 \subsubsection{Description and Priority}
 All relevant campus buildings will be accurately labelled on the map. This labelling includes not only academic buildings but also residence halls, cafeterias, and other miscellaneous CWRU-owned buildings.\\\\
 Upon being opened, if the user has entered in courses, the map should predict their next destination and offer a map perspective encompassing both their current location and their projected next location.\\\\
-The map will offer the student the ability to navigate from their current location to their next class, or to an alternate location.
+The map will offer the student the ability to navigate from their current location to their next class, or to an alternate location. Priority: High
 \subsubsection{Stimulus/Response Sequences}
 \begin{description}\itemsep1pt
 \item[Stimulus:] User opens map
@@ -152,19 +152,16 @@ Map.View & The map will display and contain an overlay of the names of the CWRU 
 ~&~\\
 Map.Predict & If the user has courses, the map will examine the current time and schedule and center itself over the predicted next destination. \\
 ~&~\\
-Map.Navigate & The map will display walking directions from the user's current location or a specified location to another specified location. \\
-~&~\\
 \hline
 \end{tabularx}
 \end{table}
 \subsection{Nextbus}
 \subsubsection{Description and Priority}
-A user will be presented with the Case Western University Nextbus webpage which presents an active timer until busses arrive. Users can specify which bus route and which direction they want to view the times for at an expected time for at a specified stop. These choices are made through the nextbus.
-
+A user will be presented with an in-app interface to the Case Western University Nextbus service which presents an active timer until buses arrive. Users can specify which bus route and which direction they want to view the times for at an expected time for at a specified stop. Priority: Medium
 \subsubsection{Stimulus/Response Sequences}
 \begin{description}\itemsep1pt
-\item[Stimulus:] User opens Nextbus application\\
-\item[Response:] nextbus webpage is loaded\\
+\item[Stimulus:] User opens Nextbus feature\\
+\item[Response:] Nextbus webpage is loaded\\
 \item[Stimulus:] User interfaces with the nextbus webpage to specify what bus they would like information for.\\
 \item[Response:] nextbus handles all requests as if it weren't being run through the CWRUtility app.\\
 \end{description}
@@ -210,7 +207,7 @@ Directory.Browse.Select & If the user selects a service from the directory, syst
 \begin{tabularx}{\textwidth }[t]{|l Y|}
 \hline
 ~&~\\
-Directory.Call & After selecting the service, if the user clicks that service's phone number, the user's phone will place a call by dialling the selected phone number\\
+Directory.Call & The directory will have various numbers which, when clicked, will use the phone's dialer to call the number.\\
 ~&~\\
 \hline
 \end{tabularx}
@@ -218,12 +215,12 @@ Directory.Call & After selecting the service, if the user clicks that service's 
 \FloatBarrier
 \subsection{Menu}
 \subsubsection{Description and Priority}
-The system will display the semester menu's for both major campus dining halls, Fribley Dining Hall and Leutner Dining Hall. The system will display the menus in a tabular format, so at anytime the menu portion of the application will either display the Leutner menu or the Fribley menu, depending on which dining hall is selected. Priority: low
+The system will display the semester menu's for both major campus dining halls, Fribley Dining Hall and Leutner Dining Hall. The system will display the menus in a tabular format, so at any time the menu portion of the application will either display the Leutner menu or the Fribley menu, depending on which dining hall is selected. Priority: low
 \subsubsection{Stimulus/Response Sequences}
 \begin{description}\itemsep1pt
 \item[Stimulus:] User switches to this feature.
 \item[Response:] System displays last menu user viewed, or a default menu if first use.
-\item[Stimulus:] User selects a dining hall.
+\item[Stimulus:] User selects a dining hall to view.
 \item[Response:] The system displays the menu for the specified dining hall.
 \end{description}
 \subsubsection{Functional Requirements}
