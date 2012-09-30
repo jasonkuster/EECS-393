@@ -24,7 +24,7 @@
 {\huge Software Requirements Specification\\[1cm]}
 {\Large for\\[1cm]}
 {\huge CWRUtility\large{\footnote[1]{Working title}}\\[4cm]}
-{\large Prepared by\\Jason Kuster, Stuart Long, and William Ordivay\\[1cm]
+{\large Prepared by\\Jason Kuster, Stuart Long, and William Ordiway\\[1cm]
 Version 1.0\\[1cm]
 KOALAA Development\\[1cm]
 October 1, 2012}}
@@ -43,7 +43,7 @@ Kuster, Long, Ordiway & 9/22/2012 & Initial Draft & 1.0 draft 1\\ \hline
 \newpage
 \section{Introduction}
 \subsection{Purpose}
-This Software Requirements Specification describes the software functional and nonfunctional requirements for release 1.0 of CWRUtility. This specification document is intended for the solu use of the members of the project team that will implement and verify the correction functioning of the system. Unless otherwise specified, all requirements documented here are high priority and committed for release 1.0. 
+This Software Requirements Specification describes the software functional and nonfunctional requirements for release 1.0 of CWRUtility. This specification document is intended for the solo use of the members of the project team that will implement and verify the correct functioning of the system. Unless otherwise specified, all requirements documented here are committed for release 1.0, unless otherwise specified.
 
 \subsection{Project Scope and Product Features}
 CWRUtility will allow CWRU students, faculty, and staff to easily access CWRU services and information in an easy-to-use way. A detailed project description is available in the \emph{CWRUTility Vision and Scope Document}[1]. The section in that document titled "Scope of initial and subsequent releases" lists the features that are scheduled for full or partial implementation in this release.
@@ -55,10 +55,10 @@ CWRUtility will allow CWRU students, faculty, and staff to easily access CWRU se
 
 \section{Overall Description}
 \subsection{Product Perspective}
-CWRUtility is a new system that replaces the need for cumbersome navigation of all of the CWRU services in favor of a streamlined and custom-built mobile experience. The context diagram in Figure 1 illustrates the external entities and system interfaces for release 1.0. The system is expected to evolve over two releases, ultimately encompassing all of the services CWRU students, faculty, and staff use every day.
+CWRUtility is a new system that replaces the need for cumbersome navigation of all of the CWRU services in favor of a streamlined and custom-built mobile experience. The context diagram in Figure 1 illustrates the external entities and system interfaces for release 1.0. The system is expected to evolve over two releases, ultimately encompassing most of the services that CWRU students, faculty, and staff use every day.
 \subsection{User Classes and Characteristics}
-\noindent Users: CWRUtility users are CWRU students, faculty, or staff members who wish to use our app in order to access CWRU services. The number of people at CWRU who possess Windows Phone 7/8 devices is is unknown, but can be estimated in the area of 200 to 400 assuming that about half to 3/4 of the community possesses smartphones and the current figures put Windows Phone's marketshare at 3.5\%. Our app will probably be used daily by 75\% of installed users.\\\\
-CWRU Services:  The CWRU services are the services enumerated in Diagram 1 with which CWRUtility will have active communication. These services will be accessed several times per day by each instance of the application as it pulls data from the background. Multiple users may access the same service at the same time. Downtime in a service will result in downtime for the application.
+\noindent Users: CWRUtility users are CWRU students, faculty, or staff members who wish to use our application in order to access CWRU services. The number of people at CWRU who possess Windows Phone 7/8 devices is unknown, but can be estimated in the area of 200 to 400 assuming that about half to 3/4 of the community possesses smartphones and the current figures put Windows Phone's marketshare at 3.5\%. Our application will probably be used daily by 75\% of users who have installed CWRUtility.\\\\
+CWRU Services:  The CWRU services are the services enumerated in Diagram 1 with which CWRUtility will have active communication. These services will be accessed several times per day by each instance of the application as it pulls data from each service. Multiple users may access the same service at the same time. Downtime in a service will result in downtime for the application.
 \begin{figure}[h]
 \begin{center}
 \includegraphics[width=110mm]{ContextDiagram.png}\\
@@ -67,7 +67,7 @@ CWRU Services:  The CWRU services are the services enumerated in Diagram 1 with 
 \end{figure}
 \subsection{Operating Environment}
 \begin{enumerate}[{O}E-1:]
-\item CWRUtility shall operate on the Windows Phone 7 and Windows Phone 8 operating systems.
+\item CWRUtility willll operate on the Windows Phone 7 and Windows Phone 8 operating systems.
 \end{enumerate}
 \subsection{Design and Implementation Constraints}
 \begin{enumerate}[CO-1:]
@@ -77,7 +77,7 @@ CWRU Services:  The CWRU services are the services enumerated in Diagram 1 with 
 \end{enumerate}
 \subsection{User Documentation}
 \begin{enumerate}[UD-1:]
-\item System shall provide in-system tutorial and help documentation accessible via an easy to find button.
+\item System will provide in-system help documentation accessible via an easy to find button or menu.
 \end{enumerate}
 \subsection{Assumptions and Dependencies}
 \begin{enumerate}[{A}S-1:]
@@ -89,7 +89,7 @@ CWRU Services:  The CWRU services are the services enumerated in Diagram 1 with 
 \section{System Features}
 \subsection{Schedule Courses}
 \subsubsection{Description and Priority}
-A CWRUtility User may search for CWRU courses by semester and course name. Duplicate courses in a semester are returned as a drop down list. The User may then choose to add that course to his or her current schedule. Information for CWRU courses are pulled from the Student Information System Service. The User may also delete courses from his or her current schedule. The system displays the User's schedule in a standard calendar format. Priority: High
+A CWRUtility user may search for CWRU courses by semester and course name. Duplicate courses in a semester are returned as a drop down list. The user may then choose to add that course to his or her current schedule. Information for CWRU courses are pulled from the Student Information System service. The user may also delete courses from his or her current schedule. The system displays the user's schedule in a standard calendar format. Priority: High
 \subsubsection{Stimulus/Response Sequences}
 \begin{description}\itemsep1pt
 \item[Stimulus:] User switches to this feature.
@@ -133,8 +133,8 @@ Courses.Schedule.Remove & The system will allow users to remove any and all cour
 \FloatBarrier
 \subsection{Map}
 \subsubsection{Description and Priority}
-All relevant campus buildings should be accurately labelled on the map. This includes not only academic buildings but residence halls, cafeterias, and other miscellaneous CWRU-owned buildings as well.\\
-Upon being opened, if the user has entered in courses, the map should predict their next destination and offer a map perspective encompassing both their current location and their projected next location.\\
+All relevant campus buildings will be accurately labelled on the map. This labelling includes not only academic buildings but also residence halls, cafeterias, and other miscellaneous CWRU-owned buildings.\\\\
+Upon being opened, if the user has entered in courses, the map should predict their next destination and offer a map perspective encompassing both their current location and their projected next location.\\\\
 The map will offer the student the ability to navigate from their current location to their next class, or to an alternate location.
 \subsubsection{Stimulus/Response Sequences}
 \begin{description}\itemsep1pt
@@ -184,7 +184,7 @@ Nextbus.View & The user's screen is functional and permits viewing of the nextbu
 
 \subsection{Directory}
 \subsubsection{Description and Priority}
-The system will include a directory that lists hours, location, and phone numbers of campus resources. The user will be able to browse the directory and select a resource to see the above information about it. The directory will be designed such that more resources can be added easily. Priority: medium.
+The system will include a directory that lists hours, locations, and phone numbers of campus resources. The user will be able to browse the directory and select a resource to see the above information about it. The directory will be designed such that more resources can be added easily. Priority: medium.
 \subsubsection{Stimulus/Response Sequences}
 \begin{description}\itemsep1pt
 \item[Stimulus:] User switches to directory feature.
@@ -192,7 +192,7 @@ The system will include a directory that lists hours, location, and phone number
 \item[Stimulus:] Users selects a service from the directory.
 \item[Response:] System queries its own database/backend and displays the stored information about that service to the user.
 \item[Stimulus:] Users clicks on a the phone number of some selected service
-\item[Response:] System attempts to place a mobile phone call using selected phone number
+\item[Response:] System attempts to place a mobile phone call using a selected phone number
 \end{description}
 \subsubsection{Functional Requirements}
 \begin{table}[!h]
@@ -210,7 +210,7 @@ Directory.Browse.Select & If the user selects a service from the directory, syst
 \begin{tabularx}{\textwidth }[t]{|l Y|}
 \hline
 ~&~\\
-Directory.Call & After selecting the service, if the user clicks that service's phone number, the cell phone the system is implemented dials that phone number\\
+Directory.Call & After selecting the service, if the user clicks that service's phone number, the user's phone will place a call by dialling the selected phone number\\
 ~&~\\
 \hline
 \end{tabularx}
@@ -218,12 +218,12 @@ Directory.Call & After selecting the service, if the user clicks that service's 
 \FloatBarrier
 \subsection{Menu}
 \subsubsection{Description and Priority}
-The system will display the semester menu's for both major campus dining halls, Fribley Dining Hall and Leutner Dining Hall. The system will layout of the menus in a tabular format, so at anytime the menu portion of the application will either display the Leutner menu or the Fribley menu, depending on which dining is selected. Priority: low
+The system will display the semester menu's for both major campus dining halls, Fribley Dining Hall and Leutner Dining Hall. The system will display the menus in a tabular format, so at anytime the menu portion of the application will either display the Leutner menu or the Fribley menu, depending on which dining hall is selected. Priority: low
 \subsubsection{Stimulus/Response Sequences}
 \begin{description}\itemsep1pt
 \item[Stimulus:] User switches to this feature.
 \item[Response:] System displays last menu user viewed, or a default menu if first use.
-\item[Stimulus:] User selects a dining hall whose menu the user wants to view.
+\item[Stimulus:] User selects a dining hall.
 \item[Response:] The system displays the menu for the specified dining hall.
 \end{description}
 \subsubsection{Functional Requirements}
@@ -233,7 +233,7 @@ The system will display the semester menu's for both major campus dining halls, 
 ~&~\\
 Menu.Display & System will display the menu for a selected campus dining hall.\\ 
 ~&~\\
-Menu.Display.Select & System will switch displayed menu based on which tab is selected. \emph{The Case Daily}\\
+Menu.Display.Select & System will switch displayed menu based on which tab is selected.\\
 ~&~\\
 \hline
 \end{tabularx}
@@ -311,7 +311,7 @@ eSuds.Connection & System maintains a constant connection to the eSuds.com webse
 \FloatBarrier
 \subsection{5YearCal}
 \subsubsection{Description and Priority}
-The system will display the current CWRU 5-year academic calendar as provided by the university. The system will query the CWRU official website at the beginning of every Fall term to obtain the latest edition of the calendar. Priority: low.
+The system will display the current CWRU 5-year academic calendar as provided by the university. The system will query the CWRU official website at the beginning of every Fall term to obtain the latest edition of the calendar. Priority: lowest.
 \subsubsection{Stimulus/Response Sequences}
 \begin{description}\itemsep1pt
 \item[Stimulus:] User switches to this feature.
@@ -343,7 +343,9 @@ The system will display the current CWRU 5-year academic calendar as provided by
 \item System will be accessed and interacted with via a Windows Phone 7 or Windows Phone 8 mobile device.
 \end{enumerate}
 \subsection{Software Interfaces}
-TBD
+\begin{enumerate}
+\item All CWRUtility features will be accessed via the CWRUtility mobile phone application software.
+\end{enumerate}
 \subsection{Communication Interfaces}
 \begin{enumerate}[CI-1]
 \item Upon user request, the system will use the user's phone to place a phone call to the number selected by the user.
@@ -351,12 +353,13 @@ TBD
 \section{Other Nonfunctional Requirements}
 \subsection{Performance Requirements}
 \begin{enumerate}[PR-1:]
-\item Information requested by the user shall be returned and displayed on the screen after no more than 1 second.
-\item System will occupy no more than 256MB on user's phone.
+\item Information requested by the user shall be returned and displayed on the screen after no more than one second.
+\item System will occupy no more than 10MB on user's phone.
+\item System will use no more than 256MB of the user's phone device's RAM at any given time.
 \end{enumerate}
 \subsection{Reliability Requirements}
 \begin{enumerate}[RR-1:]
-\item No more than 1 crash is 1000 application instances
+\item No more than one crash is 1000 application instances
 \item Updates will be backwards compatible, i.e. they will not break any functionality.
 \end{enumerate}
 \subsection{Safety Requirements}
@@ -365,9 +368,4 @@ TBD
 \end{enumerate}
 \subsection{Security Requirements}
 No security requirements have been identified.
-\subsection{Software Quality Attributes}
-
-\section*{Appendix A: Data Dictionary and Data Model}
-I don't think we need this section.
-\lfoot{\includegraphics[height=1cm]{DarkKoala.png}}
 \end{document}
