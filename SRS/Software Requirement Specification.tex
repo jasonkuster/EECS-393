@@ -157,22 +157,32 @@ Map.Predict & If the user has courses, the map will examine the current time and
 \end{table}
 \subsection{Nextbus}
 \subsubsection{Description and Priority}
-A user will be presented with an in-app interface to the Case Western University Nextbus service which presents an active timer until buses arrive. Users can specify which bus route and which direction they want to view the times for at an expected time for at a specified stop. Priority: Medium
+A user will be presented with an active timer until campus buses arrive near them. Users can specify which bus route and which direction they want to view the times for at an expected time for at a specified stop. Priority: Very High
 \subsubsection{Stimulus/Response Sequences}
 \begin{description}\itemsep1pt
 \item[Stimulus:] User opens Nextbus feature\\
-\item[Response:] Nextbus webpage is loaded\\
-\item[Stimulus:] User interfaces with the nextbus webpage to specify what bus they would like information for.\\
-\item[Response:] nextbus handles all requests as if it weren't being run through the CWRUtility app.\\
+\item[Response:] Nextbus feature is loaded presenting the user with a current prediction for their selection of route, direction, and stop. The current prediction is a active timer which predicts how many minutes will pass before a "greenie" headed in the requested direction on the requested route will pass the requested stop\\
+\item[Stimulus:] User taps "route" \\
+\item[Response:] User is presented with 6 bus routes to choose from, presented in a dropdown menu.\\
+\item[Stimulus:] User taps "direction" \\
+\item[Response:] User is presented with 3 bus destinations to choose from, presented in a dropdown menu.\\
+\item[Stimulus:] User taps "stop" \\
+\item[Response:] User is presented with a list of appropriate bus stops to choose from (decided by the route selected), presented in a dropdown menu.\\
 \end{description}
 \subsubsection{Functional Requirements}
 \begin{table}[!h]
 \begin{tabularx}{\textwidth }[t]{|l Y|}
 \hline
 ~&~\\
-Nestbus.Load &  the user is connected to the internet, either by a data plan or wifi\\ 
+Nestbus.Load &  The user is connected to the internet, either by a data plan or wifi\\ 
 ~&~\\
 Nextbus.View & The user's screen is functional and permits viewing of the nextbus website \\
+~&~\\
+Nextbus.SelectStop & The user can use a touchscreen to accurately make selections from a dropdown menu \\
+~&~\\
+Nextbus.SelectRoute & The user can use a touchscreen to accurately make selections from a dropdown menu \\
+~&~\\
+Nextbus.SelectDirection & The user can use a touchscreen to accurately make selections from a dropdown menu \\
 ~&~\\
 \hline
 \end{tabularx}
