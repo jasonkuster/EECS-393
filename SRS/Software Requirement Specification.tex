@@ -23,21 +23,25 @@
 { \bfseries
 {\huge Software Requirements Specification\\[1cm]}
 {\Large for\\[1cm]}
-{\huge CWRUtility\large{\footnote[1]{Working title}}\\[4cm]}
+{\huge CWRUtility\large\\[4cm]}
 {\large Prepared by\\Jason Kuster, Stuart Long, and William Ordiway\\[1cm]
-Version 1.0\\[1cm]
+Version 1.1\\[1cm]
 KOALAA Development\\[1cm]
 October 1, 2012}}
 \end{flushright}
 \end{titlepage}
 \tableofcontents{}
-\vspace{5cm}
 \begin{table}[h]
 \caption*{\bfseries Revision History}
-\begin{tabularx}{\textwidth }[t]{|l|Y|Y|Y|}
+\begin{tabularx}{\textwidth }[t]{|l|Y|Y|l|}
 \hline
 \bfseries Name & \bfseries Date & \bfseries Reasons for Change & \bfseries Version \\ \hline
-Kuster, Long, Ordiway & 9/22/2012 & Initial Draft & 1.0 draft 1\\ \hline
+Kuster, Long, Ordiway & 9/22/2012 & Initial Draft & 1.0a\\
+Long & 9/30/2012 & Fixed small errors from inspection. & 1.0b \\
+Kuster & 9/31/2012 & Fixed major errors identified in inspection. & 1.0c \\
+Ordiway & 9/31/2012 & Updated NextBus section. & 1.0d \\
+Kuster, Long & 10/01/2012 & Final error fixes. & 1.1 \\
+\hline
 \end{tabularx}
 \end{table}
 \newpage
@@ -89,7 +93,7 @@ CWRU Services:  The CWRU services are the services enumerated in Diagram 1 with 
 \section{System Features}
 \subsection{Schedule Courses}
 \subsubsection{Description and Priority}
-A CWRUtility user may search for CWRU courses by semester and course name. Duplicate courses in a semester are returned as a drop down list. The user may then choose to add that course to his or her current schedule. Information for CWRU courses are pulled from the Student Information System service. The user may also delete courses from his or her current schedule. The system displays the user's schedule in a standard calendar format. Priority: High
+A CWRUtility user may search for CWRU courses by semester and course name. Duplicate courses in a semester are returned as a drop down list. The user may then choose to add that course to his or her current schedule. Information for CWRU courses is pulled from the Student Information System service. The user may also delete courses from his or her current schedule. The system displays the user's schedule in a standard calendar format. Priority: High
 \subsubsection{Stimulus/Response Sequences}
 \begin{description}\itemsep1pt
 \item[Stimulus:] User switches to this feature.
@@ -155,34 +159,34 @@ Map.Predict & If the user has courses, the map will examine the current time and
 \hline
 \end{tabularx}
 \end{table}
-\subsection{Nextbus}
+\subsection{NextBus}
 \subsubsection{Description and Priority}
-A user will be presented with an active timer until campus buses arrive near them. Users can specify which bus route and which direction they want to view the times for at an expected time for at a specified stop. Priority: Very High
+The system will display shuttle times to the user based on criteria the user can select. Specifically, users can specify the bus route, direction and stop for which they wish to view shuttle times. Priority: High
 \subsubsection{Stimulus/Response Sequences}
 \begin{description}\itemsep1pt
-\item[Stimulus:] User opens Nextbus feature\\
-\item[Response:] Nextbus feature is loaded presenting the user with a current prediction for their selection of route, direction, and stop. The current prediction is a active timer which predicts how many minutes will pass before a "greenie" headed in the requested direction on the requested route will pass the requested stop\\
-\item[Stimulus:] User taps "route" \\
-\item[Response:] User is presented with 6 bus routes to choose from, presented in a dropdown menu.\\
-\item[Stimulus:] User taps "direction" \\
-\item[Response:] User is presented with 3 bus destinations to choose from, presented in a dropdown menu.\\
-\item[Stimulus:] User taps "stop" \\
-\item[Response:] User is presented with a list of appropriate bus stops to choose from (decided by the route selected), presented in a dropdown menu.\\
+\item[Stimulus:] User opens NextBus feature
+\item[Response:] NextBus feature is loaded presenting the user with a current prediction for their selection of route, direction, and stop. The current prediction is an active timer which predicts how many minutes will pass before a "greenie" headed in the requested direction on the requested route will pass the requested stop.
+\item[Stimulus:] User taps "route"
+\item[Response:] User is presented with 6 bus routes to choose from, presented in a dropdown menu.
+\item[Stimulus:] User taps "direction"
+\item[Response:] User is presented with 3 bus destinations to choose from, presented in a dropdown menu.
+\item[Stimulus:] User taps "stop"
+\item[Response:] User is presented with a list of appropriate bus stops to choose from (decided by the route selected), presented in a dropdown menu.
 \end{description}
 \subsubsection{Functional Requirements}
 \begin{table}[!h]
 \begin{tabularx}{\textwidth }[t]{|l Y|}
 \hline
 ~&~\\
-Nestbus.Load &  The user is connected to the internet, either by a data plan or wifi\\ 
+NextBus.Load &  The user is connected to the internet, either by a data plan or wi-fi.\\
 ~&~\\
-Nextbus.View & The user's screen is functional and permits viewing of the nextbus website \\
+NextBus.View & System displays times for current shuttles based on user-selected criteria.\\
 ~&~\\
-Nextbus.SelectStop & The user can use a touchscreen to accurately make selections from a dropdown menu \\
+NextBus.SelectStop & System allows user to make stop selections from a dropdown menu \\
 ~&~\\
-Nextbus.SelectRoute & The user can use a touchscreen to accurately make selections from a dropdown menu \\
+NextBus.SelectRoute & System allows user to make route selections from a dropdown menu \\
 ~&~\\
-Nextbus.SelectDirection & The user can use a touchscreen to accurately make selections from a dropdown menu \\
+NextBus.SelectDirection & System allows user to make direction selections from a dropdown menu \\
 ~&~\\
 \hline
 \end{tabularx}
@@ -207,13 +211,6 @@ The system will include a directory that lists hours, locations, and phone numbe
 Directory.Browse & The system will allow the user to browse through CWRU services\\ 
 ~&~\\
 Directory.Browse.Select & If the user selects a service from the directory, system displays descriptive information about the service, e.g. hours. location, and phone number.\\
-~&~\\
-\hline
-\end{tabularx}
-\end{table}
-\begin{table}[!h]
-\begin{tabularx}{\textwidth }[t]{|l Y|}
-\hline
 ~&~\\
 Directory.Call & The directory will have various numbers which, when clicked, will use the phone's dialer to call the number.\\
 ~&~\\
@@ -254,6 +251,7 @@ The system will list recent news from CWRU and allow the user to select a news s
 \item[Stimulus:] User selects a news story from the list.
 \item[Response:] System switches to a new window that displays the article or story in full.
 \end{description}
+\pagebreak
 \subsubsection{Functional Requirements}
 \begin{table}[!h]
 \begin{tabularx}{\textwidth}[t]{|l Y|}
@@ -264,13 +262,6 @@ News.Display & System displays the list of current news.\\
 News.Display.Story & Stories are displayed as panels that show their title and source.\\
 ~&~\\
 News.Display.Update & The list of stories are updated daily to reflect new stories from either \emph{The Observer} or \emph{The Case Daily}.\\
-~&~\\
-\hline
-\end{tabularx}
-\end{table}
-\begin{table}[!h]
-\begin{tabularx}{\textwidth}[t]{|l Y|}
-\hline
 ~&~\\
 News.Story & If a user selects a story from the list, a new window appears that displays detailed information about the story.\\
 ~&~\\
@@ -300,13 +291,6 @@ eSuds.Display & System displays laundry information and a drop-down list of CWRU
 eSuds.Display.Laundry & Laundry information includes numbers of washers, dryers, and how much time is remaining on each of the different machines \\
 ~&~\\
 eSuds.Display.DropDown & On the eSuds display there will be a dropdown menu that allows the user to select different CWRU residence halls.\\
-~&~\\
-\hline
-\end{tabularx}
-\end{table}
-\begin{table}[!h]
-\begin{tabularx}{\textwidth}[t]{|l Y|}
-\hline
 ~&~\\
 eSuds.Connection & System maintains a constant connection to the eSuds.com webservice in order to provide up-to-date information on laundry.\\
 ~&~\\
@@ -373,4 +357,6 @@ The system will display the current CWRU 5-year academic calendar as provided by
 \end{enumerate}
 \subsection{Security Requirements}
 No security requirements have been identified.
+
+\lfoot{\includegraphics[height=1cm]{DarkKoala.png}}
 \end{document}
