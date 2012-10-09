@@ -44,7 +44,13 @@ Long & 10/6/2012 & Initial Outline & 1.0 initial\\
 \newpage
 \clearpage
 \section{Overview}
-should probably mention how all UI will be done in XAML
+\subsection{Overall Design}
+The \emph{CWRUtility} application is essentially a collection of CWRU-related features that allows for easy, centralized access to each of the features. The complete list of features and their description can be found in the \emph{CWRUtility} SRS. Since this software system can be easily broken down into separate, uncoupled features, the design of the overall system is also broken down. Each feature will have it's own design, documented below in the "Features" section, that will operate independently of the other features. The only exception to this rule is the "StartPage" feature, which can also be seen as the overall application manager. Explained in detail below, the "StartPage" feature will be responsible for navigating the system to the different features and controlling any communication between the features. The figure below shows the various components of the system and how they are linked. This diagram could be seen as the highest level of design for the system.
+\includegraphics[width=120mm]{OverallCD.png}
+\subsection{User Interface}
+The implementation of any user interfaces on the Windows Phone 7/8 platform is done using the Extensible Application Markup Language (XAML)
+\\
+should probably mention how all UI will be done in XAML\\
 \section{Features}
 \subsection{Map}
 The "Map" feature will allow the users to view a map of the Case Western Reserve University Campus. The feature will use the interactive map controller provided by the Windows Phone SDK. This map controller is the same map controller used for the default Windows Phone 7 map application. Since the map controller is already provided by the Windows Phone SDK, this feature will have a simple design.
@@ -56,15 +62,15 @@ The SilverlightMapControl class is part of a third party library provided by Mic
 \subsubsection{MapManager}
 The MapManager class is responsible for handling the other two classes: the SilverlightMapControl and the UI manager. It will have a saved copy of the CWRU map that it will send to the SilverlightMapControl. It will also be responsible for sending the SilverlightMapControl to the UI manager so that the UI manager can display the map.
 \subsubsection{UIManager}
-The UIManager for this feature will not be a true class, since all UI for Windows Phone is done using XAML files. Still, this manager will be responsible for laying out the compnents of the feature. Namely, it will have to layout the title of the application at the top, the name of this feature below that, and the actual map will take up most of the application. The XAML file will be sent the map controller (along with that map controller's view, i.e. the map)  by the MapManager.
+The UIManager for this feature will not be a true class, since all UI for Windows Phone is done using XAML files. Still, this manager will be responsible for laying out the components of the feature. Namely, it will have to layout the title of the application at the top, the name of this feature below that, and the actual map will take up most of the application. The XAML file will be sent the map controller (along with that map controller's view, i.e. the map)  by the MapManager.
 
 
-\subsection{Schedule}
-The "Schedule" feature will allow users to add classes or custom events to a saved schedule on the system. This feature will require three classes: a schedule event, a schedule event manager to handle schedule events, and a UI manager for the schedule.
-\subsection{Class Diagram}
-\includegraphics[width=80mm]{ScheduleEventsCD.png}
-\figurename{Schedule Class Diagram}
-\subsection{Class Descriptions}
-The following class descriptions describe the above class diagram.
-\subsubsection{ScheduleEvent}
+%\subsection{Schedule}
+%The "Schedule" feature will allow users to add classes or custom events to a saved schedule on the system. This feature will require three classes: a schedule event, a schedule event manager to handle schedule events, and a UI manager for the schedule.
+%\subsection{Class Diagram}
+%\includegraphics[width=80mm]{ScheduleEventsCD.png}
+%\figurename{Schedule Class Diagram}
+%\subsection{Class Descriptions}
+%The following class descriptions describe the above class diagram.
+%\subsubsection{ScheduleEvent}
 \end{document}
