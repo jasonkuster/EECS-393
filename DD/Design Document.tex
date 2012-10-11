@@ -58,15 +58,28 @@ The "StartPage" feature represents both the manager for the rest of the applicat
 \subsection{Class Descriptions}
 \subsection{Map}
 The "Map" feature will allow the users to view a map of the Case Western Reserve University Campus. The feature will use the interactive map controller provided by the Windows Phone SDK. This map controller is the same map controller used for the default Windows Phone 7 map application. Since the map controller is already provided by the Windows Phone SDK, this feature will have a simple design.
-\subsection{Class Diagram}
+\subsubsection{Class Diagram}
 \includegraphics[width=120mm]{MapCD.png}
-\subsection{Class Descriptions}
-\subsubsection{SilverlightMapControl}
-The SilverlightMapControl class is part of a third party library provided by Microsoft Corporation. It provides basic map controls such as zooming in, zooming out, and panning for any provided map. The MapManager will simply send a saved map of the CWRU campus to the map controller. The MapControl provides a view controller that can be placed within an application and allows the user to manipulate whatever is in its view like a map. So in this case, the view controller's view will be the map passed in by the MapManager.
-\subsubsection{MapManager}
-The MapManager class is responsible for overseeing the other two classes: the SilverlightMapControl and the UI manager. It will have a saved copy of the CWRU map that it will send to the SilverlightMapControl. It will also be responsible for sending the SilverlightMapControl view controller to the UI manager so that the UI manager can display the map and its view control.
-\subsubsection{UIManager}
+\subsubsection{Class Description: SilverlightMapControl}
+The SilverlightMapControl class is part of a third party library provided by Microsoft Corporation. It provides basic map controls such as zooming in, zooming out, and panning for any provided map. The MapManager will simply send a saved map of the CWRU campus to the map controller.
+\subsubsection{Class Description: MapManager}
+The MapManager class is responsible for handling the other two classes: the SilverlightMapControl and the UI manager. It will have a saved copy of the CWRU map that it will send to the SilverlightMapControl. It will also be responsible for sending the SilverlightMapControl to the UI manager so that the UI manager can display the map.
+\subsubsection{ClassDescription: UIManager}
 The UIManager for this feature will not be a true class, since all UI for Windows Phone is done using XAML files. Still, this manager will be responsible for laying out the components of the feature. Namely, it will have to layout the title of the application at the top, the name of this feature below that, and the actual map will take up most of the application. The XAML file will be sent the map controller (along with that map controller's view, i.e. the map)  by the MapManager.
+%william's section
+\subsection{Directory}
+The "Directory" feature will allow users to view the location, hours, phone number, and a description of the wide assortment of Case Western Reserve University campus resources. This feature will be simple in design because besides presenting preloaded information its only function is to facilitate calling campus resources 
+\subsubsection{Class Diagram}
+
+\begin{flushleft}
+\includegraphics[width=300mm]{DirectoryCD.png}
+\end{flushleft}
+\subsubsection{Class Descriptions: Resource}
+insert stuff here
+\subsubsection{Class Description: MapManager}
+insert stuff here
+\subsubsection{Class Description: UI Manager}
+insert stuff here
 
 \subsection{NextBus}
 The "NextBus" feature will allow the users to interface with the NextBus, Inc. bus times prediction website. This feature will offer users the ability to select bus routes, bus direction, and stops in order to facilitate the use of the "Greenie" bus system on campus. The feature's main page will be a single Windows Phone-style page with three drop-down selection boxes and a "Go" button. There will be a field, initially blank, which will populate with the next prediction times (max 3). Additionally, the NextBus section will feature on the main page, where it will provide a small icon which contains the stop which the user has marked as a "favorite".
