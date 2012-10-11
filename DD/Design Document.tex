@@ -52,10 +52,15 @@ The implementation of any user interfaces on the Windows Phone 7/8 platform is d
 \\
 \section{Features}
 \subsection{StartPage}
+
 The "StartPage" feature represents both the manager for the rest of the application and the feature the user is taken to on application start-up. This feature actually comprises two different application pages for the "At-a-glance" page and one for the page listing the full list of features.
+
 \subsection{Class Diagram}
+
 \includegraphics[width=120mm]{StartPageCD.png}
+
 \subsection{Class Descriptions}
+
 \subsection{Map}
 The "Map" feature will allow the users to view a map of the Case Western Reserve University Campus. The feature will use the interactive map controller provided by the Windows Phone SDK. This map controller is the same map controller used for the default Windows Phone 7 map application. Since the map controller is already provided by the Windows Phone SDK, this feature will have a simple design.
 \subsubsection{Class Diagram}
@@ -65,14 +70,15 @@ The SilverlightMapControl class is part of a third party library provided by Mic
 \subsubsection{Class Description: MapManager}
 The MapManager class is responsible for handling the other two classes: the SilverlightMapControl and the UI manager. It will have a saved copy of the CWRU map that it will send to the SilverlightMapControl. It will also be responsible for sending the SilverlightMapControl to the UI manager so that the UI manager can display the map.
 \subsubsection{ClassDescription: UIManager}
+
+
 The UIManager for this feature will not be a true class, since all UI for Windows Phone is done using XAML files. Still, this manager will be responsible for laying out the components of the feature. Namely, it will have to layout the title of the application at the top, the name of this feature below that, and the actual map will take up most of the application. The XAML file will be sent the map controller (along with that map controller's view, i.e. the map)  by the MapManager.
 %william's section
 \subsection{Directory}
 The "Directory" feature will allow users to view the location, hours, phone number, and a description of the wide assortment of Case Western Reserve University campus resources. This feature will be simple in design because besides presenting preloaded information its only function is to facilitate calling campus resources 
 \subsubsection{Class Diagram}
-
 \begin{flushleft}
-\includegraphics[width=300mm]{DirectoryCD.png}
+\includegraphics[width=120mm]{DirectoryCD.png}
 \end{flushleft}
 \subsubsection{Class Descriptions: Resource}
 insert stuff here
@@ -88,11 +94,12 @@ The "NextBus" feature will allow the users to interface with the NextBus, Inc. b
 \subsubsection{BusScheduleManager}
 %\subsection{Schedule}
 %The "Schedule" feature will allow users to add classes or custom events to a saved schedule on the system. This feature will require three classes: a schedule event, a schedule event manager to handle schedule events, and a UI manager for the schedule.
+\lfoot{\includegraphics[height=1cm]{DarkKoala.png}}
+
 %\subsection{Class Diagram}
 %\includegraphics[width=80mm]{ScheduleEventsCD.png}
 %\figurename{Schedule Class Diagram}
 %\subsection{Class Descriptions}
 %The following class descriptions describe the above class diagram.
 %\subsubsection{ScheduleEvent}
-\lfoot{\includegraphics[height=1cm]{DarkKoala.png}}
 \end{document}
