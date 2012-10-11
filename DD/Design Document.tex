@@ -51,6 +51,11 @@ The \emph{CWRUtility} application is essentially a collection of CWRU-related fe
 The implementation of any user interfaces on the Windows Phone 7/8 platform is done using the eXtensible Application Markup Language (XAML). Essentially, XAML can be used as a layout language similar to HTML. XAML provides a straightforward way to generate, lay out, and populate the on-screen elements. Data population will be done by using Model View View-Model (MVVM), a data-binding interface built into the Windows Phone SDK. The data fields will be laid out in XAML, which will comprise the view; the code to map the data to the view is contained in the view-model, and the raw data will be stored in application storage.It is important to note that a markup language is very dissimilar to a programming language as it works through simply creating a series of attributes and assigning values to them. The Windows Phone OS actually handles creating the UI based on these attributes, therefore this software system does not have to.
 \\
 \section{Features}
+\subsection{StartPage}
+The "StartPage" feature represents both the manager for the rest of the application and the feature the user is taken to on application start-up. This feature actually comprises two different application pages for the "At-a-glance" page and one for the page listing the full list of features.
+\subsection{Class Diagram}
+\includegraphics[width=120mm]{StartPageCD.png}
+\subsection{Class Descriptions}
 \subsection{Map}
 The "Map" feature will allow the users to view a map of the Case Western Reserve University Campus. The feature will use the interactive map controller provided by the Windows Phone SDK. This map controller is the same map controller used for the default Windows Phone 7 map application. Since the map controller is already provided by the Windows Phone SDK, this feature will have a simple design.
 \subsection{Class Diagram}
@@ -76,4 +81,5 @@ The "NextBus" feature will allow the users to interface with the NextBus, Inc. b
 %\subsection{Class Descriptions}
 %The following class descriptions describe the above class diagram.
 %\subsubsection{ScheduleEvent}
+\lfoot{\includegraphics[height=1cm]{DarkKoala.png}}
 \end{document}
