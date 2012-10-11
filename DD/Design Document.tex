@@ -81,11 +81,12 @@ The "Directory" feature will allow users to view the location, hours, phone numb
 \includegraphics[width=120mm]{DirectoryCD.png}
 \end{flushleft}
 \subsubsection{Class Descriptions: Resource}
-insert stuff here
-\subsubsection{Class Description: MapManager}
-insert stuff here
+Each campus resource that will be represented in our application will be represented as an object in the resource class possessing a Phone Number, an Address, open hours, and a brief description about what the resource can be used for. The address, open hours, and description will all be simbple text variables which are displayed on screen. However the phone number variable is tied to the PlaceCall() operation. By tapping the phone number of a resource the users phone will place a call to that number.
+\subsubsection{Class Description: Directory}
+The directory class is used to maintain a variable List which contains a number of resource objects, each of which represent a different campus resource.
 \subsubsection{Class Description: UI Manager}
-insert stuff here
+The UIManager for this feature will not be a true class, since all UI for Windows Phone is done using XAML files. Still, this manager will be responsible for laying out the components of the feature. Namely, it will have to layout the title of the application at the top, the name of this feature below that. Taking up the majority of the screen though will be a scrollable alphabetized list of campus resources. Selecting a campus resource will expand information about that resource and shut the previous, if any, selected resource.
+
 
 \subsection{NextBus}
 The "NextBus" feature will allow the users to interface with the NextBus, Inc. bus times prediction website. This feature will offer users the ability to select bus routes, bus direction, and stops in order to facilitate the use of the "Greenie" bus system on campus. The feature's main page will be a single Windows Phone-style page with three drop-down selection boxes and a "Go" button. There will be a field, initially blank, which will populate with the next prediction times (max 3). Additionally, the NextBus section will feature on the main page, where it will provide a small icon which contains the stop which the user has marked as a "favorite".
