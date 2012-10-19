@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CWRUtility", "CWRUtility\CWRUtility.csproj", "{A912878A-528E-4872-AAD7-489E0A48B1E5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A912878A-528E-4872-AAD7-489E0A48B1E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A912878A-528E-4872-AAD7-489E0A48B1E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A912878A-528E-4872-AAD7-489E0A48B1E5}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{A912878A-528E-4872-AAD7-489E0A48B1E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A912878A-528E-4872-AAD7-489E0A48B1E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A912878A-528E-4872-AAD7-489E0A48B1E5}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
