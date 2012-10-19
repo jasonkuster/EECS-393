@@ -15,6 +15,7 @@ namespace CWRUtility
 {
     public partial class MainPage : PhoneApplicationPage
     {
+        //This is the file in which we'll put all the main page logic.
         // Constructor
         public MainPage()
         {
