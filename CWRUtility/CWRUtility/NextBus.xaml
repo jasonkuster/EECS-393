@@ -18,23 +18,23 @@
             		<StackPanel Height="100">
             			<TextBlock TextWrapping="Wrap" Text="Predictions" HorizontalAlignment="Center" FontSize="26.667"/>
             			<StackPanel Height="73" Orientation="Horizontal">
-            				<TextBlock TextWrapping="Wrap" Text="0:00" Width="144" FontSize="48" TextAlignment="Center"/>
-            				<TextBlock TextWrapping="Wrap" Text="0:00" Width="144" TextAlignment="Center" FontSize="48"/>
-            				<TextBlock TextWrapping="Wrap" Text="0:00" Width="144" TextAlignment="Center" FontSize="48"/>
+            				<TextBlock x:Name="pred1" TextWrapping="Wrap" Text="0:00" Width="144" FontSize="48" TextAlignment="Center"/>
+            				<TextBlock x:Name="pred2" TextWrapping="Wrap" Text="0:00" Width="144" TextAlignment="Center" FontSize="48"/>
+            				<TextBlock x:Name="pred3" TextWrapping="Wrap" Text="0:00" Width="144" TextAlignment="Center" FontSize="48"/>
             			</StackPanel>
             			<ListBox Height="100"/>
             		</StackPanel>
             		<StackPanel Height="100" Margin="0,7,0,0">
             			<TextBlock TextWrapping="Wrap" Text="Route"/>
-            			<toolkit:ListPicker Margin="0"/>
+            			<toolkit:ListPicker x:Name="routePicker" ExpansionMode="FullScreenOnly" Margin="0" SelectionChanged="routePicker_SelectionChanged"/>
             		</StackPanel>
             		<StackPanel Height="100" Margin="0,7,0,0">
             			<TextBlock TextWrapping="Wrap" Text="Direction"/>
-            			<toolkit:ListPicker Margin="0"/>
+            			<toolkit:ListPicker x:Name="dirPicker" Margin="0" ExpansionMode="FullScreenOnly" IsEnabled="False" SelectionChanged="dirPicker_SelectionChanged"/>
             		</StackPanel>
             		<StackPanel Height="100" Margin="0,7,0,0">
             			<TextBlock TextWrapping="Wrap" Text="Stop"/>
-            			<toolkit:ListPicker Margin="0"/>
+            			<toolkit:ListPicker x:Name="stopPicker" Margin="0" IsEnabled="False"/>
             		</StackPanel>
             		<StackPanel Margin="0,7,0,0">
             			<Button x:Name="goButton" Content="Go" Click="Button_Click"/>
@@ -54,12 +54,7 @@
     <!--Sample code showing usage of ApplicationBar-->
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton x:Name="appbar_button1" IconUri="/Images/appbar_button1.png" Text="Button 1"/>
-            <shell:ApplicationBarIconButton x:Name="appbar_button2" IconUri="/Images/appbar_button2.png" Text="Button 2"/>
-            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem x:Name="menuItem1" Text="MenuItem 1"/>
-                <shell:ApplicationBarMenuItem x:Name="menuItem2" Text="MenuItem 2"/>
-            </shell:ApplicationBar.MenuItems>
+            <shell:ApplicationBarIconButton x:Name="appbar_button1" IconUri="/icons/appbar.favs.rest.png" Text="favorite"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
     

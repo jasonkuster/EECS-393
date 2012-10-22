@@ -33,6 +33,7 @@ namespace CWRUtility
             {
                 App.ViewModel.LoadData();
             }
+            NavigationService.Navigate(new Uri("/NextBus.xaml", UriKind.RelativeOrAbsolute));
         }
     }
 }
