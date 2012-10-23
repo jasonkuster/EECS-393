@@ -11,6 +11,8 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using System.IO.IsolatedStorage;
+using System.IO;
+using HtmlAgilityPack;
 
 namespace CWRUtility
 {
@@ -41,7 +43,9 @@ namespace CWRUtility
             }
             if (!String.IsNullOrEmpty((string)settings["nbDefault"]))
             {
-                nbDef.Text = ((string)settings["nbDefault"]).Split('!')[2];
+                string[] nbDefault = ((string)settings["nbDefault"]).Split('!');
+                nbDef.Text = nbDefault[2];
+                GetHtml(new Uri(nbDefault[3]));
                 //MessageBox.Show((string)settings["nbDefault"]);
             }
             //NavigationService.Navigate(new Uri("/NextBus.xaml", UriKind.RelativeOrAbsolute));
@@ -54,7 +58,81 @@ namespace CWRUtility
 
         private void NextBust_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            NavigationService.Navigate(new Uri("/NextBus.xaml", UriKind.RelativeOrAbsolute));    
+            NavigationService.Navigate(new Uri("/NextBus.xaml", UriKind.RelativeOrAbsolute));
         }
+
+        #region Nextbus Scraper
+
+        private void GetHtml(Uri stopUri)
+        {
+            WebClient client = new WebClient();
+            client.OpenReadCompleted += new OpenReadCompletedEventHandler(client_OpenReadCompleted);
+            client.OpenReadAsync(stopUri);
+            ProgressBar.IsVisible = true;
+        }
+
+        void client_OpenReadCompleted(object sender, OpenReadCompletedEventArgs e)
+        {
+            Stream data = e.Result as Stream;
+            StreamReader reader = new StreamReader(data);
+            HtmlDocument busPredictions = new HtmlDocument();
+            busPredictions.Load(reader);
+            data.Close();
+            reader.Close();
+            ParseHtml(busPredictions);
+        }
+
+        private void ParseHtml(HtmlDocument busPredictions)
+        {
+            List<string> predictions = new List<string>();
+            predictions = extractPredictions(busPredictions);
+            if (predictions.Count != 0)
+            {
+                nbPred1.Visibility = System.Windows.Visibility.Visible;
+                nbPred2.Width = 134;
+                nbPred2.FontSize = 37.333;
+                nbPred3.Visibility = System.Windows.Visibility.Visible;
+                nbPred1.Text = predictions[0] == "Arriving" ? "Arr." : predictions[0];
+                nbPred2.Text = predictions[1] == "Arriving" ? "Arr." : predictions[1];
+                nbPred3.Text = predictions[2] == "Arriving" ? "Arr." : predictions[2];
+            }
+            else
+            {
+                nbPred1.Visibility = System.Windows.Visibility.Collapsed;
+                nbPred3.Visibility = System.Windows.Visibility.Collapsed;
+                nbPred2.Width = 402;
+                nbPred2.FontSize = 36;
+                nbPred2.Text = "No Prediction Available";
+            }
+            ProgressBar.IsVisible = false;
+        }
+
+        private List<string> extractPredictions(HtmlDocument busPredictions)
+        {
+            if (busPredictions != null)
+            {
+                List<string> bpTags = new List<string>();
+
+                foreach (HtmlNode link in busPredictions.DocumentNode.SelectNodes("//div"))
+                {
+                    //HtmlAttribute att = link.Attributes["div"];
+                    bpTags.Add(link.InnerText);
+                }
+
+                List<string> parsedStrings = new List<string>();
+
+                foreach (string s in bpTags)
+                {
+                    parsedStrings.Add(":" + s.Substring(6));
+                }
+                parsedStrings.Remove(parsedStrings.Last());
+
+                return parsedStrings;
+            }
+            else
+                throw new ArgumentNullException();
+        }
+
+        #endregion
     }
 }
