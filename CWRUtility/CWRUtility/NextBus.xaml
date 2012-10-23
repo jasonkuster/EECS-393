@@ -15,6 +15,8 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <!--Pivot Control-->
+        <Image Source="Resources/CWRUsealWhite.png" Stretch="Fill" Margin="8,156,24,102" Opacity="0.2"/>
+        <!--Pivot Control-->
         <controls:Pivot Title="CWRUTILITY">
             <!--Pivot item one-->
             <controls:PivotItem Header="NextBus">
