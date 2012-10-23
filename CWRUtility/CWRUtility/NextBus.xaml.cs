@@ -228,6 +228,10 @@ namespace CWRUtility
             client.OpenReadCompleted += new OpenReadCompletedEventHandler(client_OpenReadCompleted);
             client.OpenReadAsync(stopUri);
             goButton.IsEnabled = false;
+            routePicker.IsEnabled = false;
+            dirPicker.IsEnabled = false;
+            stopPicker.IsEnabled = false;
+            ProgressBar.IsVisible = true;
         }
 
         void client_OpenReadCompleted(object sender, OpenReadCompletedEventArgs e)
@@ -264,6 +268,10 @@ namespace CWRUtility
                 pred2.Text = "No Prediction Available";
             }
             goButton.IsEnabled = true;
+            routePicker.IsEnabled = true;
+            dirPicker.IsEnabled = true;
+            stopPicker.IsEnabled = true;
+            ProgressBar.IsVisible = false;
         }
 
         private List<string> extractPredictions(HtmlDocument busPredictions)
