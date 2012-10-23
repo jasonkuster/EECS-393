@@ -20,8 +20,8 @@
 		<TextBlock x:Name="Title" Height="106" Margin="8,8,8,0" Style="{StaticResource PhoneTextTitle1Style}" TextWrapping="Wrap" Text="CWRUtility" VerticalAlignment="Top"/>
 		<StackPanel x:Name="Features" Margin="0,118,24,51" HorizontalAlignment="Right" Width="432">
 			<TextBlock x:Name="Map" Margin="7,0,17,0" Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap" Text="Campus Map" Height="59" FontSize="37.333" Foreground="White" VerticalAlignment="Top" Tap="Map_Tap"/>
-            <TextBlock x:Name="NextBus" Margin="8,0" Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap" Text="NextBus" FontSize="37.333" Height="62" Tap="NextBust_Tap">
-			</TextBlock>
+            <TextBlock x:Name="NextBus" Margin="8,0" Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap" Text="NextBus" FontSize="37.333" Height="62" Tap="NextBust_Tap"/>
+            <TextBlock x:Name="nbDef" Margin="8,0" Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="NoWrap" FontSize="37.333" Height="62"/>
 			<TextBlock x:Name="Directory" Margin="8,0,0,0" Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap" Text="Directory" FontSize="37.333" Height="63"/>
 		</StackPanel>
 	</Grid>

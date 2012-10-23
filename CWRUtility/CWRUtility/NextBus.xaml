@@ -20,7 +20,7 @@
             <controls:PivotItem Header="NextBus">
             	<StackPanel Margin="{StaticResource PhoneMargin}">
             		<StackPanel Height="100">
-            			<TextBlock x:Name="predTextBlock" TextWrapping="Wrap" Text="Predictions" HorizontalAlignment="Center" FontSize="26.667"/>
+            			<TextBlock x:Name="predTextBlock" TextWrapping="NoWrap" Text="Predictions" HorizontalAlignment="Center" FontSize="26.667"/>
             			<StackPanel Height="73" Orientation="Horizontal">
             				<TextBlock x:Name="pred1" TextWrapping="Wrap" Text="0:00" Width="144" FontSize="48" TextAlignment="Center"/>
             				<TextBlock x:Name="pred2" TextWrapping="Wrap" Text="0:00" Width="144" TextAlignment="Center" FontSize="48"/>
@@ -47,7 +47,7 @@
             </controls:PivotItem>
 
             <!--Pivot item two-->
-            <controls:PivotItem Header="Favorites">
+            <!--<controls:PivotItem Header="Favorites">
             	<ScrollViewer Margin="{StaticResource PhoneMargin}">
                     <ListBox x:Name="favBox" Height="511" Width="432">
                         <ListBox.ItemTemplate>
@@ -64,14 +64,14 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
             	</ScrollViewer>
-            </controls:PivotItem>
+            </controls:PivotItem>-->
         </controls:Pivot>
     </Grid>
 
     <!--Sample code showing usage of ApplicationBar-->
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton x:Name="favButton" IconUri="/icons/appbar.favs.rest.png" Text="favorite" Click="favButton_Click"/>
+            <shell:ApplicationBarIconButton x:Name="favButton" IconUri="/icons/appbar.favs.rest.png" Text="set default" Click="favButton_Click"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
     

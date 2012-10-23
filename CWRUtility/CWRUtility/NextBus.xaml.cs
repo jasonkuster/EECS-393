@@ -220,6 +220,10 @@ namespace CWRUtility
             predTextBlock.Text = stop;
             currentUri = buses[route][direction][stop];
             GetHtml(currentUri);
+            goButton.IsEnabled = false;
+            routePicker.IsEnabled = false;
+            dirPicker.IsEnabled = false;
+            stopPicker.IsEnabled = false;
         }
 
         private void GetHtml(Uri stopUri)
@@ -227,10 +231,6 @@ namespace CWRUtility
             WebClient client = new WebClient();
             client.OpenReadCompleted += new OpenReadCompletedEventHandler(client_OpenReadCompleted);
             client.OpenReadAsync(stopUri);
-            goButton.IsEnabled = false;
-            routePicker.IsEnabled = false;
-            dirPicker.IsEnabled = false;
-            stopPicker.IsEnabled = false;
             ProgressBar.IsVisible = true;
         }
 
@@ -255,9 +255,9 @@ namespace CWRUtility
                 pred2.Width = 144;
                 pred2.FontSize = 48;
                 pred3.Visibility = System.Windows.Visibility.Visible;
-                pred1.Text = predictions[0];
-                pred2.Text = predictions[1];
-                pred3.Text = predictions[2];
+                pred1.Text = predictions[0] == "Arriving" ? "Arr." : predictions[0];
+                pred2.Text = predictions[1] == "Arriving" ? "Arr." : predictions[1];
+                pred3.Text = predictions[2] == "Arriving" ? "Arr." : predictions[2];
             }
             else
             {
@@ -306,7 +306,10 @@ namespace CWRUtility
             string direction = (string)dirPicker.SelectedItem;
             string stop = (string)stopPicker.SelectedItem;
             string uri = buses[route][direction][stop].ToString();
-            string fav = route + '\0' + direction + '\0' + stop + '\0' + uri;
+            string fav = route + '!' + direction + '!' + stop + '!' + uri;
+            settings["nbDefault"] = fav;
+            MessageBox.Show(stop + " set as default.", "Default Set", MessageBoxButton.OK);
+            /*
             if (((List<string>)settings["nbFavorites"]).Contains(fav))
             {
                 MessageBox.Show("Favorite already exists", "Error", MessageBoxButton.OK);
@@ -315,6 +318,7 @@ namespace CWRUtility
             {
                 ((List<string>)settings["nbFavorites"]).Add(fav);
             }
+            */
         }
     }
 }
