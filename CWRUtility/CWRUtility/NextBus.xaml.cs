@@ -12,58 +12,221 @@ using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using System.IO;
 using HtmlAgilityPack;
+using System.IO.IsolatedStorage;
+using System.Windows.Threading;
 
 namespace CWRUtility
 {
     public partial class NextBus : PhoneApplicationPage
     {
-        List<string> routes;
-        List<string> clDirections;
-        List<string> clStops_cs;
-        List<string> clStops_cma;
-        List<string> csDirections;
-        List<string> csStops;
-        List<string> esnDirections;
-        List<string> esnStops_cs;
-        List<string> esnStops_l46;
-        List<string> essDirections;
-        List<string> essStops;
+        IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
+        Dictionary<string, Dictionary<string, Dictionary<string, Uri>>> buses;
+        DispatcherTimer timer;
+        Uri currentUri;
+
         public NextBus()
         {
-            routes = new List<string>(){"Circle Link", "Commuter Shuttle", "Evening Shuttle North", "Evening Shuttle South"};
-            clDirections = new List<string>() { "To Circle Station", "To Cleveland Museum of Art" };
-            clStops_cs = new List<string>() {"Cleveland Museum of Art - Departure", "East Blvd (Law School)", "Juniper Central South", "Juniper East South",
-                "E115th Euclid West", "Lot 46 South", "Euclid Ave - Up Town", "Ford Lot 419", "Euclid Ave (Church of the Covenant)", "Adelbert Lot 13A West",
-                "Adelbert Lot 13", "Adelbert Kent Hale Smith", "Adelbert 1-2-1 West", "Adelbert Lot 47", "Murray Hill & Fairchild", "Circle Station - Arrival"};
-            csDirections = new List<string>() { "Continuous Loop" };
-            csStops = new List<string>() { "Lerner Towers", "Thwing Lot", "VIC Lot", "DeGrace", "Adelbert 1-2-1 West", "Wolstein Research Building", "Foley Building",
-                "Lot 46 South", "Bellflower at E115th Street", "Wolstein Hall", "WSOM" };
-            esnDirections = new List<string>() { "To Circle Station", "To Lot 46" };
-            essDirections = new List<string>() { "Continuous Loop" };
-            essStops = new List<string>() { "Fribley Commons", "Murray Hill & Cornell", "Overlook Rd & Edgehill", "Coventry & Overlook", "Euclid Hts & Coventry",
-                "Euclid Hts & Edgehill", "Euclid Hts & Lennox", "Lennox & Cedar", "Carlton Road", "Euclid Hts & Cedar", "Murray Hill & Glenwood", "Circle Station - Departure" };
+            createBusLists();
             InitializeComponent();
+            InitializeTimer();
+
+            if (!(settings.Contains("nbFavorites")))
+            {
+                settings["nbFavorites"] = new List<string>();
+            }
             this.Loaded += new RoutedEventHandler(NextBus_Loaded);
+        }
+
+        private void InitializeTimer()
+        {
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(30);
+            timer.Tick += new EventHandler(timer_Tick);
+        }
+
+        void timer_Tick(object sender, EventArgs e)
+        {
+            if (!(currentUri.Equals(null)))
+            {
+                GetHtml(currentUri);
+            }
         }
 
         private void NextBus_Loaded(object sender, RoutedEventArgs e)
         {
-            routePicker.ItemsSource = routes;
+            routePicker.ItemsSource = buses.Keys;
+            getBusPrediction();
+        }
+
+        private void createBusLists()
+        {
+            buses = new Dictionary<string, Dictionary<string, Dictionary<string, Uri>>>();
+            List<string> routes = new List<string>() { "Circle Link", "Commuter Shuttle", "Evening Shuttle North", "Evening Shuttle South" };
+            foreach (string route in routes)
+            {
+                buses.Add(route, new Dictionary<string, Dictionary<string, Uri>>());
+                addDirections(route);
+            }
+        }
+
+        private void addDirections(string route)
+        {
+            List<string> directions = new List<string>();
+            switch (route)
+            {
+                case "Circle Link":
+                    directions = new List<string>() { "To Circle Station", "To Cleveland Museum of Art" };
+                    break;
+                case "Commuter Shuttle":
+                    directions = new List<string>() { "Continuous Loop" };
+                    break;
+                case "Evening Shuttle North":
+                    directions = new List<string>() { "To Circle Station", "To Lot 46" };
+                    break;
+                case "Evening Shuttle South":
+                    directions = new List<string>() { "Continuous Loop" };
+                    break;
+            }
+            foreach (string direction in directions)
+            {
+                buses[route].Add(direction, getStopDict(route, direction));
+            }
+        }
+
+        private Dictionary<string, Uri> getStopDict(string route, string dir)
+        {
+            string nbRoute = "";
+            string nbDirection = "";
+            List<string> stops = new List<string>();
+            List<string> uris = new List<string>();
+            switch (route)
+            {
+                case "Circle Link":
+                    nbRoute = "circlelink";
+                    switch (dir)
+                    {
+                        case "To Circle Station":
+                            nbDirection = "2circle";
+                            stops = new List<string>() { "Cleveland Museum of Art - Departure", "East Blvd (Law School)", "Juniper Central South", "Juniper East South",
+                                "E115th Euclid West", "Lot 46 South", "Euclid Ave - Up Town", "Ford Lot 419", "Euclid Ave (Church of the Covenant)", "Adelbert Lot 13A West",
+                                "Adelbert Lot 13", "Adelbert Kent Hale Smith", "Adelbert 1-2-1 West", "Adelbert Lot 47", "Murray Hill & Fairchild", "Circle Station - Arrival" };
+                            uris = new List<string>() { "artmus_d", "lawsch", "junipcs", "junipes", "115ew", "lot46_c", "euclup", "flot419", "euclchur", "adellot13aw",
+                                "adellot13", "adelsmith", "adel121w", "adellot47", "murrayhf", "circlestat_a", "circlestat_a" };
+                            break;
+                        case "To Cleveland Museum of Art":
+                            nbDirection = "2artmus";
+                            stops = new List<string>() { "Circle Station - Departure", "Murray Hill & Glenwood", "Murray Hill & Adelbert", "Adelbert Lot 13A East",
+                                "East Blvd Lot 29 East", "East Blvd Central East", "Bellflower CIA South", "Bellflower PBL South", "Ford & Juniper", "CIM", "Hazel North",
+                                "Magnolia North", "VA Hospital", "Natural History Museum", "Cleveland Museum of Art - Arrival" };
+                            uris = new List<string>(){ "circlestat_d", "murrayhg", "murrayadel", "adel121e", "adellot13ae", "eastlot29e", "eastce", "belcias", "belpbls", "junipw",
+                                "cim", "hazeln", "magnolian", "vahosp", "nhm", "artmus_a", "artmus_a" };
+                            break;
+                    }
+                    break;
+                case "Commuter Shuttle":
+                    nbRoute = "commuter";
+                    switch (dir)
+                    {
+                        case "Continuous Loop":
+                            nbDirection = "loop";
+                            stops = new List<string>() { "Lerner Towers", "Thwing Lot", "VIC Lot", "DeGrace", "Adelbert 1-2-1 West", "Wolstein Research Building", "Foley Building",
+                                "Lot 46 South", "Bellflower at E115th Street", "Wolstein Hall", "WSOM" };
+                            uris = new List<string>(){ "lernertow", "thwing", "viclot", "dgra", "adel121w", "wrb", "folebuil", "lot46_c", "belle115", "wolshall", "wsom", "wsom" };
+                            break;
+                    }
+                    break;
+                case "Evening Shuttle North":
+                    nbRoute = "eveningnorth";
+                    switch (dir)
+                    {
+                        case "To Circle Station":
+                            nbDirection = "2circle";
+                            stops = new List<string>() { "Lot 46 South", "East 117th & Euclid Ave", "119th - Little Italy", "Thwing Center", "Adelbert Lot 13A West",
+                                "Adelbert Lot 13", "Adelbert Kent Hale Smith", "Adelbert 1-2-1 West", "Adelbert Lot 47", "Murray Hill & Fairchild", "Lot 44", "Circle Station - Arrival" };
+                            uris = new List<string>(){ "lot46_c", "117euclid", "119italy", "thwing", "adellot13aw", "adellot13", "adelsmith", "adel121w", "adellot47", "murrayhf", "lot44",
+                                "circlestat_a", "circlestat_a" };
+                            break;
+                        case "To Lot 46":
+                            nbDirection = "2lot46s";
+                            stops = new List<string>() { "Circle Station - Departure", "Murray Hill & Glenwood", "Fribley Commons", "Murray Hill & Adelbert", "Adelbert 1-2-1 East",
+                                "Adelbert Pathology", "Adelbert Lot 13A East", "East Blvd Lot 29 East", "Ford & Bellflower North", "Ford & Juniper", "Juniper Central South", "East 115th & Bellflower",
+                                "Village Stop A", "Village Stop B" };
+                            uris = new List<string>(){ "circlestat_d", "murrayhg", "fribleyc", "murrayadel", "adel121e", "adelpath", "adellot13ae", "eastlot29e", "fordbell", "junipw", "junipcs",
+                                "115bell", "villa", "villb", "villb" };
+                            break;
+                    }
+                    break;
+                case "Evening Shuttle South":
+                    nbRoute = "eveningsouth";
+                    switch (dir)
+                    {
+                        case "Continuous Loop":
+                            nbDirection = "loop";
+                            stops = new List<string>() { "Fribley Commons", "Murray Hill & Cornell", "Overlook Rd & Edgehill", "Coventry & Overlook", "Euclid Hts & Coventry",
+                                "Euclid Hts & Edgehill", "Euclid Hts & Lennox", "Lennox & Cedar", "Carlton Road", "Euclid Hts & Cedar", "Murray Hill & Glenwood", "Circle Station - Departure" };
+                            uris = new List<string>(){ "fribleyc", "murrayhc", "overedge", "coveover", "euccoven", "eucedge", "eucderby", "lennceda", "carlton", "euclidhts", "murrayhg",
+                                "circlestat_d", "circlestat_d" };
+                            break;
+                    }
+                    break;
+            }
+            return generateStopDict(nbRoute, nbDirection, stops, uris);
+        }
+
+        private Dictionary<string, Uri> generateStopDict(string nbRoute, string nbDirection, List<string> stops, List<string> uri_parts)
+        {
+            Dictionary<string, Uri> stopDict = new Dictionary<string, Uri>();
+            for (int i = 0; i < stops.Count; i++)
+            {
+                stopDict.Add(stops[i], new Uri("http://www.nextbus.com/predictor/fancyNewPredictionLayer.jsp?a=case-western&r="+nbRoute+"&d="+nbDirection+"&s="
+                    + uri_parts[i] + "&ts=" + uri_parts[i + 1]));
+            }
+            return stopDict;
+        }
+
+        private void routePicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!(routePicker.SelectedIndex == -1))
+            {
+                dirPicker.IsEnabled = true;
+                string route = (string)routePicker.SelectedItem;
+                dirPicker.ItemsSource = null;
+                dirPicker.ItemsSource = buses[route].Keys;
+            }
+        }
+
+        private void dirPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!(dirPicker.SelectedIndex == -1))
+            {
+                stopPicker.IsEnabled = true;
+                string route = (string)routePicker.SelectedItem;
+                string direction = (string)dirPicker.SelectedItem;
+                stopPicker.ItemsSource = null;
+                stopPicker.ItemsSource = buses[route][direction].Keys;
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            GetHtml("http://www.nextbus.com/predictor/fancyNewPredictionLayer.jsp?a=case-western&r=eveningnorth&d=2circle&s=adellot13aw&ts=adellot13");
-
-            // extract hrefs
-
-            
+            getBusPrediction();
         }
-        private void GetHtml(string uri)
+
+        private void getBusPrediction()
+        {
+            string route = (string)routePicker.SelectedItem;
+            string direction = (string)dirPicker.SelectedItem;
+            string stop = (string)stopPicker.SelectedItem;
+            predTextBlock.Text = stop;
+            currentUri = buses[route][direction][stop];
+            GetHtml(currentUri);
+        }
+
+        private void GetHtml(Uri stopUri)
         {
             WebClient client = new WebClient();
             client.OpenReadCompleted += new OpenReadCompletedEventHandler(client_OpenReadCompleted);
-            client.OpenReadAsync(new Uri(uri));
+            client.OpenReadAsync(stopUri);
             goButton.IsEnabled = false;
         }
 
@@ -75,17 +238,31 @@ namespace CWRUtility
             busPredictions.Load(reader);
             data.Close();
             reader.Close();
-            PHtml(busPredictions);
+            ParseHtml(busPredictions);
         }
 
-        private void PHtml(HtmlDocument busPredictions)
+        private void ParseHtml(HtmlDocument busPredictions)
         {
             List<string> predictions = new List<string>();
             predictions = extractPredictions(busPredictions);
-            pred1.Text = predictions[0];
-            pred2.Text = predictions[1];
-            pred3.Text = predictions[2];
-            //favBox.ItemsSource = predictions;
+            if (predictions.Count != 0)
+            {
+                pred1.Visibility = System.Windows.Visibility.Visible;
+                pred2.Width = 144;
+                pred2.FontSize = 48;
+                pred3.Visibility = System.Windows.Visibility.Visible;
+                pred1.Text = predictions[0];
+                pred2.Text = predictions[1];
+                pred3.Text = predictions[2];
+            }
+            else
+            {
+                pred1.Visibility = System.Windows.Visibility.Collapsed;
+                pred3.Visibility = System.Windows.Visibility.Collapsed;
+                pred2.Width = 432;
+                pred2.FontSize = 36;
+                pred2.Text = "No Prediction Available";
+            }
             goButton.IsEnabled = true;
         }
 
@@ -105,7 +282,7 @@ namespace CWRUtility
 
                 foreach (string s in bpTags)
                 {
-                    parsedStrings.Add(":"+s.Substring(6));
+                    parsedStrings.Add(":" + s.Substring(6));
                 }
                 parsedStrings.Remove(parsedStrings.Last());
 
@@ -115,60 +292,20 @@ namespace CWRUtility
                 throw new ArgumentNullException();
         }
 
-        private void routePicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void favButton_Click(object sender, EventArgs e)
         {
-            dirPicker.IsEnabled = true;
-            switch ((string)routePicker.SelectedItem)
+            string route = (string)routePicker.SelectedItem;
+            string direction = (string)dirPicker.SelectedItem;
+            string stop = (string)stopPicker.SelectedItem;
+            string uri = buses[route][direction][stop].ToString();
+            string fav = route + '\0' + direction + '\0' + stop + '\0' + uri;
+            if (((List<string>)settings["nbFavorites"]).Contains(fav))
             {
-                case "Circle Link":
-                    dirPicker.ItemsSource = clDirections;
-                    break;
-                case "Commuter Shuttle":
-                    dirPicker.ItemsSource = csDirections;
-                    break;
-                case "Evening Shuttle North":
-                    dirPicker.ItemsSource = esnDirections;
-                    break;
-                case "Evening Shuttle South":
-                    dirPicker.ItemsSource = essDirections;
-                    break;
+                MessageBox.Show("Favorite already exists", "Error", MessageBoxButton.OK);
             }
-                
-        }
-
-        private void dirPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            stopPicker.IsEnabled = true;
-            switch ((string)routePicker.SelectedItem)
+            else
             {
-                case "Circle Link":
-                    switch ((string)dirPicker.SelectedItem)
-                    {
-                        case "To Circle Station":
-                            stopPicker.ItemsSource = clStops_cs;
-                            break;
-                        case "To Cleveland Museum of Art":
-                            stopPicker.ItemsSource = clStops_cma;
-                            break;
-                    }
-                    break;
-                case "Commuter Shuttle":
-                    stopPicker.ItemsSource = csStops;
-                    break;
-                case "Evening Shuttle North":
-                    switch ((string)dirPicker.SelectedItem)
-                    {
-                        case "To Circle Station":
-                            stopPicker.ItemsSource = esnStops_cs;
-                            break;
-                        case "To Lot 46":
-                            stopPicker.ItemsSource = esnStops_l46;
-                            break;
-                    }
-                    break;
-                case "Evening Shuttle South":
-                    stopPicker.ItemsSource = essStops;
-                    break;
+                ((List<string>)settings["nbFavorites"]).Add(fav);
             }
         }
     }
