@@ -33,7 +33,17 @@ namespace CWRUtility
             {
                 App.ViewModel.LoadData();
             }
-            NavigationService.Navigate(new Uri("/NextBus.xaml", UriKind.RelativeOrAbsolute));
+            //NavigationService.Navigate(new Uri("/NextBus.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void Map_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Map.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void NextBust_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/NextBus.xaml", UriKind.RelativeOrAbsolute));    
         }
     }
 }
