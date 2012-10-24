@@ -88,22 +88,31 @@ namespace CWRUtility
         {
             List<string> predictions = new List<string>();
             predictions = extractPredictions(busPredictions);
-            if (predictions.Count != 0)
+            if (predictions != null)
             {
                 nbPred1.Visibility = System.Windows.Visibility.Visible;
                 nbPred2.Width = 80;
                 nbPred2.FontSize = 37.333;
                 nbPred3.Visibility = System.Windows.Visibility.Visible;
-                nbPred1.Text = predictions[0] == "Arriving" ? "Arr." : predictions[0];
-                nbPred2.Text = predictions[1] == "Arriving" ? "Arr." : predictions[1];
-                nbPred3.Text = predictions[2] == "Arriving" ? "Arr." : predictions[2];
+                if (predictions.Count == 3)
+                {
+                    nbPred1.Text = predictions[0];
+                    nbPred2.Text = predictions[1];
+                    nbPred3.Text = predictions[2];
+                }
+                else if (predictions.Count == 2)
+                {
+                    nbPred1.Text = "Arr.";
+                    nbPred2.Text = predictions[0];
+                    nbPred3.Text = predictions[1];
+                }
             }
             else
             {
                 nbPred1.Visibility = System.Windows.Visibility.Collapsed;
                 nbPred3.Visibility = System.Windows.Visibility.Collapsed;
                 nbPred2.Width = 240;
-                nbPred2.FontSize = 36;
+                nbPred2.FontSize = 24;
                 nbPred2.Text = "No Prediction Available";
             }
             ProgressBar.IsVisible = false;
@@ -115,6 +124,11 @@ namespace CWRUtility
             {
                 List<string> bpTags = new List<string>();
 
+                if (busPredictions.DocumentNode.SelectNodes("//p").Count == 2)
+                {
+                    return null;
+                }
+
                 foreach (HtmlNode link in busPredictions.DocumentNode.SelectNodes("//div"))
                 {
                     //HtmlAttribute att = link.Attributes["div"];
@@ -125,14 +139,20 @@ namespace CWRUtility
 
                 foreach (string s in bpTags)
                 {
-                    parsedStrings.Add(":" + s.Substring(6).Replace(" ",""));
+                    parsedStrings.Add(":" + s.Substring(6));
                 }
                 parsedStrings.Remove(parsedStrings.Last());
 
-                return parsedStrings;
+                if (parsedStrings.Count == 0)
+                {
+                    return null;
+                }
+                else
+                {
+                    return parsedStrings;
+                }
             }
-            else
-                throw new ArgumentNullException();
+            return null;
         }
 
         #endregion

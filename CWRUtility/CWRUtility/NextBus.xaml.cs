@@ -54,8 +54,24 @@ namespace CWRUtility
 
         private void NextBus_Loaded(object sender, RoutedEventArgs e)
         {
-            routePicker.ItemsSource = buses.Keys;
-            getBusPrediction();
+            
+        }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            if (e.NavigationMode == System.Windows.Navigation.NavigationMode.New || e.NavigationMode == System.Windows.Navigation.NavigationMode.Refresh)
+            {
+                routePicker.ItemsSource = buses.Keys;
+                if (!String.IsNullOrEmpty((string)settings["nbDefault"]))
+                {
+                    string[] nbDef = ((string)settings["nbDefault"]).Split('!');
+                    routePicker.SelectedItem = nbDef[0];
+                    dirPicker.SelectedItem = nbDef[1];
+                    //routePicker.SelectedItem = nbDef[2];
+                }
+                getBusPrediction();
+            }
+            base.OnNavigatedTo(e);
         }
 
         private void createBusLists()
@@ -211,7 +227,7 @@ namespace CWRUtility
         {
             getBusPrediction();
         }
-
+        
         private void getBusPrediction()
         {
             string route = (string)routePicker.SelectedItem;
@@ -249,15 +265,24 @@ namespace CWRUtility
         {
             List<string> predictions = new List<string>();
             predictions = extractPredictions(busPredictions);
-            if (predictions.Count != 0)
+            if (predictions != null)
             {
                 pred1.Visibility = System.Windows.Visibility.Visible;
                 pred2.Width = 144;
                 pred2.FontSize = 48;
                 pred3.Visibility = System.Windows.Visibility.Visible;
-                pred1.Text = predictions[0] == "Arriving" ? "Arr." : predictions[0];
-                pred2.Text = predictions[1] == "Arriving" ? "Arr." : predictions[1];
-                pred3.Text = predictions[2] == "Arriving" ? "Arr." : predictions[2];
+                if (predictions.Count == 3)
+                {
+                    pred1.Text = predictions[0];
+                    pred2.Text = predictions[1];
+                    pred3.Text = predictions[2];
+                }
+                else
+                {
+                    pred1.Text = "Arr.";
+                    pred2.Text = predictions[0];
+                    pred3.Text = predictions[1];
+                }
             }
             else
             {
@@ -280,9 +305,18 @@ namespace CWRUtility
             {
                 List<string> bpTags = new List<string>();
 
+                if (busPredictions.DocumentNode.SelectNodes("//p").Count == 2)
+                {
+                    return null;
+                }
+
                 foreach (HtmlNode link in busPredictions.DocumentNode.SelectNodes("//div"))
                 {
                     //HtmlAttribute att = link.Attributes["div"];
+                    if (link.InnerText == null)
+                    {
+                        System.Diagnostics.Debug.WriteLine(busPredictions);
+                    }
                     bpTags.Add(link.InnerText);
                 }
 
@@ -294,10 +328,16 @@ namespace CWRUtility
                 }
                 parsedStrings.Remove(parsedStrings.Last());
 
-                return parsedStrings;
+                if (parsedStrings.Count == 0)
+                {
+                    return null;
+                }
+                else
+                {
+                    return parsedStrings;
+                }
             }
-            else
-                throw new ArgumentNullException();
+            return null;
         }
 
         private void favButton_Click(object sender, EventArgs e)

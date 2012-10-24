@@ -31,7 +31,7 @@
 					<TextBlock x:Name="nbDef" Text="Stop" Margin="17,13,0,0" Width="275.1" Height="26.6033325195312" HorizontalAlignment="Left"/>
 					<StackPanel x:Name="nbPredPanel" Height="62" Margin="0,0,28,0" Orientation="Horizontal">
 						<TextBlock x:Name="nbPred1" TextWrapping="NoWrap" Text=":00" Width="80" FontSize="37.333" TextAlignment="Center"/>
-						<TextBlock x:Name="nbPred2" TextWrapping="NoWrap" Text=":00" Width="80" TextAlignment="Center" FontSize="37.333"/>
+						<TextBlock x:Name="nbPred2" TextWrapping="Wrap" Text=":00" Width="80" TextAlignment="Center" FontSize="37.333"/>
 						<TextBlock x:Name="nbPred3" TextWrapping="NoWrap" Text=":00" Width="80" FontSize="37.333" TextAlignment="Center"/>
 					</StackPanel>
 				</StackPanel>
