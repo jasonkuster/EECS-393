@@ -42,7 +42,7 @@ namespace CWRUtility
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(30);
             timer.Tick += new EventHandler(timer_Tick);
-            timer.IsEnabled = true;
+            timer.Start();
         }
 
         void timer_Tick(object sender, EventArgs e)
