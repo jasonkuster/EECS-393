@@ -27,7 +27,6 @@ namespace CWRUtility
             if (!(settings.Contains("nbDefault")))
             {
                 settings["nbDefault"] = "";
-                //MessageBox.Show((string)settings["nbDefault"]);
             }
             // Set the data context of the listbox control to the sample data
             DataContext = App.ViewModel;
@@ -46,9 +45,7 @@ namespace CWRUtility
                 string[] nbDefault = ((string)settings["nbDefault"]).Split('!');
                 nbDef.Text = nbDefault[2];
                 GetHtml(new Uri(nbDefault[3]));
-                //MessageBox.Show((string)settings["nbDefault"]);
             }
-            //NavigationService.Navigate(new Uri("/NextBus.xaml", UriKind.RelativeOrAbsolute));
         }
 
         private void Map_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -56,7 +53,7 @@ namespace CWRUtility
             NavigationService.Navigate(new Uri("/Map.xaml", UriKind.RelativeOrAbsolute));
         }
 
-        private void NextBust_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        private void NextBus_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             NavigationService.Navigate(new Uri("/NextBus.xaml", UriKind.RelativeOrAbsolute));
         }
@@ -89,7 +86,7 @@ namespace CWRUtility
             if (predictions.Count != 0)
             {
                 nbPred1.Visibility = System.Windows.Visibility.Visible;
-                nbPred2.Width = 134;
+                nbPred2.Width = 80;
                 nbPred2.FontSize = 37.333;
                 nbPred3.Visibility = System.Windows.Visibility.Visible;
                 nbPred1.Text = predictions[0] == "Arriving" ? "Arr." : predictions[0];
@@ -100,7 +97,7 @@ namespace CWRUtility
             {
                 nbPred1.Visibility = System.Windows.Visibility.Collapsed;
                 nbPred3.Visibility = System.Windows.Visibility.Collapsed;
-                nbPred2.Width = 402;
+                nbPred2.Width = 240;
                 nbPred2.FontSize = 36;
                 nbPred2.Text = "No Prediction Available";
             }
@@ -123,7 +120,7 @@ namespace CWRUtility
 
                 foreach (string s in bpTags)
                 {
-                    parsedStrings.Add(":" + s.Substring(6));
+                    parsedStrings.Add(":" + s.Substring(6).Replace(" ",""));
                 }
                 parsedStrings.Remove(parsedStrings.Last());
 
