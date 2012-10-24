@@ -12,8 +12,6 @@ namespace CWRUtility
 {
     public partial class Map : PhoneApplicationPage
     {
-        double initialScale;
-
         public Map()
         {
             InitializeComponent();
