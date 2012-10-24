@@ -58,6 +58,11 @@ namespace CWRUtility
             NavigationService.Navigate(new Uri("/NextBus.xaml", UriKind.RelativeOrAbsolute));
         }
 
+        private void Directory_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Directory.xaml", UriKind.RelativeOrAbsolute));
+        }
+
         #region Nextbus Scraper
 
         private void GetHtml(Uri stopUri)

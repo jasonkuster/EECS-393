@@ -36,7 +36,7 @@
 					</StackPanel>
 				</StackPanel>
 			</StackPanel>
-			<TextBlock x:Name="Directory" Margin="8,0,0,0" Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap" Text="Directory" FontSize="37.333" Height="63"/>
+            <TextBlock x:Name="Directory" Margin="8,0,0,0" Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap" Text="Directory" FontSize="37.333" Height="63" Tap="Directory_Tap"/>
 		</StackPanel>
 	</Grid>
 </phone:PhoneApplicationPage>
