@@ -139,7 +139,7 @@ namespace CWRUtility
 
                 foreach (string s in bpTags)
                 {
-                    parsedStrings.Add(":" + s.Substring(6));
+                    parsedStrings.Add(":" + s.Substring(6).Replace(" ",""));
                 }
                 parsedStrings.Remove(parsedStrings.Last());
 

@@ -42,6 +42,7 @@ namespace CWRUtility
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(30);
             timer.Tick += new EventHandler(timer_Tick);
+            timer.IsEnabled = true;
         }
 
         void timer_Tick(object sender, EventArgs e)
@@ -66,8 +67,10 @@ namespace CWRUtility
                 {
                     string[] nbDef = ((string)settings["nbDefault"]).Split('!');
                     routePicker.SelectedItem = nbDef[0];
+                    dirPicker.ItemsSource = buses[nbDef[0]].Keys;
                     dirPicker.SelectedItem = nbDef[1];
-                    //routePicker.SelectedItem = nbDef[2];
+                    stopPicker.ItemsSource = buses[nbDef[0]][nbDef[1]].Keys;
+                    stopPicker.SelectedItem = nbDef[2];
                 }
                 getBusPrediction();
             }
@@ -218,8 +221,8 @@ namespace CWRUtility
                 stopPicker.IsEnabled = true;
                 string route = (string)routePicker.SelectedItem;
                 string direction = (string)dirPicker.SelectedItem;
-                stopPicker.ItemsSource = null;
-                stopPicker.ItemsSource = buses[route][direction].Keys;
+                //stopPicker.ItemsSource = null;
+                //stopPicker.ItemsSource = buses[route][direction].Keys;
             }
         }
 
