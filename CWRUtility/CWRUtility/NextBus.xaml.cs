@@ -56,19 +56,24 @@ namespace CWRUtility
         {
             if (e.NavigationMode == System.Windows.Navigation.NavigationMode.New || e.NavigationMode == System.Windows.Navigation.NavigationMode.Refresh)
             {
-                routePicker.ItemsSource = buses.Keys;
-                if (!String.IsNullOrEmpty((string)settings["nbDefault"]))
-                {
-                    string[] nbDef = ((string)settings["nbDefault"]).Split('!');
-                    routePicker.SelectedItem = nbDef[0];
-                    dirPicker.ItemsSource = buses[nbDef[0]].Keys;
-                    dirPicker.SelectedItem = nbDef[1];
-                    stopPicker.ItemsSource = buses[nbDef[0]][nbDef[1]].Keys;
-                    stopPicker.SelectedItem = nbDef[2];
-                }
-                getBusPrediction();
+                SetDefault();
             }
             base.OnNavigatedTo(e);
+        }
+
+        private void SetDefault()
+        {
+            routePicker.ItemsSource = buses.Keys;
+            if (!String.IsNullOrEmpty((string)settings["nbDefault"]))
+            {
+                string[] nbDef = ((string)settings["nbDefault"]).Split('!');
+                routePicker.SelectedItem = nbDef[0];
+                dirPicker.ItemsSource = buses[nbDef[0]].Keys;
+                dirPicker.SelectedItem = nbDef[1];
+                stopPicker.ItemsSource = buses[nbDef[0]][nbDef[1]].Keys;
+                stopPicker.SelectedItem = nbDef[2];
+            }
+            getBusPrediction();
         }
 
         protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
@@ -223,8 +228,8 @@ namespace CWRUtility
                 stopPicker.IsEnabled = true;
                 string route = (string)routePicker.SelectedItem;
                 string direction = (string)dirPicker.SelectedItem;
-                //stopPicker.ItemsSource = null;
-                //stopPicker.ItemsSource = buses[route][direction].Keys;
+                stopPicker.ItemsSource = null;
+                stopPicker.ItemsSource = buses[route][direction].Keys;
             }
         }
 
