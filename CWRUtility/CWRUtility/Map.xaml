@@ -34,11 +34,10 @@
     		<controls:PivotItem x:Name="cwruMap" Header="CWRU Map">
                 <Grid x:Name="cwruGrid" Margin="{StaticResource PhoneMargin}">
                 	<ScrollContentPresenter HorizontalAlignment="Left" VerticalAlignment="Top" CanHorizontallyScroll="True" CanVerticallyScroll="True">
-                		<ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" UseLayoutRounding="False">
-                            <Image  Source="Resources/CWRUMap.jpg" Stretch="Fill"/>
+                		<ScrollViewer x:Name="scroller" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" UseLayoutRounding="False">
+                            <Image x:Name="officialMap"  Source="Resources/CWRUMap.jpg" Stretch="UniformToFill"/>
                 		</ScrollViewer>
                 	</ScrollContentPresenter>
-                    <!--RenderTransformOrigin="0.5, 0.5"-->
                 </Grid>
             </controls:PivotItem>
     	</controls:Pivot>

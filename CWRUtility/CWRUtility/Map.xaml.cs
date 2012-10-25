@@ -7,6 +7,7 @@ using Microsoft.Phone.Controls.Maps.Core;
 using System.Windows.Controls;
 using System.Windows.Resources;
 using Microsoft.Phone.Controls.Maps.Platform;
+using System.Windows.Media;
 
 namespace CWRUtility
 {
@@ -21,6 +22,8 @@ namespace CWRUtility
 
             //GeoCoordinate mapCenter = new GeoCoordinate(41.51093, -81.60323);
             actualMap.Mode = new CWRUMapMode();
+            actualMap.Children.Add(getCampusOutline());
+
 
             //actualMap.SetView(mapCenter, 16);
             bmapGrid.Children.Add(actualMap);
@@ -37,6 +40,44 @@ namespace CWRUtility
             atransform.ScaleY = initialScale * e.DistanceRatio;
         }*/
 
+        private MapLayer getCampusOutline()
+        {
+            MapLayer campLayer = new MapLayer();
+            MapPolyline outline = new MapPolyline();
+            outline.Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.Cyan);
+            outline.StrokeThickness = 5;
+            outline.Opacity = 1;
+            outline.Locations = new LocationCollection() {
+                    new GeoCoordinate(41.504697, -81.610809),
+                    new GeoCoordinate(41.505163, -81.610208),
+                    new GeoCoordinate(41.509357, -81.610444),
+                    new GeoCoordinate(41.510514, -81.609178),
+                    new GeoCoordinate(41.511799, -81.609200),
+                    new GeoCoordinate(41.512586, -81.609758),
+                    new GeoCoordinate(41.513486, -81.608492),
+                    new GeoCoordinate(41.514547, -81.608320),
+                    new GeoCoordinate(41.514289, -81.606904),
+                    new GeoCoordinate(41.515928, -81.606839),
+                    new GeoCoordinate(41.515944, -81.603041),
+                    new GeoCoordinate(41.511927, -81.601582),
+                    new GeoCoordinate(41.508103, -81.606196),
+                    new GeoCoordinate(41.505452, -81.602398),
+                    new GeoCoordinate(41.503234, -81.603921),
+                    new GeoCoordinate(41.502977, -81.604458),
+                    new GeoCoordinate(41.502624, -81.604393),
+                    new GeoCoordinate(41.501611, -81.603170),
+                    new GeoCoordinate(41.503347, -81.601217),
+                    new GeoCoordinate(41.501450, -81.597698),
+                    new GeoCoordinate(41.499683, -81.600574),
+                    new GeoCoordinate(41.499956, -81.606539),
+                    new GeoCoordinate(41.500652, -81.607838),
+                    new GeoCoordinate(41.502018, -81.608321),
+                    new GeoCoordinate(41.504697, -81.610809)
+                };
+            campLayer.Children.Add(outline);
+            return campLayer;
+        }
+
         public class CWRUMapMode : RoadMode
         {
             private Range<double> validLats;
@@ -48,6 +89,7 @@ namespace CWRUtility
                 validLats = new Range<double>(41.499707, 41.515711);
                 // The longitude value range (From = left most longitude, To = right most longitude)
                 validLongs = new Range<double>(-81.615243, -81.598334);
+
             }
 
             protected override Range<double> GetZoomRange(GeoCoordinate center)
@@ -103,5 +145,16 @@ namespace CWRUtility
             }
 
         }
+
+       /* private void scroller_DoubleTap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            ScrollViewer scroll = (ScrollViewer) sender;
+            //((Image) sender).RenderTransformOrigin = new Point(0,0);
+            Image scrollMap = (Image) scroll.Content;
+            scrollMap.Height = 100;
+            scroll.Content = scrollMap;
+            //
+            //(((Image) sender).RenderTransform as CompositeTransform).ScaleY = 0.5;
+        }*/
     }
 }
