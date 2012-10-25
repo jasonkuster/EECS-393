@@ -34,7 +34,6 @@ namespace CWRUtility
             {
                 settings["nbFavorites"] = new List<string>();
             }
-            this.Loaded += new RoutedEventHandler(NextBus_Loaded);
         }
 
         private void InitializeTimer()
@@ -51,11 +50,6 @@ namespace CWRUtility
             {
                 GetHtml(currentUri);
             }
-        }
-
-        private void NextBus_Loaded(object sender, RoutedEventArgs e)
-        {
-            
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
@@ -75,6 +69,14 @@ namespace CWRUtility
                 getBusPrediction();
             }
             base.OnNavigatedTo(e);
+        }
+
+        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            if (e.NavigationMode == System.Windows.Navigation.NavigationMode.Back)
+            {
+                timer.Stop();
+            }
         }
 
         private void createBusLists()
@@ -239,10 +241,7 @@ namespace CWRUtility
             predTextBlock.Text = stop;
             currentUri = buses[route][direction][stop];
             GetHtml(currentUri);
-            goButton.IsEnabled = false;
-            routePicker.IsEnabled = false;
-            dirPicker.IsEnabled = false;
-            stopPicker.IsEnabled = false;
+            LockUI();
         }
 
         private void GetHtml(Uri stopUri)
@@ -261,10 +260,10 @@ namespace CWRUtility
             busPredictions.Load(reader);
             data.Close();
             reader.Close();
-            ParseHtml(busPredictions);
+            DisplayPredictions(busPredictions);
         }
 
-        private void ParseHtml(HtmlDocument busPredictions)
+        private void DisplayPredictions(HtmlDocument busPredictions)
         {
             List<string> predictions = new List<string>();
             predictions = extractPredictions(busPredictions);
@@ -295,10 +294,7 @@ namespace CWRUtility
                 pred2.FontSize = 36;
                 pred2.Text = "No Prediction Available";
             }
-            goButton.IsEnabled = true;
-            routePicker.IsEnabled = true;
-            dirPicker.IsEnabled = true;
-            stopPicker.IsEnabled = true;
+            UnlockUI();
             ProgressBar.IsVisible = false;
         }
 
@@ -362,6 +358,22 @@ namespace CWRUtility
                 ((List<string>)settings["nbFavorites"]).Add(fav);
             }
             */
+        }
+
+        private void LockUI()
+        {
+            goButton.IsEnabled = false;
+            routePicker.IsEnabled = false;
+            dirPicker.IsEnabled = false;
+            stopPicker.IsEnabled = false;
+        }
+
+        private void UnlockUI()
+        {
+            goButton.IsEnabled = true;
+            routePicker.IsEnabled = true;
+            dirPicker.IsEnabled = true;
+            stopPicker.IsEnabled = true;
         }
     }
 }
