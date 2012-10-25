@@ -251,8 +251,8 @@ namespace CWRUtility
             string stop = (string)stopPicker.SelectedItem;
             predTextBlock.Text = stop;
             currentUri = buses[route][direction][stop];
-            GetHtml(currentUri);
             LockUI();
+            GetHtml(currentUri);
         }
 
         private void GetHtml(Uri stopUri)

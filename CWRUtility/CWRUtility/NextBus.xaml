@@ -44,7 +44,7 @@
                     </StackPanel>
             		<StackPanel Height="100" Margin="0,7,0,0">
             			<TextBlock TextWrapping="Wrap" Text="Direction"/>
-                        <toolkit:ListPicker x:Name="dirPicker" Margin="0" ExpansionMode="FullScreenOnly" IsEnabled="False" SelectionChanged="dirPicker_SelectionChanged">
+                        <toolkit:ListPicker x:Name="dirPicker" Margin="0" ExpansionMode="FullScreenOnly" SelectionChanged="dirPicker_SelectionChanged">
                             <toolkit:ListPicker.FullModeItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding BindsDirectlyToSource=True}" FontSize="40" Width="460"/>
@@ -54,7 +54,7 @@
                     </StackPanel>
             		<StackPanel Height="100" Margin="0,7,0,0">
             			<TextBlock TextWrapping="Wrap" Text="Stop"/>
-            			<toolkit:ListPicker x:Name="stopPicker" Margin="0" IsEnabled="False">
+            			<toolkit:ListPicker x:Name="stopPicker" Margin="0">
                             <toolkit:ListPicker.FullModeItemTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding BindsDirectlyToSource=True}" FontSize="32" Width="460"/>
