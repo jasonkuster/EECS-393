@@ -40,12 +40,22 @@ namespace CWRUtility
             {
                 App.ViewModel.LoadData();
             }
+        }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
             if (!String.IsNullOrEmpty((string)settings["nbDefault"]))
             {
                 string[] nbDefault = ((string)settings["nbDefault"]).Split('!');
                 nbDef.Text = nbDefault[2];
+                nbPanel.Visibility = System.Windows.Visibility.Visible;
                 GetHtml(new Uri(nbDefault[3]));
             }
+            else
+            {
+                nbPanel.Visibility = System.Windows.Visibility.Collapsed;
+            }
+            base.OnNavigatedTo(e);
         }
 
         private void Map_Tap(object sender, System.Windows.Input.GestureEventArgs e)

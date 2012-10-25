@@ -46,7 +46,7 @@ namespace CWRUtility
 
         void timer_Tick(object sender, EventArgs e)
         {
-            if (!(currentUri.Equals(null)))
+            if (!(currentUri == null))
             {
                 GetHtml(currentUri);
             }
@@ -56,6 +56,7 @@ namespace CWRUtility
         {
             if (e.NavigationMode == System.Windows.Navigation.NavigationMode.New || e.NavigationMode == System.Windows.Navigation.NavigationMode.Refresh)
             {
+                routePicker.ItemsSource = buses.Keys;
                 SetDefault();
             }
             base.OnNavigatedTo(e);
@@ -63,7 +64,6 @@ namespace CWRUtility
 
         private void SetDefault()
         {
-            routePicker.ItemsSource = buses.Keys;
             if (!String.IsNullOrEmpty((string)settings["nbDefault"]))
             {
                 string[] nbDef = ((string)settings["nbDefault"]).Split('!');
@@ -72,8 +72,8 @@ namespace CWRUtility
                 dirPicker.SelectedItem = nbDef[1];
                 stopPicker.ItemsSource = buses[nbDef[0]][nbDef[1]].Keys;
                 stopPicker.SelectedItem = nbDef[2];
+                getBusPrediction();
             }
-            getBusPrediction();
         }
 
         protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
@@ -216,8 +216,11 @@ namespace CWRUtility
             {
                 dirPicker.IsEnabled = true;
                 string route = (string)routePicker.SelectedItem;
-                dirPicker.ItemsSource = null;
-                dirPicker.ItemsSource = buses[route].Keys;
+                if (dirPicker.ItemsSource != buses[route].Keys)
+                {
+                    dirPicker.ItemsSource = null;
+                    dirPicker.ItemsSource = buses[route].Keys;
+                }
             }
         }
 
@@ -228,8 +231,11 @@ namespace CWRUtility
                 stopPicker.IsEnabled = true;
                 string route = (string)routePicker.SelectedItem;
                 string direction = (string)dirPicker.SelectedItem;
-                stopPicker.ItemsSource = null;
-                stopPicker.ItemsSource = buses[route][direction].Keys;
+                if (stopPicker.ItemsSource != buses[route][direction].Keys)
+                {
+                    stopPicker.ItemsSource = null;
+                    stopPicker.ItemsSource = buses[route][direction].Keys;
+                }
             }
         }
 

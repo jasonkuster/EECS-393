@@ -12,6 +12,8 @@
         <shell:ProgressIndicator x:Name="ProgressBar" IsIndeterminate="true" IsVisible="False" Text="Updating..." />
     </shell:SystemTray.ProgressIndicator>
     
+    
+    
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <!--Pivot Control-->
@@ -22,7 +24,7 @@
             <controls:PivotItem Header="NextBus">
             	<StackPanel Margin="{StaticResource PhoneMargin}">
             		<StackPanel Height="100">
-            			<TextBlock x:Name="predTextBlock" TextWrapping="NoWrap" Text="Predictions" HorizontalAlignment="Center" FontSize="26.667"/>
+            			<TextBlock x:Name="predTextBlock" TextWrapping="NoWrap" Text="Select Stop" HorizontalAlignment="Center" FontSize="26.667"/>
             			<StackPanel Height="73" Orientation="Horizontal">
             				<TextBlock x:Name="pred1" TextWrapping="Wrap" Text="0:00" Width="144" FontSize="48" TextAlignment="Center"/>
             				<TextBlock x:Name="pred2" TextWrapping="Wrap" Text="0:00" Width="144" TextAlignment="Center" FontSize="48"/>
@@ -32,15 +34,33 @@
             		</StackPanel>
             		<StackPanel Height="100" Margin="0,7,0,0">
             			<TextBlock TextWrapping="Wrap" Text="Route"/>
-            			<toolkit:ListPicker x:Name="routePicker" ExpansionMode="FullScreenOnly" Margin="0" SelectionChanged="routePicker_SelectionChanged"/>
-            		</StackPanel>
+                        <toolkit:ListPicker x:Name="routePicker" ExpansionMode="FullScreenOnly" Margin="0" SelectionChanged="routePicker_SelectionChanged">
+                            <toolkit:ListPicker.FullModeItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding BindsDirectlyToSource=True}" FontSize="40" Width="460"/>
+                                </DataTemplate>
+                            </toolkit:ListPicker.FullModeItemTemplate>
+                        </toolkit:ListPicker>
+                    </StackPanel>
             		<StackPanel Height="100" Margin="0,7,0,0">
             			<TextBlock TextWrapping="Wrap" Text="Direction"/>
-            			<toolkit:ListPicker x:Name="dirPicker" Margin="0" ExpansionMode="FullScreenOnly" IsEnabled="False" SelectionChanged="dirPicker_SelectionChanged"/>
-            		</StackPanel>
+                        <toolkit:ListPicker x:Name="dirPicker" Margin="0" ExpansionMode="FullScreenOnly" IsEnabled="False" SelectionChanged="dirPicker_SelectionChanged">
+                            <toolkit:ListPicker.FullModeItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding BindsDirectlyToSource=True}" FontSize="40" Width="460"/>
+                                </DataTemplate>
+                            </toolkit:ListPicker.FullModeItemTemplate>
+                        </toolkit:ListPicker>
+                    </StackPanel>
             		<StackPanel Height="100" Margin="0,7,0,0">
             			<TextBlock TextWrapping="Wrap" Text="Stop"/>
-            			<toolkit:ListPicker x:Name="stopPicker" Margin="0" IsEnabled="False"/>
+            			<toolkit:ListPicker x:Name="stopPicker" Margin="0" IsEnabled="False">
+                            <toolkit:ListPicker.FullModeItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding BindsDirectlyToSource=True}" FontSize="32" Width="460"/>
+                                </DataTemplate>
+                            </toolkit:ListPicker.FullModeItemTemplate>
+                        </toolkit:ListPicker>
             		</StackPanel>
             		<StackPanel Margin="0,7,0,0">
             			<Button x:Name="goButton" Content="Go" Click="Button_Click"/>
