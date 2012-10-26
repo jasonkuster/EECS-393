@@ -82,6 +82,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CWRUMapMode.cs" />
     <Compile Include="DataStore\DataStore\DataStore.xaml.cs">
       <DependentUpon>DataStore.xaml</DependentUpon>
     </Compile>
@@ -158,6 +159,7 @@
     <Content Include="icons\appbar.favs.addto.rest.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="icons\eye.png" />
     <Content Include="README_FIRST.txt" />
     <Resource Include="Resources\CWRUMap.jpg" />
     <Resource Include="Resources\CWRUsealWhite.png" />

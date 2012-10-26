@@ -21,7 +21,7 @@
     </shell:SystemTray.ProgressIndicator>
 
     <Grid x:Name="MainGrid" Margin="8">
-		<Image Source="Resources/CWRUsealWhite.png" Stretch="Fill" Margin="8,156,8,158" Opacity="0.2"/>
+		<Image Source="Resources/CWRUsealWhite.png" Stretch="Fill" Margin="8,156,8,102" Opacity="0.2"/>
 		<TextBlock x:Name="Title" Height="106" Margin="8,8,8,0" Style="{StaticResource PhoneTextTitle1Style}" TextWrapping="Wrap" Text="CWRUtility" VerticalAlignment="Top"/>
 		<StackPanel x:Name="Features" Margin="0,118,24,51" HorizontalAlignment="Right" Width="432">
 			<TextBlock x:Name="Map" Margin="7,0,17,0" Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap" Text="Campus Map" FontSize="37.333" Foreground="White" VerticalAlignment="Top" Tap="Map_Tap"/>
