@@ -63,7 +63,7 @@ namespace CWRUtility
         {
             MapLayer campLayer = new MapLayer();
             MapPolyline outline = new MapPolyline();
-            outline.Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.Cyan);
+            outline.Stroke = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.Black);
             outline.StrokeThickness = 5;
             outline.Opacity = 1;
             outline.Locations = new LocationCollection() {
