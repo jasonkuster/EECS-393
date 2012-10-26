@@ -84,6 +84,8 @@ namespace CWRUtility
             }
         }
 
+        #region bus dictionary creation
+
         private void createBusLists()
         {
             buses = new Dictionary<string, Dictionary<string, Dictionary<string, Uri>>>();
@@ -210,6 +212,10 @@ namespace CWRUtility
             return stopDict;
         }
 
+        #endregion
+
+        #region selection changed events
+
         private void routePicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (!(routePicker.SelectedIndex == -1))
@@ -238,6 +244,10 @@ namespace CWRUtility
                 }
             }
         }
+
+        #endregion
+
+        #region button click and prediction scraping
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -276,8 +286,7 @@ namespace CWRUtility
 
         private void DisplayPredictions(HtmlDocument busPredictions)
         {
-            List<string> predictions = new List<string>();
-            predictions = extractPredictions(busPredictions);
+            List<string> predictions = extractPredictions(busPredictions);
             if (predictions != null)
             {
                 pred1.Visibility = System.Windows.Visibility.Visible;
@@ -349,6 +358,8 @@ namespace CWRUtility
             }
             return null;
         }
+
+        #endregion
 
         private void favButton_Click(object sender, EventArgs e)
         {

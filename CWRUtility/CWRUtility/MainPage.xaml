@@ -36,6 +36,7 @@
 					</StackPanel>
 				</StackPanel>
 			</StackPanel>
+            <TextBlock x:Name="eSuds" Margin="8,0,0,0" Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap" Text="eSuds" FontSize="37.333" Tap="eSuds_Tap"/>
             <TextBlock x:Name="Directory" Margin="8,0,0,0" Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap" Text="Directory" FontSize="37.333" Tap="Directory_Tap"/>
 		</StackPanel>
 	</Grid>
