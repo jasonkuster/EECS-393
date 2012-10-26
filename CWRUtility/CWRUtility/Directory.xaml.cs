@@ -21,9 +21,16 @@ namespace CWRUtility
         }
 
 
-        private void Expand(object sender, System.Windows.Input.GestureEventArgs e)
+        public void Expand(object sender, System.Windows.Input.GestureEventArgs e)
         {
-			sender.Visibility = "Collapsed";
+			if (Text2.Visibility.Equals("Visible")) //true = "Visibile"
+			{
+				Text2.Visibility = false;
+			}
+			if (Text2.Visibility.Equals(false)) //false = "Collapsed"
+			{
+				Text2.Visibility = true;
+			}
         }
     }
 
