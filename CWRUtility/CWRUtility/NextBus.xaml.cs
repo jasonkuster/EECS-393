@@ -36,6 +36,26 @@ namespace CWRUtility
             }
         }
 
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            if (e.NavigationMode == System.Windows.Navigation.NavigationMode.New || e.NavigationMode == System.Windows.Navigation.NavigationMode.Refresh)
+            {
+                routePicker.ItemsSource = buses.Keys;
+                SetDefault();
+            }
+            base.OnNavigatedTo(e);
+        }
+
+        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            if (e.NavigationMode == System.Windows.Navigation.NavigationMode.Back)
+            {
+                timer.Stop();
+            }
+        }
+
+        #region timer
+
         private void InitializeTimer()
         {
             timer = new DispatcherTimer();
@@ -52,15 +72,7 @@ namespace CWRUtility
             }
         }
 
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
-        {
-            if (e.NavigationMode == System.Windows.Navigation.NavigationMode.New || e.NavigationMode == System.Windows.Navigation.NavigationMode.Refresh)
-            {
-                routePicker.ItemsSource = buses.Keys;
-                SetDefault();
-            }
-            base.OnNavigatedTo(e);
-        }
+        #endregion
 
         private void SetDefault()
         {
@@ -73,14 +85,6 @@ namespace CWRUtility
                 stopPicker.ItemsSource = buses[nbDef[0]][nbDef[1]].Keys;
                 stopPicker.SelectedItem = nbDef[2];
                 getBusPrediction();
-            }
-        }
-
-        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
-        {
-            if (e.NavigationMode == System.Windows.Navigation.NavigationMode.Back)
-            {
-                timer.Stop();
             }
         }
 
@@ -249,7 +253,7 @@ namespace CWRUtility
 
         #region button click and prediction scraping
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void goButton_Click(object sender, RoutedEventArgs e)
         {
             getBusPrediction();
         }
@@ -365,7 +369,7 @@ namespace CWRUtility
 
         #endregion
 
-        private void favButton_Click(object sender, EventArgs e)
+        private void defButton_Click(object sender, EventArgs e)
         {
             string route = (string)routePicker.SelectedItem;
             string direction = (string)dirPicker.SelectedItem;

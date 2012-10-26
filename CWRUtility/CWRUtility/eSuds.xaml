@@ -22,6 +22,10 @@
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <Image Source="Resources/CWRUsealWhite.png" Stretch="Fill" Margin="8,156,24,102" Opacity="0.2" Grid.RowSpan="2"/>
+    <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="ApplicationTitle" Text="CWRUTILITY" Style="{StaticResource PhoneTextNormalStyle}"/>
             <TextBlock x:Name="PageTitle" Text="eSuds" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
@@ -32,8 +36,14 @@
         	<StackPanel Margin="{StaticResource PhoneMargin}">
         		<StackPanel x:Name="buildingPanel" Height="100">
         			<TextBlock x:Name="buildingBlock" TextWrapping="Wrap" Text="Building"/>
-        			<toolkit:ListPicker x:Name="buildingPicker" Margin="0" SelectionChanged="buildingPicker_SelectionChanged"/>
-        		</StackPanel>
+                    <toolkit:ListPicker x:Name="buildingPicker" Margin="0" SelectionChanged="buildingPicker_SelectionChanged">
+                        <toolkit:ListPicker.FullModeItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding BindsDirectlyToSource=True}" FontSize="36" Width="460"/>
+                            </DataTemplate>
+                        </toolkit:ListPicker.FullModeItemTemplate>
+                    </toolkit:ListPicker>
+                </StackPanel>
         		<StackPanel Height="411">
         			<StackPanel Orientation="Horizontal">
         				<TextBlock x:Name="mTB" TextWrapping="Wrap" Text="M#" VerticalAlignment="Top" Width="50" TextAlignment="Center"/>

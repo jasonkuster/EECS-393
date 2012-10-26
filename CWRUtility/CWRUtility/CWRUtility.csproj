@@ -91,6 +91,7 @@
     <Compile Include="eSuds.xaml.cs">
       <DependentUpon>eSuds.xaml</DependentUpon>
     </Compile>
+    <Compile Include="LaundryMachine.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>

@@ -62,6 +62,8 @@ namespace CWRUtility
                 GetTimes();
         }
 
+        #region eSuds Scraper
+
         private void GetTimes()
         {
             string location = (string)buildingPicker.SelectedItem;
@@ -90,7 +92,7 @@ namespace CWRUtility
 
         private void DisplayStates(HtmlDocument sudsTimes)
         {
-            List<WasherDryer> machines = ExtractStates(sudsTimes);
+            List<LaundryMachine> machines = ExtractStates(sudsTimes);
             if (machines != null)
             {
                 WashersList.ItemsSource = null;
@@ -103,11 +105,11 @@ namespace CWRUtility
             gettingTimes = false;
         }
 
-        private List<WasherDryer> ExtractStates(HtmlDocument sudsTimes)
+        private List<LaundryMachine> ExtractStates(HtmlDocument sudsTimes)
         {
             if (sudsTimes != null)
             {
-                List<WasherDryer> machines = new List<WasherDryer>();
+                List<LaundryMachine> machines = new List<LaundryMachine>();
                 int dryer = -1;
 
                 foreach (HtmlNode row in sudsTimes.DocumentNode.SelectNodes("//tr"))
@@ -120,7 +122,7 @@ namespace CWRUtility
                     if (row.HasAttributes && (row.Attributes[0].Value == "even" || row.Attributes[0].Value == "odd"))
                     {
                         IEnumerable<HtmlNode> nodes = row.Elements("td");
-                        WasherDryer newWD = new WasherDryer(
+                        LaundryMachine newWD = new LaundryMachine(
                             nodes.ElementAt(1).InnerText,
                             dryer <= 0 ? "Washer": "Dryer", //nodes.ElementAt(2).InnerText
                             nodes.ElementAt(3).InnerText.Replace("\n", ""),
@@ -133,6 +135,8 @@ namespace CWRUtility
             }
             return null;
         }
+
+        #endregion
 
         private void LockUI()
         {
@@ -150,22 +154,5 @@ namespace CWRUtility
             settings["esDefault"] = def + "!" + locUris[def];
             MessageBox.Show(def + " set as default.", "Default Set", MessageBoxButton.OK);
         }
-    }
-    public class WasherDryer
-    {
-        public WasherDryer(string number, string type, string availability, string timeRemaining, string color)
-        {
-            this.number = number;
-            this.type = type;
-            this.availability = availability;
-            this.timeRemaining = timeRemaining;
-            this.color = color;
-        }
-
-        public string number { get; set; }
-        public string type { get; set; }
-        public string availability { get; set; }
-        public string timeRemaining { get; set; }
-        public string color { get; set; }
     }
 }

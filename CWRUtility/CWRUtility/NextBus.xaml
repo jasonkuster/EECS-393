@@ -63,7 +63,7 @@
                         </toolkit:ListPicker>
             		</StackPanel>
             		<StackPanel Margin="0,7,0,0">
-            			<Button x:Name="goButton" Content="Go" Click="Button_Click"/>
+            			<Button x:Name="goButton" Content="Go" Click="goButton_Click"/>
             		</StackPanel>
             	</StackPanel>
             </controls:PivotItem>
@@ -93,7 +93,7 @@
     <!--Sample code showing usage of ApplicationBar-->
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton x:Name="favButton" IconUri="/icons/appbar.favs.addto.rest.png" Text="set default" Click="favButton_Click"/>
+            <shell:ApplicationBarIconButton x:Name="defButton" IconUri="/icons/appbar.favs.addto.rest.png" Text="set default" Click="defButton_Click"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
     

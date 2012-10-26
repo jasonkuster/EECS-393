@@ -65,7 +65,7 @@ namespace CWRUtility
             }
             else
             {
-                nbPanel.Visibility = System.Windows.Visibility.Collapsed;
+                esPanel.Visibility = System.Windows.Visibility.Collapsed;
             }
         }
 
@@ -230,12 +230,12 @@ namespace CWRUtility
 
         private void DisplayStates(HtmlDocument sudsTimes)
         {
-            List<WasherDryer> machines = ExtractStates(sudsTimes);
+            List<LaundryMachine> machines = ExtractStates(sudsTimes);
             if (machines != null)
             {
                 int freeWash = 0;
                 int freeDry = 0;
-                foreach (WasherDryer m in machines)
+                foreach (LaundryMachine m in machines)
                 {
                     if (m.availability == "Available" && m.type == "Washer")
                     {
@@ -253,11 +253,11 @@ namespace CWRUtility
             }
         }
 
-        private List<WasherDryer> ExtractStates(HtmlDocument sudsTimes)
+        private List<LaundryMachine> ExtractStates(HtmlDocument sudsTimes)
         {
             if (sudsTimes != null)
             {
-                List<WasherDryer> machines = new List<WasherDryer>();
+                List<LaundryMachine> machines = new List<LaundryMachine>();
                 int dryer = -1;
 
                 foreach (HtmlNode row in sudsTimes.DocumentNode.SelectNodes("//tr"))
@@ -270,7 +270,7 @@ namespace CWRUtility
                     if (row.HasAttributes && (row.Attributes[0].Value == "even" || row.Attributes[0].Value == "odd"))
                     {
                         IEnumerable<HtmlNode> nodes = row.Elements("td");
-                        WasherDryer newWD = new WasherDryer(
+                        LaundryMachine newWD = new LaundryMachine(
                             nodes.ElementAt(1).InnerText,
                             dryer <= 0 ? "Washer" : "Dryer", //nodes.ElementAt(2).InnerText
                             nodes.ElementAt(3).InnerText.Replace("\n", ""),
