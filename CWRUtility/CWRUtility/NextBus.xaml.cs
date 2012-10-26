@@ -299,11 +299,15 @@ namespace CWRUtility
                     pred2.Text = predictions[1];
                     pred3.Text = predictions[2];
                 }
-                else
+                else if (predictions.Count == 2)
                 {
                     pred1.Text = "Arr.";
                     pred2.Text = predictions[0];
                     pred3.Text = predictions[1];
+                }
+                else
+                {
+                    MessageBox.Show("Error getting predictions, please try again.", "Error", MessageBoxButton.OK);
                 }
             }
             else

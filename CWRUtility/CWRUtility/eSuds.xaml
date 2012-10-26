@@ -35,14 +35,19 @@
         			<toolkit:ListPicker x:Name="buildingPicker" Margin="0" SelectionChanged="buildingPicker_SelectionChanged"/>
         		</StackPanel>
         		<StackPanel Height="411">
-        			<TextBlock TextWrapping="Wrap" Text="  M#                    Type                       Free     Time" VerticalAlignment="Top" Width="432"/>
+        			<StackPanel Orientation="Horizontal">
+        				<TextBlock x:Name="mTB" TextWrapping="Wrap" Text="M#" VerticalAlignment="Top" Width="50" TextAlignment="Center"/>
+        				<TextBlock x:Name="typeTB" TextWrapping="Wrap" Text="Type" Width="130" TextAlignment="Center"/>
+        				<TextBlock x:Name="statusTB" TextWrapping="Wrap" Text="Status" Width="198" TextAlignment="Center"/>
+        				<TextBlock x:Name="timeTB" TextWrapping="Wrap" Text="Time" Width="54" TextAlignment="Center"/>
+        			</StackPanel>
         			<ListBox x:Name="WashersList" Height="384">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
         				        <StackPanel x:Name="mTemp" Height="50" Width="432" Orientation="Horizontal">
-        					        <TextBlock x:Name="mNum" TextWrapping="NoWrap" Text="{Binding number}" Margin="0" Width="50" TextAlignment="Center"/>
-        					        <TextBlock x:Name="mType" TextWrapping="NoWrap" Text="{Binding type}" Width="248" TextAlignment="Center"/>
-        					        <TextBlock x:Name="mFree" TextWrapping="NoWrap" Text="{Binding availability}" Width="80" TextAlignment="Center"/>
+        					        <TextBlock x:Name="mNum" TextWrapping="NoWrap" Text="{Binding number}"  Margin="0" Width="50" TextAlignment="Center"/>
+        					        <TextBlock x:Name="mType" TextWrapping="NoWrap" Text="{Binding type}" Width="130" TextAlignment="Center"/>
+        					        <TextBlock x:Name="mFree" TextWrapping="NoWrap" Text="{Binding availability}" Foreground="{Binding color}" Width="198" TextAlignment="Center"/>
         					        <TextBlock x:Name="mTime" TextWrapping="NoWrap" Text="{Binding timeRemaining}" Margin="0" Width="54" TextAlignment="Center"/>
         				        </StackPanel>
                             </DataTemplate>
@@ -56,7 +61,7 @@
     <!--Sample code showing usage of ApplicationBar-->
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
+            <shell:ApplicationBarIconButton x:Name="defaultButton" IconUri="/icons/appbar.favs.addto.rest.png" Text="set default" Click="defaultButton_Click"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 

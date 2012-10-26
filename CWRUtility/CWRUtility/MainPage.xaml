@@ -28,15 +28,21 @@
 			<StackPanel x:Name="NextBus" Orientation="Horizontal" Tap="NextBus_Tap">
 				<TextBlock x:Name="nbText" Margin="8,0" Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap" Text="NextBus" FontSize="37.333" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 				<StackPanel x:Name="nbPanel" Height="100" Visibility="Collapsed">
-					<TextBlock x:Name="nbDef" Text="Stop" Margin="17,13,0,0" Width="275.1" Height="26.6033325195312" HorizontalAlignment="Left"/>
+					<TextBlock x:Name="nbDef" Margin="17,13,0,0" Width="275.1" Height="26.6033325195312" HorizontalAlignment="Left"/>
 					<StackPanel x:Name="nbPredPanel" Height="62" Margin="0,0,28,0" Orientation="Horizontal">
-						<TextBlock x:Name="nbPred1" TextWrapping="NoWrap" Text=":00" Width="80" FontSize="37.333" TextAlignment="Center"/>
-						<TextBlock x:Name="nbPred2" TextWrapping="Wrap" Text=":00" Width="80" TextAlignment="Center" FontSize="37.333"/>
-						<TextBlock x:Name="nbPred3" TextWrapping="NoWrap" Text=":00" Width="80" FontSize="37.333" TextAlignment="Center"/>
+						<TextBlock x:Name="nbPred1" TextWrapping="NoWrap" Width="80" FontSize="37.333" TextAlignment="Center"/>
+						<TextBlock x:Name="nbPred2" TextWrapping="Wrap" Width="80" TextAlignment="Center" FontSize="37.333"/>
+						<TextBlock x:Name="nbPred3" TextWrapping="NoWrap" Width="80" FontSize="37.333" TextAlignment="Center"/>
 					</StackPanel>
 				</StackPanel>
 			</StackPanel>
-            <TextBlock x:Name="eSuds" Margin="8,0,0,0" Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap" Text="eSuds" FontSize="37.333" Tap="eSuds_Tap"/>
+            <StackPanel x:Name="eSuds" Orientation="Horizontal" Margin="8,0,0,0" Tap="eSuds_Tap">
+				<TextBlock x:Name="esText" Margin="0" Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap" Text="eSuds" FontSize="37.333"/>
+				<StackPanel x:Name="esPanel" Orientation="Vertical" Margin="60,0,0,0" Height="75" Visibility="Collapsed">
+					<TextBlock x:Name="esLoc" TextWrapping="Wrap" VerticalAlignment="Center" d:LayoutOverrides="Width"/>
+					<TextBlock x:Name="esFree" TextWrapping="Wrap" Height="48" FontSize="32" Margin="0" Width="256"/>
+				</StackPanel>
+			</StackPanel>
             <TextBlock x:Name="Directory" Margin="8,0,0,0" Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap" Text="Directory" FontSize="37.333" Tap="Directory_Tap"/>
             <TextBlock x:Name="Menus" Margin="8,0,0,0" Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap" Text="Menus" FontSize="37.333" Tap="Menus_Tap"/>
             <TextBlock x:Name="CaseNews" Margin="8,0,0,0" Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap" Text="Case News" FontSize="37.333" Tap="CaseNews_Tap"/>

@@ -155,6 +155,9 @@
     <Content Include="DataStore\icons\appbar.favs.rest.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="icons\appbar.favs.addto.rest.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="README_FIRST.txt" />
     <Resource Include="Resources\CWRUMap.jpg" />
     <Resource Include="Resources\CWRUsealWhite.png" />

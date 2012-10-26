@@ -93,7 +93,7 @@
     <!--Sample code showing usage of ApplicationBar-->
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton x:Name="favButton" IconUri="/icons/appbar.favs.rest.png" Text="set default" Click="favButton_Click"/>
+            <shell:ApplicationBarIconButton x:Name="favButton" IconUri="/icons/appbar.favs.addto.rest.png" Text="set default" Click="favButton_Click"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
     

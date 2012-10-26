@@ -48,6 +48,29 @@ namespace CWRUtility
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
+            CheckNBDef();
+            CheckESDef();
+
+            base.OnNavigatedTo(e);
+        }
+
+        private void CheckESDef()
+        {
+            if (!String.IsNullOrEmpty((string)settings["esDefault"]))
+            {
+                string[] esDefault = ((string)settings["esDefault"]).Split('!');
+                esLoc.Text = esDefault[0];
+                esPanel.Visibility = System.Windows.Visibility.Visible;
+                ScrapeHTML(new Uri(esDefault[1]));
+            }
+            else
+            {
+                nbPanel.Visibility = System.Windows.Visibility.Collapsed;
+            }
+        }
+
+        private void CheckNBDef()
+        {
             if (!String.IsNullOrEmpty((string)settings["nbDefault"]))
             {
                 string[] nbDefault = ((string)settings["nbDefault"]).Split('!');
@@ -59,7 +82,6 @@ namespace CWRUtility
             {
                 nbPanel.Visibility = System.Windows.Visibility.Collapsed;
             }
-            base.OnNavigatedTo(e);
         }
 
         private void Map_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -180,6 +202,84 @@ namespace CWRUtility
                 {
                     return parsedStrings;
                 }
+            }
+            return null;
+        }
+
+        #endregion
+
+        #region eSuds Scraper
+
+        private void ScrapeHTML(Uri locUri)
+        {
+            WebClient esClient = new WebClient();
+            esClient.OpenReadCompleted += new OpenReadCompletedEventHandler(esClient_OpenReadCompleted);
+            esClient.OpenReadAsync(locUri);
+        }
+
+        void esClient_OpenReadCompleted(object sender, OpenReadCompletedEventArgs e)
+        {
+            Stream data = e.Result as Stream;
+            StreamReader reader = new StreamReader(data);
+            HtmlDocument sudsTimes = new HtmlDocument();
+            sudsTimes.Load(reader);
+            data.Close();
+            reader.Close();
+            DisplayStates(sudsTimes);
+        }
+
+        private void DisplayStates(HtmlDocument sudsTimes)
+        {
+            List<WasherDryer> machines = ExtractStates(sudsTimes);
+            if (machines != null)
+            {
+                int freeWash = 0;
+                int freeDry = 0;
+                foreach (WasherDryer m in machines)
+                {
+                    if (m.availability == "Available" && m.type == "Washer")
+                    {
+                        freeWash++;
+                    }
+                    else if (m.availability == "Available" && m.type == "Dryer")
+                    {
+                        freeDry++;
+                    }
+                }
+                esFree.Text = "Free: W: " + freeWash + " D: " + freeDry;
+            }
+            else
+            {
+            }
+        }
+
+        private List<WasherDryer> ExtractStates(HtmlDocument sudsTimes)
+        {
+            if (sudsTimes != null)
+            {
+                List<WasherDryer> machines = new List<WasherDryer>();
+                int dryer = -1;
+
+                foreach (HtmlNode row in sudsTimes.DocumentNode.SelectNodes("//tr"))
+                {
+                    IEnumerable<HtmlNode> thNodes = row.Elements("th");
+                    if (thNodes.ToList().Count != 0)
+                    {
+                        dryer++;
+                    }
+                    if (row.HasAttributes && (row.Attributes[0].Value == "even" || row.Attributes[0].Value == "odd"))
+                    {
+                        IEnumerable<HtmlNode> nodes = row.Elements("td");
+                        WasherDryer newWD = new WasherDryer(
+                            nodes.ElementAt(1).InnerText,
+                            dryer <= 0 ? "Washer" : "Dryer", //nodes.ElementAt(2).InnerText
+                            nodes.ElementAt(3).InnerText.Replace("\n", ""),
+                            nodes.ElementAt(4).InnerText != "&nbsp;" ? nodes.ElementAt(4).InnerText : "",
+                            "");
+                        machines.Add(newWD);
+                    }
+                }
+                return machines;
             }
             return null;
         }
