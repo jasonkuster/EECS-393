@@ -25,9 +25,9 @@
 {\Large for\\[1cm]}
 {\huge CWRUtility\large\\[4cm]}
 {\large Prepared by\\Jason Kuster, Stuart Long, and William Ordiway\\[1cm]
-Version 1.1\\[1cm]
+Version 1.2\\[1cm]
 KOALAA Development\\[1cm]
-October 1, 2012}}
+October 26, 2012}}
 \end{flushright}
 \end{titlepage}
 \tableofcontents{}
@@ -42,6 +42,7 @@ Kuster & 9/31/2012 & Fixed major errors identified in inspection. & 1.0c \\
 Ordiway & 9/31/2012 & Updated NextBus section. & 1.0d \\
 Kuster, Long & 10/01/2012 & Final error fixes. & 1.1a \\
 Long & 10/4/2012 & Added start page feature & 1.1b \\
+Long & 10/26/2012 & Deleted redundant features & 1.2\\
 \hline
 \end{tabularx}
 \end{table}
@@ -122,43 +123,6 @@ StartPage.Select & If the user selects a certain feature, the application will s
 \hline
 \end{tabularx}
 \end{table}
-\subsection{Schedule Courses}
-\subsubsection{Description and Priority}
-A CWRUtility user may search for CWRU courses by semester and course name. Duplicate courses in a semester are returned as a drop down list. The user may then choose to add that course to his or her current schedule. Information for CWRU courses is pulled from the Student Information System service. The user may also delete courses from his or her current schedule. The system displays the user's schedule in a standard calendar format. Priority: High
-\subsubsection{Stimulus/Response Sequences}
-\begin{description}\itemsep1pt
-\item[Stimulus:] User switches to this feature.
-\item[Response:] System displays user's current schedule.
-\item[Stimulus:] User searches for a course with a specified semester and course.
-\item[Response:] System queries SIS for detailed course information and relays it to user. If more than one course match the given semester and course name, results are displayed in a dropdown list.
-\item[Stimulus:] User adds chosen course to schedule
-\item[Response:] System plots course on user's current schedule.
-\item[Stimulus:] User selects a course to remove from schedule.
-\item[Response:] System removes selected course from schedule.
-\end{description}
-\subsubsection{Functional Requirements}
-\begin{table}[!h]
-\begin{tabularx}{\textwidth }[t]{|l Y|}
-\hline
-~&~\\
-Courses.Search & The system will allow the user to search for a course based on user inputted course name and semester.\\ 
-~&~\\
-Courses.Search.Invalid & If the user enters an invalid course name or semester, no course will be returned by the system and it will inform the user appropriately.\\
-~&~\\
-Courses.Search.Return & If a course is found that matches the user criteria, the system shows the course and its information. \\
-~&~\\
-Courses.Search.Multiple & If more than one course matches the user criteria, the system will display the courses in a drop-down list that allows the user to select an appropriate course.\\
-~&~\\
-Courses.Schedule & The system will display user added courses on a calendar formatted schedule.\\
-~&~\\
-Courses.Schedule.Add & Courses selected to be added to the schedule will be added to the schedule and placed in their appropriate time slot.\\
-~&~\\
-Courses.Schedule.Remove & The system will allow users to remove any and all courses from the user's schedule.\\
-~&~\\
-\hline
-\end{tabularx}
-\end{table}
-\FloatBarrier
 \subsection{Map}
 \subsubsection{Description and Priority}
 All relevant campus buildings will be accurately labelled on the map. This labelling includes not only academic buildings but also residence halls, cafeterias, and other miscellaneous CWRU-owned buildings.\\\\
@@ -319,29 +283,6 @@ eSuds.Display.Laundry & Laundry information includes numbers of washers, dryers,
 eSuds.Display.DropDown & On the eSuds display there will be a dropdown menu that allows the user to select different CWRU residence halls.\\
 ~&~\\
 eSuds.Connection & System maintains a constant connection to the eSuds.com webservice in order to provide up-to-date information on laundry.\\
-~&~\\
-\hline
-\end{tabularx}
-\end{table}
-\FloatBarrier
-\subsection{5YearCal}
-\subsubsection{Description and Priority}
-The system will display the current CWRU 5-year academic calendar as provided by the university. The system will query the CWRU official website at the beginning of every Fall term to obtain the latest edition of the calendar. Priority: lowest.
-\subsubsection{Stimulus/Response Sequences}
-\begin{description}\itemsep1pt
-\item[Stimulus:] User switches to this feature.
-\item[Response:] System displays the current 5-year academic calendar.
-\item[Stimulus:] Fall semester begins.
-\item[Response:] System queries the CWRU website for the most up-to-date calendar.
-\end{description}
-\subsubsection{Functional Requirements}
-\begin{table}[!h]
-\begin{tabularx}{\textwidth}[t]{|l Y|}
-\hline
-~&~\\
-5YearCal.Display & System displays the current CWRU 5-year academic calendar\\ 
-~&~\\
-5YearCal.Display.Update & At the beginning of each Fall semester, the system will obtain the most recent 5-year academic calendar from the CWRU website.\\
 ~&~\\
 \hline
 \end{tabularx}
