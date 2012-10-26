@@ -20,11 +20,12 @@ namespace CWRUtility
     {
         Dictionary<string, Uri> locUris = new Dictionary<string, Uri>();
         IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
+        bool gettingTimes = false;
 
         public eSuds()
         {
-            InitializeComponent();
             CreateBuildingsDict();
+            InitializeComponent();
         }
 
         private void CreateBuildingsDict()
@@ -37,28 +38,30 @@ namespace CWRUtility
 
             for (int i = 0; i < buildings.Count; i++)
             {
-                locUris.Add(buildings[i], new Uri("http://case-asi.esuds.net/RoomStatus/showRoomStatus.i?locationId=" + bIDs[i]));
+                locUris.Add(buildings[i], new Uri("http://case-asi.esuds.net/RoomStatus/machineStatus.i?bottomLocationId=" + bIDs[i]));
             }
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
+            buildingPicker.ItemsSource = locUris.Keys;
             if (!String.IsNullOrEmpty((string)settings["esDefault"]))
             {
-                buildingPicker.ItemsSource = locUris.Keys;
+                buildingPicker.SelectedItem = (string)settings["esDefault"];
             }
             base.OnNavigatedTo(e);
         }
 
         private void buildingPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (buildingPicker.SelectedIndex != -1)
+            if (buildingPicker.SelectedIndex != -1 && !gettingTimes)
                 GetTimes();
         }
 
         private void GetTimes()
         {
             string location = (string)buildingPicker.SelectedItem;
+            gettingTimes = true;
             LockUI();
             ScrapeHTML(locUris[location]);
         }
@@ -92,6 +95,7 @@ namespace CWRUtility
             {
             }
             UnlockUI();
+            gettingTimes = false;
         }
 
         private List<WasherDryer> ExtractStates(HtmlDocument sudsTimes)
@@ -102,13 +106,14 @@ namespace CWRUtility
 
                 foreach (HtmlNode row in sudsTimes.DocumentNode.SelectNodes("//tr"))
                 {
-                    if (row.Attributes[0].Value == "even" || row.Attributes[0].Value == "odd")
+                    if (row.HasAttributes && (row.Attributes[0].Value == "even" || row.Attributes[0].Value == "odd"))
                     {
+                        IEnumerable<HtmlNode> nodes = row.Elements("td");
                         WasherDryer newWD = new WasherDryer(
-                            row.ChildNodes.ElementAt(1).InnerText,
-                            row.ChildNodes.ElementAt(2).InnerText,
-                            row.ChildNodes.ElementAt(3).InnerText,
-                            row.ChildNodes.ElementAt(4).InnerText);
+                            nodes.ElementAt(1).InnerText,
+                            nodes.ElementAt(2).InnerText,
+                            nodes.ElementAt(3).InnerText.Replace("\n",""),
+                            nodes.ElementAt(4).InnerText != "&nbsp;" ? nodes.ElementAt(4).InnerText : "");
                         machines.Add(newWD);
                     }
                 }
@@ -127,7 +132,7 @@ namespace CWRUtility
             buildingPicker.IsEnabled = true;
         }
     }
-    class WasherDryer
+    public class WasherDryer
     {
         public WasherDryer(string number, string type, string availability, string timeRemaining)
         {

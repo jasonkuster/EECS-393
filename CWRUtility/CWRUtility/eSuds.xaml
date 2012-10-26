@@ -34,15 +34,20 @@
         			<TextBlock x:Name="buildingBlock" TextWrapping="Wrap" Text="Building"/>
         			<toolkit:ListPicker x:Name="buildingPicker" Margin="0" SelectionChanged="buildingPicker_SelectionChanged"/>
         		</StackPanel>
-        		<StackPanel Height="250" Orientation="Horizontal">
-        			<StackPanel Orientation="Vertical" Width="216" d:LayoutOverrides="Height">
-        				<TextBlock TextWrapping="Wrap" Text="Washers"/>
-        				<ListBox x:Name="WashersList"/>
-        			</StackPanel>
-        			<StackPanel Orientation="Vertical" Width="216" d:LayoutOverrides="Height">
-        				<TextBlock TextWrapping="Wrap" Text="Driers"/>
-        				<ListBox x:Name="DriersList"/>
-        			</StackPanel>
+        		<StackPanel Height="411">
+        			<TextBlock TextWrapping="Wrap" Text="  M#                    Type                       Free     Time" VerticalAlignment="Top" Width="432"/>
+        			<ListBox x:Name="WashersList" Height="384">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+        				        <StackPanel x:Name="mTemp" Height="50" Width="432" Orientation="Horizontal">
+        					        <TextBlock x:Name="mNum" TextWrapping="NoWrap" Text="{Binding number}" Margin="0" Width="50" TextAlignment="Center"/>
+        					        <TextBlock x:Name="mType" TextWrapping="NoWrap" Text="{Binding type}" Width="248" TextAlignment="Center"/>
+        					        <TextBlock x:Name="mFree" TextWrapping="NoWrap" Text="{Binding availability}" Width="80" TextAlignment="Center"/>
+        					        <TextBlock x:Name="mTime" TextWrapping="NoWrap" Text="{Binding timeRemaining}" Margin="0" Width="54" TextAlignment="Center"/>
+        				        </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
         		</StackPanel>
         		<!--<Button x:Name="goButton" Content="Go" Click="goButton_Click"/>-->
         	</StackPanel></Grid>
