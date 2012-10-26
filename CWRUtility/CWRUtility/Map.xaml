@@ -22,9 +22,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-
-        <!--TitlePanel contains the name of the application and page title-->
-
+        
         <!--ContentPanel - place additional content here-->
     	<controls:Pivot x:Name="Map1" Grid.Row="1" Title="CWRUTILITY" LoadingPivotItem="map1_LoadingPivotItem">
     		<controls:PivotItem x:Name="bingMap" Header="Road Map">
@@ -45,7 +43,7 @@
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton x:Name="hideLayerButton" IconUri="/icons/appbar.favs.rest.png" Text="toggle info" Click="toggleLayerButton_Click"/>
+            <shell:ApplicationBarIconButton x:Name="hideLayerButton" Text="toggle info" Click="toggleLayerButton_Click" IconUri="/icons/eye.png"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>

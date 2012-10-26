@@ -18,7 +18,6 @@ namespace CWRUtility
         public Map()
         {
             InitializeComponent();
-
             actualMap = new Microsoft.Phone.Controls.Maps.Map();
             actualMap.CredentialsProvider = new ApplicationIdCredentialsProvider("Bing Maps Key");
 
@@ -111,73 +110,7 @@ namespace CWRUtility
             }
         }
 
-        public class CWRUMapMode : RoadMode
-        {
-            private Range<double> validLats;
-            private Range<double> validLongs;
-
-            public CWRUMapMode()
-            {
-                // The latitude value range (From = bottom most latitude, To = top most latitude)
-                validLats = new Range<double>(41.499707, 41.515711);
-                // The longitude value range (From = left most longitude, To = right most longitude)
-                validLongs = new Range<double>(-81.615243, -81.598334);
-
-            }
-
-            protected override Range<double> GetZoomRange(GeoCoordinate center)
-            {
-                return new Range<double>(15, 20);
-            }
-
-            public override bool ConstrainView(GeoCoordinate center, ref double zoomLevel, ref double heading, ref double pitch)
-            {
-                bool isChanged = base.ConstrainView(center, ref zoomLevel, ref heading, ref pitch);
-
-                double newLatitude = center.Latitude;
-                double newLongitude = center.Longitude;
-
-                if (center.Longitude > validLongs.To)
-                {
-                    newLongitude = validLongs.To;
-                }
-                else if (center.Longitude < validLongs.From)
-                {
-                    newLongitude = validLongs.From;
-                }
-
-                if (center.Latitude > validLats.To)
-                {
-                    newLatitude = validLats.To;
-                }
-                else if (center.Latitude < validLats.From)
-                {
-                    newLatitude = validLats.From;
-                }
-
-                if (newLatitude != center.Latitude || newLongitude != center.Longitude)
-                {
-                    center.Latitude = newLatitude;
-                    center.Longitude = newLongitude;
-                    isChanged = true;
-                }
-
-                Range<double> range = GetZoomRange(center);
-                if (zoomLevel > range.To)
-                {
-                    zoomLevel = range.To;
-                    isChanged = true;
-                }
-                else if (zoomLevel < range.From)
-                {
-                    zoomLevel = range.From;
-                    isChanged = true;
-                }
-
-                return isChanged;
-            }
-
-        }
+        
 
         /* private void scroller_DoubleTap(object sender, System.Windows.Input.GestureEventArgs e)
         {
