@@ -15,6 +15,9 @@
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
+    	<VisualStateManager.VisualStateGroups>
+    		<VisualStateGroup x:Name="VisualStateGroup"/>
+    	</VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -29,7 +32,12 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
         	<ScrollViewer Margin="{StaticResource PhoneMargin}">
-        		<ListBox Height="583" Width="432"/>
+        		<ListBox x:Name="listBox" Height="583" Width="432">
+        			<TextBox x:Name="Butt2" TextWrapping="Wrap" Text="Association of Dancing Panda Breeders" Margin="{StaticResource PhoneMargin}" Width="413" BorderBrush="{StaticResource TransparentBrush}" Background="{StaticResource TransparentBrush}" Foreground="White" Tap="Expand"/>
+        			<TextBox x:Name="Text2" Height="80" TextWrapping="Wrap" Text="Phone: 123-345-6789&#xa;Location: The tunnels under the Quad&#xa;Description: Dancing pandas are worth money, good money. Make more money through this club than you ever could through a Co-Op or on campus job." Width="400" Margin="{StaticResource PhoneMargin}" Visibility="Collapsed" IsReadOnly="True"/>
+        			<TextBox x:Name="Butt1" TextWrapping="Wrap" Text="Guitar Hero Veterans" Width="400" Margin="{StaticResource PhoneMargin}" SelectionBackground="{StaticResource TransparentBrush}" SelectionForeground="{StaticResource TransparentBrush}" Foreground="White" Background="{StaticResource TransparentBrush}" BorderBrush="{StaticResource TransparentBrush}"/>
+        			<TextBox x:Name="Text1" TextWrapping="Wrap" Text="Phone: 777-888-9999&#xa;Location: Village House RockNRoll&#xa;Description: Forged in flames, these rockers know nothing but the sound of shredding metal and screaming flame demons." Width="400" Margin="{StaticResource PhoneMargin}" IsReadOnly="True" Visibility="Collapsed"/>
+        		</ListBox>
         	</ScrollViewer></Grid>
     </Grid>
  

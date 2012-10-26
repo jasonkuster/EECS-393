@@ -19,6 +19,12 @@ namespace CWRUtility
         {
             InitializeComponent();
         }
+
+
+        private void Expand(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+			sender.Visibility = "Collapsed";
+        }
     }
 
     public class Resource
@@ -33,4 +39,5 @@ namespace CWRUtility
         public string phone { get; set; }
         public string info { get; set; }
     }
+
 }
