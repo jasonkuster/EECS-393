@@ -170,6 +170,7 @@
     <Resource Include="Resources\CWRUlogo.png" />
     <Resource Include="Resources\CWRUlogoSmall.png" />
     <Resource Include="Resources\CWRUseal.png" />
+    <Content Include="Resources\CampusResources.txt" />
     <Content Include="SplashScreenImage.jpg" />
     <Content Include="Toolkit.Content\ApplicationBar.Cancel.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
