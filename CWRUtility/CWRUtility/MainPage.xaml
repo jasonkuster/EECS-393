@@ -37,6 +37,9 @@
 				</StackPanel>
 			</StackPanel>
             <TextBlock x:Name="Directory" Margin="8,0,0,0" Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap" Text="Directory" FontSize="37.333" Tap="Directory_Tap"/>
+            <TextBlock x:Name="eSuds" Margin="8,0,0,0" Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap" Text="eSuds" FontSize="37.333" Tap="eSuds_Tap"/>
+            <TextBlock x:Name="Menus" Margin="8,0,0,0" Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap" Text="Menus" FontSize="37.333" Tap="Menus_Tap"/>
+            <TextBlock x:Name="CaseNews" Margin="8,0,0,0" Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap" Text="Case News" FontSize="37.333" Tap="CaseNews_Tap"/>
 		</StackPanel>
 	</Grid>
 </phone:PhoneApplicationPage>

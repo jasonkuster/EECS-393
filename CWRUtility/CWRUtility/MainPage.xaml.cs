@@ -73,6 +73,21 @@ namespace CWRUtility
             NavigationService.Navigate(new Uri("/Directory.xaml", UriKind.RelativeOrAbsolute));
         }
 
+        private void eSuds_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+
+        }
+
+        private void Menus_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+
+        }
+
+        private void CaseNews_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+
+        }
+
         #region Nextbus Scraper
 
         private void GetHtml(Uri stopUri)

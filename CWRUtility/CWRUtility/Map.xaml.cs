@@ -13,34 +13,53 @@ namespace CWRUtility
 {
     public partial class Map : PhoneApplicationPage
     {
+        MapLayer outline;
+        Microsoft.Phone.Controls.Maps.Map actualMap;
         public Map()
         {
             InitializeComponent();
 
-            Microsoft.Phone.Controls.Maps.Map actualMap = new Microsoft.Phone.Controls.Maps.Map();
+            actualMap = new Microsoft.Phone.Controls.Maps.Map();
             actualMap.CredentialsProvider = new ApplicationIdCredentialsProvider("Bing Maps Key");
 
             //GeoCoordinate mapCenter = new GeoCoordinate(41.51093, -81.60323);
             actualMap.Mode = new CWRUMapMode();
-            actualMap.Children.Add(getCampusOutline());
-
+            outline = getCampusOutline();
+            actualMap.Children.Add(outline);
 
             //actualMap.SetView(mapCenter, 16);
             bmapGrid.Children.Add(actualMap);
         }
 
-       /*private void OnPinchStarted(object sender, PinchStartedGestureEventArgs e)
+        private void map1_LoadingPivotItem(object sender, PivotItemEventArgs e)
         {
-            initialScale = atransform.ScaleX;
+            ApplicationBar.IsVisible = (e.Item == bingMap);
         }
 
-        private void OnPinchDelta(object sender, PinchGestureEventArgs e)
+        private static void addCWRUPinsToLayer(MapLayer layer)
         {
-            atransform.ScaleX = initialScale * e.DistanceRatio;
-            atransform.ScaleY = initialScale * e.DistanceRatio;
-        }*/
+            Pushpin northSide = new Pushpin();
+            northSide.Location = new GeoCoordinate(41.513453, -81.605529);
+            northSide.Content = "North Side";
+            layer.Children.Add(northSide);
 
-        private MapLayer getCampusOutline()
+            Pushpin matherQuad = new Pushpin();
+            matherQuad.Location = new GeoCoordinate(41.509018, -81.607954);
+            matherQuad.Content = "Mather Quad";
+            layer.Children.Add(matherQuad);
+
+            Pushpin theQuad = new Pushpin();
+            theQuad.Location = new GeoCoordinate(41.503297, -81.608050);
+            theQuad.Content = "The Quad";
+            layer.Children.Add(theQuad);
+
+            Pushpin southSide = new Pushpin();
+            southSide.Location = new GeoCoordinate(41.501144, -81.601581);
+            southSide.Content = "South Side";
+            layer.Children.Add(southSide);
+        }
+
+        private static MapLayer getCampusOutline()
         {
             MapLayer campLayer = new MapLayer();
             MapPolyline outline = new MapPolyline();
@@ -75,7 +94,21 @@ namespace CWRUtility
                     new GeoCoordinate(41.504697, -81.610809)
                 };
             campLayer.Children.Add(outline);
+
+            addCWRUPinsToLayer(campLayer);
             return campLayer;
+        }
+
+        private void toggleLayerButton_Click(object sender, EventArgs e)
+        {
+            if (outline.Visibility == System.Windows.Visibility.Visible)
+            {
+                outline.Visibility = System.Windows.Visibility.Collapsed;
+            }
+            else
+            {
+                outline.Visibility = System.Windows.Visibility.Visible;
+            }
         }
 
         public class CWRUMapMode : RoadMode
@@ -146,7 +179,7 @@ namespace CWRUtility
 
         }
 
-       /* private void scroller_DoubleTap(object sender, System.Windows.Input.GestureEventArgs e)
+        /* private void scroller_DoubleTap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             ScrollViewer scroll = (ScrollViewer) sender;
             //((Image) sender).RenderTransformOrigin = new Point(0,0);
@@ -155,6 +188,17 @@ namespace CWRUtility
             scroll.Content = scrollMap;
             //
             //(((Image) sender).RenderTransform as CompositeTransform).ScaleY = 0.5;
+        }*/
+
+        /*private void OnPinchStarted(object sender, PinchStartedGestureEventArgs e)
+        {
+         initialScale = atransform.ScaleX;
+        }
+
+         private void OnPinchDelta(object sender, PinchGestureEventArgs e)
+        {
+         atransform.ScaleX = initialScale * e.DistanceRatio;
+         atransform.ScaleY = initialScale * e.DistanceRatio;
         }*/
     }
 }
