@@ -75,7 +75,7 @@ namespace CWRUtility
 
         private void eSuds_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-
+            NavigationService.Navigate(new Uri("/eSuds.xaml", UriKind.RelativeOrAbsolute));
         }
 
         private void Menus_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -181,10 +181,5 @@ namespace CWRUtility
         }
 
         #endregion
-
-        private void eSuds_Tap(object sender, System.Windows.Input.GestureEventArgs e)
-        {
-            NavigationService.Navigate(new Uri("/eSuds.xaml", UriKind.RelativeOrAbsolute));
-        }
     }
 }
