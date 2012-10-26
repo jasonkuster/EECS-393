@@ -52,7 +52,8 @@ namespace CWRUtility
 
         private void buildingPicker_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            GetTimes();
+            if (buildingPicker.SelectedIndex != -1)
+                GetTimes();
         }
 
         private void GetTimes()
@@ -126,7 +127,7 @@ namespace CWRUtility
             buildingPicker.IsEnabled = true;
         }
     }
-    private class WasherDryer
+    class WasherDryer
     {
         public WasherDryer(string number, string type, string availability, string timeRemaining)
         {
