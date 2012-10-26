@@ -43,7 +43,7 @@
 
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
-            <shell:ApplicationBarIconButton x:Name="hideLayerButton" IconUri="/icons/eye.png" Text="toggle info" Click="toggleLayerButton_Click"/>
+            <shell:ApplicationBarIconButton x:Name="hideLayerButton" Text="toggle info" Click="toggleLayerButton_Click" IconUri="/icons/eye.png"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>

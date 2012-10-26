@@ -159,7 +159,10 @@
     <Content Include="icons\appbar.favs.addto.rest.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Resource Include="icons\eye.png" />
+    <Content Include="icons\appbar.feature.search.rest.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="icons\eye.png" />
     <Content Include="README_FIRST.txt" />
     <Resource Include="Resources\CWRUMap.jpg" />
     <Resource Include="Resources\CWRUsealWhite.png" />
