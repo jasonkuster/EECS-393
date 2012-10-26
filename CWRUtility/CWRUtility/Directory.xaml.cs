@@ -13,27 +13,42 @@ using Microsoft.Phone.Controls;
 
 namespace CWRUtility
 {
+
     public partial class Directory : PhoneApplicationPage
     {
         public Directory()
         {
             InitializeComponent();
         }
-
-
+        
+        //test case to see if i can even open/close the first resource description
+		/*
         public void Expand(object sender, System.Windows.Input.GestureEventArgs e)
         {
-			if (Text2.Visibility.Equals("Visible")) //true = "Visibile"
+			if (T1.Visibility.Equals("Visible")) //true = "Visibile"
 			{
-				Text2.Visibility = false;
+                T1.Visibility = System.Windows.Visibility.Collapsed;
 			}
-			if (Text2.Visibility.Equals(false)) //false = "Collapsed"
+			else //if (T1.Visibility.Equals("Collapsed")) //false = "Collapsed"
 			{
-				Text2.Visibility = true;
+                T1.Visibility = System.Windows.Visibility.Visible;
 			}
         }
-    }
+		  private void Expand(object sender, EventArgs e)
+		{
+			if (T1.Visibility.Equals("Visible")) //true = "Visibile"
+			{
+                T1.Visibility = System.Windows.Visibility.Collapsed;
+			}
+			else //if (T1.Visibility.Equals("Collapsed")) //false = "Collapsed"
+			{
+                T1.Visibility = System.Windows.Visibility.Visible;
+			}
+		}
+	*/
 
+    }
+/*
     public class Resource
     {
         public Resource(string name, string phone, string info)
@@ -46,5 +61,5 @@ namespace CWRUtility
         public string phone { get; set; }
         public string info { get; set; }
     }
-
+*/
 }
