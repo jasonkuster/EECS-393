@@ -46,8 +46,21 @@ Kust, Long, Ordiway & 10/10/12 & Initial Draft & 1.0\\
 \clearpage
 \section{Overview}
 \subsection{Overall Design}
-The \emph{CWRUtility} application is essentially a collection of CWRU-related features that allows for easy, centralized access to each of the features. The complete list of features and their description can be found in the \emph{CWRUtility} SRS. Since this software system can be easily broken down into separate, uncoupled features, the design of the overall system is also broken down. Each feature will have it's own design, documented below in the "Features" section, that will operate independently of the other features. The only exception to this rule is the "StartPage" feature, which can also be seen as the overall application manager. Explained in detail below, the "StartPage" feature will be responsible for navigating the system to the different features and controlling any communication between the features. The figure below shows the various components of the system and how they are linked. This diagram could be seen as the highest level of design for the system. Every page in the application is represented by a XAML file and a C\# "behind" file that handles the actual functionality.
+The \emph{CWRUtility} application is essentially a collection of CWRU-related features that allows for easy, centralized access to each of the features. The complete list of features and their description can be found in the \emph{CWRUtility} SRS. Since this software system can be easily broken down into separate, uncoupled features, the design of the overall system is also broken down. Each feature will have it's own design, documented below in the "Features" section, that will operate independently of the other features. The only exception to this rule is the "StartPage" feature, which can also be seen as the overall application manager. Explained in detail below, the "StartPage" feature will be responsible for navigating the system to the different features and controlling any communication between the features. \textbf{Figure~\ref{fig:overall}} below
+shows the various components of the system and how they are linked. This
+diagram could be seen as the highest level of design for the system. \textbf{Figure~\ref{fig:sequence}} shows the sequence diagram for the same system. Every page in the application is represented by a XAML file and a C\# "behind" file that handles
+the actual functionality.
+\begin{figure}[h!]
 \includegraphics[width=120mm]{OverallCD.png}
+\caption{\textbf{Figure~\ref{fig:overall}} Package Diagram}
+\label{fig:overall}
+\end{figure}
+\begin{figure}[h!]
+\includegraphics[width=120mm]{sequenceDia.png}
+\caption{\textbf{Figure~\ref{fig:sequence}} Sequence Diagram}
+\label{fig:sequence}
+\end{figure}
+\FloatBarrier
 \subsection{User Interface}
 The implementation of any user interfaces on the Windows Phone 7/8 platform is done using the eXtensible Application Markup Language (XAML). Essentially, XAML can be used as a layout language similar to HTML. XAML provides a straightforward way to generate, lay out, and populate the on-screen elements. Data population will be done by using Model View View-Model (MVVM), a data-binding interface built into the Windows Phone SDK. The data fields will be laid out in XAML, which will comprise the view; the code to map the data to the view is contained in the view-model, and the raw data will be stored in application storage.It is important to note that a markup language is very dissimilar to a programming language as it works through simply creating a series of attributes and assigning values to them. The Windows Phone OS actually handles creating the UI based on these attributes, therefore this software system does not have to. 
 \\
@@ -99,6 +112,31 @@ The BusScheduleManager class handles retrieval and formatting of the NextBus dat
 The UIManager for this feature will not be a true class, since all UI for Windows Phone is done using XAML files. Still, this manager will be responsible for laying out the components of the feature. Namely, it will have to lay out the title of the application at the top, and the name of this feature below that. There will be three dropdown menus on the top of the screen - one for Route, Direction, and Stop. There will be a "Go" button underneath which will initiate the prediction request. Additionally, there will be three text boxes, initially empty, which will populate once the predictions are acquired.
 %\subsection{Schedule}
 %The "Schedule" feature will allow users to add classes or custom events to a saved schedule on the system. This feature will require three classes: a schedule event, a schedule event manager to handle schedule events, and a UI manager for the schedule.
+\subsection{Case News}
+The "Case News" feature will display the prominent new stories from the
+two main sources of CWRU news: \emph{The Case Daily} and \emph{The Observer}. The
+stories will be displayed in a list format with a panel per story containing the
+stories' headline. If a user clicks on a particular story that story will expand
+to display the story in its entirety. Both news sources have RSS feed so this
+class will simply act as a RSS reader for those two feeds.
+\subsubsection{Class Diagram}
+\includegraphics[width=120mm]{CaseNewsCD.png}
+\subsubsection{CaseNews}
+This class is the main class for this feature. It will be responsible for querying the Daily and the Observer for news stories and passing them to the
+XAML file to be displayed (this communication will done through data binding). This class will also check news stories should be refreshed (on user
+request) and will consequently refresh the stories. There will be a refresh
+button displayed, whose action is handled by loadButton\_click which calls
+update\_feedList. onNavigated To will build the list for the first time a user
+switches to this feature.
+\subsubsection{RSSTextTrimmer}
+The RSSTextTrimmer takes in raw RSSText feed from an RSS feed and
+trims for output onto a Windows Phone 7/8 display. This conversion is handled in the convert method. The conversion performs actions like removing
+unnecessary whitespace and html tags from the input.
+\subsubsection{XAML File}
+The XAML file will display the application title, followed by this feature title
+(Case News), and then a list of the stories from the two news sources. It will
+get the titles and descriptions of the stories from the CaseNews class through
+data binding.
 \lfoot{\includegraphics[height=1cm]{DarkKoala.png}}
 
 %\subsection{Class Diagram}
