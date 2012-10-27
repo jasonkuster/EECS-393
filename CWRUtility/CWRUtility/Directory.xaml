@@ -36,10 +36,7 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
         	<ScrollViewer Margin="{StaticResource PhoneMargin}">
         		<ListBox x:Name="listBox" Height="583" Width="432">
-        			<TextBlock x:Name="R1" TextWrapping="Wrap" Text="Association of Dancing Panda Breeders" FontSize="26.667" Margin="{StaticResource PhoneMargin}" Foreground="White"/>
         			<TextBlock x:Name="T1" TextWrapping="Wrap" Margin="{StaticResource PhoneMargin}"><Run Text="Phone: 123-345-6789"/><LineBreak/><Run Text="Location: The tunnels under the Quad"/><LineBreak/><Run Text="Description: Dancing pandas are worth money, good money. Make more money through this club than you ever could through a Co-Op or on campus job."/></TextBlock>
-        			<TextBlock x:Name="R2" TextWrapping="Wrap" Text="Guitar Hero Veterans" FontSize="26.667" Margin="{StaticResource PhoneMargin}"/>
-        			<TextBlock x:Name="T2" TextWrapping="Wrap" Margin="{StaticResource PhoneMargin}"><Run Text="Phone: 777-888-9999"/><LineBreak/><Run Text="Location: Village House RockNRoll"/><LineBreak/><Run Text="Description: Forged in flames, these rockers know nothing but the sound of shredding metal and screaming flame demons."/></TextBlock>
         		</ListBox>
         	</ScrollViewer></Grid>
     </Grid>

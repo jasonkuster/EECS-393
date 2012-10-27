@@ -11,19 +11,23 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
 using System.IO;
+using System.IO.IsolatedStorage;
+using Microsoft.Phone.Tasks;
 
 namespace CWRUtility
 {
 
     public partial class Directory : PhoneApplicationPage
     {
+        IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
+        
         public Directory()
         {
             InitializeComponent();
 
             readFromFile();
         }
-        
+           
         //test case to see if i can even open/close the first resource description
         public void Expand(object sender, System.Windows.Input.GestureEventArgs e)
         {
@@ -41,15 +45,25 @@ namespace CWRUtility
         {
 
             string thefile = "";
+            var resource = System.Windows.Application.GetResourceStream(new Uri("Resources/CampusResources.txt", UriKind.RelativeOrAbsolute));
+            //StreamReader read = new StreamReader("C:/Users/VVilliam/Documents/GitHub/EECS-393/CWRUtility/CWRUtility/ResourcesCampusResources.txt");
+            //read.Close();
+            /*
             //ProjectName;component/data/filename.txt
-            StreamReader sr = new StreamReader(":/Resources/CWRUtility;CampusResources.txt"); //the problem is this line, whatever comes after it is hit with a MethodAccessException
+            System.IO.StreamReader sr = new StreamReader("CWRUtility;Resources/CampusResources.txt"); //the problem is this line, whatever comes after it is hit with a MethodAccessException
             //GETTING 1 REM cycle then takling it.
             //thefile = sr.ReadToEnd();
             //sr.Close();
+            
+
+           / T1.Text = thefile;*/
+            StreamReader SR = new StreamReader(resource.Stream);
+            thefile = SR.ReadToEnd();
 
 
-            T1.Text = thefile;
+
         }
+
 
 
     }
