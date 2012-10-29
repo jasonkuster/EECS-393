@@ -37,7 +37,7 @@ October 10, 2012}}
 \hline
 \bfseries Name & \bfseries Date & \bfseries Reasons for Change & \bfseries Version \\ \hline
 Long & 10/6/2012 & Initial Outline & 1.0 initial\\
-Kust, Long, Ordiway & 10/10/12 & Initial Draft & 1.0\\
+Kuster, Long, Ordiway & 10/10/12 & Initial Draft & 1.0\\
 \hline
 \end{tabularx}
 \end{table}
@@ -101,7 +101,7 @@ The directory class is used to maintain a variable List which contains a number 
 \subsubsection{UI Manager}
 The UIManager for this feature will not be a true class, since all UI for Windows Phone is done using XAML files. Still, this manager will be responsible for laying out the components of the feature. Namely, it will have to lay out the title of the application at the top, and the name of this feature below that. Taking up the majority of the screen though will be a scrollable alphabetized list of campus resources. The XAML File will receive the GetList() operation which dictates the layout of the list of resources.
 \subsection{NextBus}
-The "NextBus" feature will allow the users to interface with the NextBus, Inc. bus times prediction website. This feature will offer users the ability to select bus routes, bus direction, and stops in order to facilitate the use of the "Greenie" bus system on campus. The feature's main page will be a single Windows Phone-style page with three drop-down selection boxes and a "Go" button. There will be a field, initially blank, which will populate with the next prediction times (max 3). Additionally, the NextBus section will feature on the main page, where it will provide a small icon which contains the stop which the user has marked as a "favorite".
+The "NextBus" feature will allow the users to interface with the NextBus, Inc. bus times prediction website. This feature will offer users the ability to select bus routes, bus direction, and stops in order to facilitate the use of the "Greenie" bus system on campus. The feature's main page will be a single Windows Phone-style page with three drop-down selection boxes and a "Go" button. There will be a field, initially blank, which will populate with the next prediction times (max 3). Additionally, the NextBus section will feature on the main page, where it will provide a small icon which contains the stop which the user has marked as "default".
 \subsubsection{Class Diagram}
 \begin{flushleft}
 \includegraphics[width=120mm]{nextbusCD.png}
@@ -109,7 +109,26 @@ The "NextBus" feature will allow the users to interface with the NextBus, Inc. b
 \subsubsection{BusScheduleManager}
 The BusScheduleManager class handles retrieval and formatting of the NextBus data. Since Case Western has not purchased the feed option from NextBus, aggregating data will require scraping the HTML that NextBus generates for each bus stop once it is requested. This class will also handle the drop-down menus, populating them with the requisite items once route and direction have been selected. There are two listener methods which will populate the next dropdown in the list when the previous item is successfully selected. Additionally, there is a method which runs when the "Go" button is pressed, which will pull the requisite info from the NextBus website and display it on the screen.
 \subsubsection{UIManager}
-The UIManager for this feature will not be a true class, since all UI for Windows Phone is done using XAML files. Still, this manager will be responsible for laying out the components of the feature. Namely, it will have to lay out the title of the application at the top, and the name of this feature below that. There will be three dropdown menus on the top of the screen - one for Route, Direction, and Stop. There will be a "Go" button underneath which will initiate the prediction request. Additionally, there will be three text boxes, initially empty, which will populate once the predictions are acquired.
+The UIManager for this feature will not be a true class, since all UI for Windows Phone is done using XAML files. Still, this manager will be responsible for laying out the components of the feature. Namely, it will have to lay out the title of the application at the top, and the name of this feature below that. There will be three dropdown menus on the top of the screen - one for Route, Direction, and Stop. There will be a "Go" button underneath which will initiate the prediction request. There will be a "set default" button, which will set the bus that is loaded on the main page, as well as the one to which the NextBus page will default on load. Additionally, there will be three text boxes, initially empty, which will populate once the predictions are acquired.
+\subsection{eSuds}
+The eSuds feature will allow the users to interface with the eSuds laundry interface. This feature offers users the ability to query the eSuds service for the statuses of the washers and driers in the buildings on campus, and provides visual feedback on the status of the individual machines - red for in progress, green for free. This will be presented in a table-formatted list box containing all of the machines and their states. There will be a small part of the main menu devoted to eSuds and it will list the building set as default, as well as the number of free washers and dryers.
+\subsubsection{Class Diagram}
+\begin{flushleft}
+\includegraphics[width=120mm]{eSuds.png}
+\end{flushleft}
+\subsubsection{eSudsManager}
+The eSudsManager class is in charge of retrieval and formatting of eSuds data. Similarly to NextBus, eSuds does not have a publicly accessible API. Thus, we will be scraping the data from their website and formatting it for viewing on a phone screen instead of a web browser. As there is only one menu, there will be no go button because the act of clicking on a building is sufficient input. There is one listener method waiting for this action.
+\subsubsection{LaundryMachine}
+As there is a decent amount of metadata relating to a laundry machine, it was necessary to create a class to describe them. The LaundryMachine class contains a number of elements, each with a getter and setter. The elements are:
+\begin{enumerate}
+\item Number: The laundry machine's number, displayed on its front.
+\item Type: Denotes whether the machine is a washer or dryer.
+\item Availability: Can be one of four states: Available, In Use, Cycle Complete, or Unavailable.
+\item timeRemaining: If the machine is currently "In Use", it will have an estimated time to completion.
+\item color: Contains the color this machine should be displayed as - green for "Available", red for anything else.
+\end{enumerate}
+\subsubsection{UIManager}
+The UIManager for this feature will not be a true class, since all UI for Windows Phone is done using XAML files. Still, this manager will be responsible for laying out the components of the feature. Namely, it will have to lay out the title of the application at the top, and the name of this feature below that. There will be one dropdown menu which will allow for building selection, and a table with a column for each LaundryMachine attribute except for color, and a row for each LaundryMachine object which it is handed. The status for each LaundryMachine will have its color set to the "color" attribute.
 %\subsection{Schedule}
 %The "Schedule" feature will allow users to add classes or custom events to a saved schedule on the system. This feature will require three classes: a schedule event, a schedule event manager to handle schedule events, and a UI manager for the schedule.
 \subsection{Case News}
