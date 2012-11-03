@@ -35,9 +35,7 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
         	<ScrollViewer Margin="{StaticResource PhoneMargin}">
-        		<ListBox x:Name="listBox" Height="583" Width="432">
-        			<TextBlock x:Name="T1" TextWrapping="Wrap" Margin="{StaticResource PhoneMargin}"><Run Text="Phone: 123-345-6789"/><LineBreak/><Run Text="Location: The tunnels under the Quad"/><LineBreak/><Run Text="Description: Dancing pandas are worth money, good money. Make more money through this club than you ever could through a Co-Op or on campus job."/></TextBlock>
-        		</ListBox>
+        		<ListBox x:Name="listBox" Height="583" Width="432"/>
         	</ScrollViewer></Grid>
     </Grid>
  
