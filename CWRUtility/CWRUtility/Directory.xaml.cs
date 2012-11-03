@@ -27,11 +27,12 @@ namespace CWRUtility
 
             readFromFile();
         }
-           
+          
+        /*
         //test case to see if i can even open/close the first resource description
         public void Expand(object sender, System.Windows.Input.GestureEventArgs e)
         {
-			if (T1.Visibility.Equals("Visible")) //true = "Visibile"
+			if (sender.Visibility.Equals("Visible")) //true = "Visibile"
 			{
                 T1.Visibility = System.Windows.Visibility.Collapsed;
 			}
@@ -40,6 +41,7 @@ namespace CWRUtility
                 T1.Visibility = System.Windows.Visibility.Visible;
 			}
         }
+         */
 
         public void readFromFile()
         {
