@@ -164,7 +164,7 @@ namespace CWRUtility
                 nbPred3.Visibility = System.Windows.Visibility.Collapsed;
                 nbPred2.Width = 240;
                 nbPred2.FontSize = 24;
-                nbPred2.Text = "No Prediction Available";
+                nbPred2.Text = "No Predictions";
             }
             ProgressBar.IsVisible = false;
         }
