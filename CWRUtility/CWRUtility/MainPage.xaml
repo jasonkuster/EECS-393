@@ -36,16 +36,16 @@
 				</StackPanel>
 			</StackPanel>
 			<TextBlock x:Name="Map" Margin="7,0,17,0" Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap" Text="Campus Map" FontSize="37.333" Foreground="White" VerticalAlignment="Top" Tap="Map_Tap"/>
-            <StackPanel x:Name="eSuds" Orientation="Horizontal" Margin="8,0,0,0" Tap="eSuds_Tap">
+            <StackPanel x:Name="eSuds" Orientation="Horizontal" Margin="8,0,0,0" Tap="eSuds_Tap" Height="100">
 				<TextBlock x:Name="esText" Margin="0" Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap" Text="eSuds" FontSize="37.333" VerticalAlignment="Center"/>
 				<StackPanel x:Name="esPanel" Orientation="Vertical" Margin="60,10,0,0" Height="75" Visibility="Collapsed">
 					<TextBlock x:Name="esLoc" TextWrapping="Wrap" VerticalAlignment="Center" d:LayoutOverrides="Width"/>
 					<TextBlock x:Name="esFree" TextWrapping="Wrap" Height="48" FontSize="32" Margin="0" Width="256"/>
 				</StackPanel>
 			</StackPanel>
-            <TextBlock x:Name="Directory" Margin="8,0,0,0" Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap" Text="Directory" FontSize="37.333" Tap="Directory_Tap"/>
-            <TextBlock x:Name="Menus" Margin="8,0,0,0" Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap" Text="Menus" FontSize="37.333" Tap="Menus_Tap"/>
-            <TextBlock x:Name="CaseNews" Margin="8,0,0,0" Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap" Text="Case News" FontSize="37.333" Tap="CaseNews_Tap"/>
+            <TextBlock x:Name="Directory" Margin="8,0,0,25" Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap" Text="Directory" FontSize="37.333" Tap="Directory_Tap"/>
+            <TextBlock x:Name="Menus" Margin="8,0,0,25" Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap" Text="Menus" FontSize="37.333" Tap="Menus_Tap"/>
+            <TextBlock x:Name="CaseNews" Margin="8,0,0,0" Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap" Text="Case News" FontSize="37.333" Tap="CaseNews_Tap" Height="53"/>
 		</StackPanel>
 	</Grid>
 </phone:PhoneApplicationPage>

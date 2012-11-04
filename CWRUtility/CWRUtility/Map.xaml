@@ -25,9 +25,22 @@
         
         <!--ContentPanel - place additional content here-->
     	<controls:Pivot x:Name="Map1" Grid.Row="1" Title="CWRUTILITY" LoadingPivotItem="map1_LoadingPivotItem">
-    		<controls:PivotItem x:Name="bingMap" Header="Road Map">
-    			<Grid x:Name="bmapGrid" Margin="{StaticResource PhoneMargin}">
+    		<controls:PivotItem x:Name="bingMap" Header="Road Map" Margin="8,8,8,5">
+    			<Grid x:Name="bmapGrid" Margin="12,12,8,12">
+                    <Grid x:Name="ContentPanel" Margin="0,8,0,-8" d:LayoutOverrides="GridBox" HorizontalAlignment="Left" Width="453">
+                    	<Grid.ColumnDefinitions>
+                    		<ColumnDefinition/>
+                    		<ColumnDefinition Width="Auto"/>
+                    	</Grid.ColumnDefinitions>
+                        <my:Map Height="518" CredentialsProvider="your_api_key" Name="actualMap" VerticalAlignment="Top" Margin="0,0,8,0" d:LayoutOverrides="GridBox">
+                            <my:MapItemsControl x:Name="mapControl" Margin="-8,-8,0,0" HorizontalAlignment="Left" Width="432" RenderTransformOrigin="0.5,0.5" >
+                            	<my:MapItemsControl.RenderTransform>
+                            		<CompositeTransform SkewY="0.264" TranslateY="0.995"/>
+                            	</my:MapItemsControl.RenderTransform>
+                            </my:MapItemsControl>
+                        </my:Map>
                     </Grid>
+                </Grid>
     		</controls:PivotItem>
     		<controls:PivotItem x:Name="cwruMap" Header="CWRU Map" >
                 <Grid x:Name="cwruGrid" Margin="{StaticResource PhoneMargin}">
@@ -44,6 +57,22 @@
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
             <shell:ApplicationBarIconButton x:Name="hideLayerButton" Text="toggle info" Click="toggleLayerButton_Click" IconUri="/icons/eye.png"/>
+            <shell:ApplicationBarIconButton x:Name="my_location" Text="my location" Click="my_location_Click" IconUri="/icons/appbar.download.rest.png"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
+    
+    <phone:PhoneApplicationPage.Resources>
+        <ControlTemplate x:Key="pinMyLoc" TargetType="my:Pushpin">
+            <Grid Height="26" Width="26" Margin="-13,-13,0,0" RenderTransformOrigin="0.5,0.5">
+                <Grid.RenderTransform>
+                    <CompositeTransform Rotation="-45"/>
+                </Grid.RenderTransform>
+                <Rectangle Fill="Black" HorizontalAlignment="Center" 
+            Margin="0" Stroke="White" VerticalAlignment="Center" 
+                Height="26" Width="26"/>
+                <Ellipse HorizontalAlignment="Center" Height="16" Margin="0" 
+                VerticalAlignment="Center" Fill="Yellow" Width="16"/>
+            </Grid>
+        </ControlTemplate>
+    </phone:PhoneApplicationPage.Resources>
 </phone:PhoneApplicationPage>

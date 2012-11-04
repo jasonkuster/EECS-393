@@ -63,10 +63,10 @@ namespace CWRUtility
                 esPanel.Visibility = System.Windows.Visibility.Visible;
                 ScrapeHTML(new Uri(esDefault[1]));
             }
-            else
+            /*else
             {
-                esPanel.Visibility = System.Windows.Visibility.Collapsed;
-            }
+               esPanel.Visibility = System.Windows.Visibility.Collapsed;
+            } */
         }
 
         private void CheckNBDef()
@@ -78,10 +78,10 @@ namespace CWRUtility
                 nbPanel.Visibility = System.Windows.Visibility.Visible;
                 GetHtml(new Uri(nbDefault[3]));
             }
-            else
+            /*else
             {
                 nbPanel.Visibility = System.Windows.Visibility.Collapsed;
-            }
+            }*/
         }
 
         private void Map_Tap(object sender, System.Windows.Input.GestureEventArgs e)
@@ -111,7 +111,7 @@ namespace CWRUtility
 
         private void CaseNews_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-
+            NavigationService.Navigate(new Uri("/CaseNews.xaml", UriKind.RelativeOrAbsolute));
         }
 
         #region Nextbus Scraper
@@ -164,7 +164,7 @@ namespace CWRUtility
                 nbPred3.Visibility = System.Windows.Visibility.Collapsed;
                 nbPred2.Width = 240;
                 nbPred2.FontSize = 24;
-                nbPred2.Text = "No Prediction Available";
+                nbPred2.Text = "No Predictions";
             }
             ProgressBar.IsVisible = false;
         }
