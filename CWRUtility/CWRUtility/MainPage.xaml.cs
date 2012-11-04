@@ -63,10 +63,10 @@ namespace CWRUtility
                 esPanel.Visibility = System.Windows.Visibility.Visible;
                 ScrapeHTML(new Uri(esDefault[1]));
             }
-            else
+            /*else
             {
-               // esPanel.Visibility = System.Windows.Visibility.Collapsed;
-            }
+               esPanel.Visibility = System.Windows.Visibility.Collapsed;
+            } */
         }
 
         private void CheckNBDef()
@@ -78,10 +78,10 @@ namespace CWRUtility
                 nbPanel.Visibility = System.Windows.Visibility.Visible;
                 GetHtml(new Uri(nbDefault[3]));
             }
-            else
+            /*else
             {
-               // nbPanel.Visibility = System.Windows.Visibility.Collapsed;
-            }
+                nbPanel.Visibility = System.Windows.Visibility.Collapsed;
+            }*/
         }
 
         private void Map_Tap(object sender, System.Windows.Input.GestureEventArgs e)
