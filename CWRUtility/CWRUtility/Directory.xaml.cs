@@ -133,20 +133,45 @@ namespace CWRUtility
             //EVERYTHING IS READ AND SET UP :D
             
         }
-        int pos = -1;
-        private void Directory_Tap(TextBlock sender, System.Windows.Input.GestureEventArgs e)
+        int pos = -1; //nothing is expanded yet
+        private void Name_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             int Mario = listBox.Items.IndexOf(sender) + 1;
             TextBlock Lugie = new TextBlock();
             Lugie = (TextBlock) listBox.Items.ElementAt(Mario);
-            Lugie.Visibility = System.Windows.Visibility.Visible;
-            Mario++;
-            Lugie.Visibility = System.Windows.Visibility.Visible;
-            Mario++;
-            Lugie.Visibility = System.Windows.Visibility.Visible;
-            if (pos != -1)
+            if (Lugie.Visibility == System.Windows.Visibility.Collapsed) //if the name was selected and not yet expanded
             {
-
+                Lugie.Visibility = System.Windows.Visibility.Visible;
+                Mario++;
+                Lugie = (TextBlock)listBox.Items.ElementAt(Mario);
+                Lugie.Visibility = System.Windows.Visibility.Visible;
+                Mario++;
+                Lugie = (TextBlock)listBox.Items.ElementAt(Mario);
+                Lugie.Visibility = System.Windows.Visibility.Visible;
+                if (pos != -1)
+                {
+                    pos = Mario - 1; //keeps track of this, the index of the expanded name
+                }
+                else //if there is another resource expanded, collapse it all
+                {
+                    Lugie = (TextBlock)listBox.Items.ElementAt(pos + 1);
+                    Lugie.Visibility = System.Windows.Visibility.Collapsed;
+                    pos++;
+                    Lugie.Visibility = System.Windows.Visibility.Collapsed;
+                    pos++;
+                    Lugie.Visibility = System.Windows.Visibility.Collapsed;
+                    pos = Mario - 1;//keeps track of this, the index of the expanded name
+                }
+            }
+            else //if this name is already expanded, close it
+            {
+                Lugie = (TextBlock)listBox.Items.ElementAt(Mario + 1);
+                Lugie.Visibility = System.Windows.Visibility.Collapsed;
+                Mario++;
+                Lugie.Visibility = System.Windows.Visibility.Collapsed;
+                Mario++;
+                Lugie.Visibility = System.Windows.Visibility.Collapsed;
+                pos = -1;
             }
         }
 
