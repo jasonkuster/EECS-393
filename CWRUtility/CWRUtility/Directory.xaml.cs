@@ -100,17 +100,27 @@ namespace CWRUtility
                         //listBox.i.Add(temp.name, temp.name);
                         //listBox.FontSize = 40;
                         //using (listBox.FontSize = 30)
-                         TextBox robot = new TextBox();
-                         robot.FontSize = 30;
-                         robot.Text = temp.name;
-                         listBox.Items.Add(robot);
+                        TextBlock NM = new TextBlock();
+                         NM.FontSize = 35;
+                         NM.Text = temp.name;
+                         //NM.IsReadOnly = true;
+                         listBox.Items.Add(NM);
                         //pos++;
                         //listBox.Resources.Add(temp.phone + "\n" + temp.location + "\n" + temp.info, temp.phone + "\n" + temp.location + "\n" + temp.info);
-                         PhoneTextBox cop = new PhoneTextBox();
-                         cop.Text = temp.phone;
-                         listBox.Items.Add(cop);
-                        listBox.Items.Add(temp.location + "\n" + temp.info);
-                        WhereAreWe = 0;
+                         TextBlock PN = new TextBlock();
+                         PN.Text = temp.phone;
+                         PN.Visibility = System.Windows.Visibility.Collapsed;
+                         listBox.Items.Add(PN);
+                         TextBlock LC = new TextBlock();
+                         LC.Text = temp.location;
+                         LC.Visibility = System.Windows.Visibility.Collapsed;
+                         listBox.Items.Add(LC);
+                         TextBlock IN = new TextBlock();
+                         IN.Text = temp.info;
+                         IN.Visibility = System.Windows.Visibility.Collapsed;
+                         listBox.Items.Add(IN);
+                        
+                         WhereAreWe = 0;
                     }
                     Adder = "";
 
@@ -120,24 +130,25 @@ namespace CWRUtility
                     Adder = Adder + Un.ToString();
                 }
             }
-            //at this point ListResource should be populated
-            //time to make the ListResource present itself with The name in a large font in it's own Text Box and with the other feild below in smaller fonts and text boxes
-            //int pos = 0;
-           // for (int x = 0; x < ListResource.Count; x++)
-           // {
-                //TextBlock Temp = new TextBlock();
-                //Temp.DataContext = temp.name;
-                //listBox.Resources.Add(pos, Temp);
-            //    listBox.Resources.Add(pos, temp.name);
-            //    pos++;
-                //Temp.DataContext = temp.phone + "\n" + temp.location + "\n" + temp.info;
-                //Temp.Visibility = System.Windows.Visibility.Collapsed;
-                //listBox.Resources.Add(pos, Temp);
-           //     listBox.Resources.Add(pos, temp.phone + "\n" + temp.location + "\n" + temp.info);
-           // }
+            //EVERYTHING IS READ AND SET UP :D
+            
         }
+        int pos = -1;
+        private void Directory_Tap(TextBlock sender, System.Windows.Input.GestureEventArgs e)
+        {
+            int Mario = listBox.Items.IndexOf(sender) + 1;
+            TextBlock Lugie = new TextBlock();
+            Lugie = (TextBlock) listBox.Items.ElementAt(Mario);
+            Lugie.Visibility = System.Windows.Visibility.Visible;
+            Mario++;
+            Lugie.Visibility = System.Windows.Visibility.Visible;
+            Mario++;
+            Lugie.Visibility = System.Windows.Visibility.Visible;
+            if (pos != -1)
+            {
 
-        //int toofar = 700;
+            }
+        }
 
     }
     public class Resource
