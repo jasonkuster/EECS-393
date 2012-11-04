@@ -65,7 +65,7 @@ namespace CWRUtility
             }
             else
             {
-                esPanel.Visibility = System.Windows.Visibility.Collapsed;
+               // esPanel.Visibility = System.Windows.Visibility.Collapsed;
             }
         }
 
@@ -80,7 +80,7 @@ namespace CWRUtility
             }
             else
             {
-                nbPanel.Visibility = System.Windows.Visibility.Collapsed;
+               // nbPanel.Visibility = System.Windows.Visibility.Collapsed;
             }
         }
 
