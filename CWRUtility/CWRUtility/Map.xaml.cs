@@ -13,12 +13,12 @@ namespace CWRUtility
 {
     public partial class Map : PhoneApplicationPage
     {
-        MapLayer outline;
-        Microsoft.Phone.Controls.Maps.Map actualMap;
+        private MapLayer outline;
+        private GeoCoordinateWatcher loc = null;
+
         public Map()
         {
             InitializeComponent();
-            actualMap = new Microsoft.Phone.Controls.Maps.Map();
             actualMap.CredentialsProvider = new ApplicationIdCredentialsProvider("Bing Maps Key");
 
             //GeoCoordinate mapCenter = new GeoCoordinate(41.51093, -81.60323);
@@ -27,7 +27,7 @@ namespace CWRUtility
             actualMap.Children.Add(outline);
 
             //actualMap.SetView(mapCenter, 16);
-            bmapGrid.Children.Add(actualMap);
+            //bmapGrid.Children.Add(actualMap);
         }
 
         private void map1_LoadingPivotItem(object sender, PivotItemEventArgs e)
@@ -107,6 +107,34 @@ namespace CWRUtility
             else
             {
                 outline.Visibility = System.Windows.Visibility.Visible;
+            }
+        }
+
+        private void my_location_Click(object sender, EventArgs e)
+        {
+            if (loc == null) { 
+                loc = new GeoCoordinateWatcher(GeoPositionAccuracy.Default); 
+                loc.StatusChanged += loc_StatusChanged; 
+            } if (loc.Status == GeoPositionStatus.Disabled) { 
+                loc.StatusChanged -= loc_StatusChanged; 
+                MessageBox.Show("Location services must be enabled on your phone."); 
+                return; 
+            } 
+            
+            loc.Start();
+        }
+
+        void loc_StatusChanged(object sender, GeoPositionStatusChangedEventArgs e)
+        {
+
+            if (e.Status == GeoPositionStatus.Ready)
+            {
+                Pushpin p = new Pushpin();
+                p.Template = this.Resources["pinMyLoc"] as ControlTemplate;
+                p.Location = loc.Position.Location;
+                mapControl.Items.Add(p);
+                actualMap.SetView(loc.Position.Location, 17.0);
+                loc.Stop();
             }
         }
 
