@@ -15,12 +15,17 @@ namespace CWRUtility
     {
         private MapLayer outline;
         private GeoCoordinateWatcher loc = null;
+        private Pushpin currLoc = null;
 
         public Map()
         {
             InitializeComponent();
             actualMap.CredentialsProvider = new ApplicationIdCredentialsProvider("Bing Maps Key");
 
+
+            currLoc = new Pushpin();
+            currLoc.Template = this.Resources["pinMyLoc"] as ControlTemplate;
+            
             //GeoCoordinate mapCenter = new GeoCoordinate(41.51093, -81.60323);
             actualMap.Mode = new CWRUMapMode();
             outline = getCampusOutline();
@@ -56,6 +61,26 @@ namespace CWRUtility
             southSide.Location = new GeoCoordinate(41.501144, -81.601581);
             southSide.Content = "South Side";
             layer.Children.Add(southSide);
+
+            Pushpin downTown = new Pushpin();
+            downTown.Location = new GeoCoordinate(41.505901, -81.622309);
+            downTown.Content = "To Downtown";
+            layer.Children.Add(downTown);
+
+            Pushpin univSquare = new Pushpin();
+            univSquare.Location = new GeoCoordinate(41.501057, -81.594060);
+            univSquare.Content = "To University\nSquare";
+            layer.Children.Add(univSquare);
+
+            Pushpin sevearance = new Pushpin();
+            sevearance.Location = new GeoCoordinate(41.508738, -81.595369);
+            sevearance.Content = "To Sevearance\nTown Center";
+            layer.Children.Add(sevearance);
+
+            Pushpin east = new Pushpin();
+            east.Location = new GeoCoordinate(41.519439, -81.593438);
+            east.Content = "To East\nCleveland";
+            layer.Children.Add(east);
         }
 
         private static MapLayer getCampusOutline()
@@ -103,18 +128,22 @@ namespace CWRUtility
             if (outline.Visibility == System.Windows.Visibility.Visible)
             {
                 outline.Visibility = System.Windows.Visibility.Collapsed;
+                currLoc.Visibility = System.Windows.Visibility.Collapsed;
             }
             else
             {
                 outline.Visibility = System.Windows.Visibility.Visible;
+                currLoc.Visibility = System.Windows.Visibility.Visible;
             }
         }
 
         private void my_location_Click(object sender, EventArgs e)
         {
+            currLoc.Visibility = System.Windows.Visibility.Visible;
             if (loc == null) { 
                 loc = new GeoCoordinateWatcher(GeoPositionAccuracy.Default); 
-                loc.StatusChanged += loc_StatusChanged; 
+                loc.StatusChanged += loc_StatusChanged;
+                
             } if (loc.Status == GeoPositionStatus.Disabled) { 
                 loc.StatusChanged -= loc_StatusChanged; 
                 MessageBox.Show("Location services must be enabled on your phone."); 
@@ -126,14 +155,17 @@ namespace CWRUtility
 
         void loc_StatusChanged(object sender, GeoPositionStatusChangedEventArgs e)
         {
-
             if (e.Status == GeoPositionStatus.Ready)
             {
-                Pushpin p = new Pushpin();
-                p.Template = this.Resources["pinMyLoc"] as ControlTemplate;
-                p.Location = loc.Position.Location;
-                mapControl.Items.Add(p);
+                currLoc.Location = loc.Position.Location;
+                
                 actualMap.SetView(loc.Position.Location, 17.0);
+
+                if (!mapControl.Items.Contains(currLoc))
+                {
+                    mapControl.Items.Add(currLoc);
+                }   
+
                 loc.Stop();
             }
         }
