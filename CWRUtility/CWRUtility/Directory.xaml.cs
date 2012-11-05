@@ -19,154 +19,104 @@ namespace CWRUtility
 
     public partial class Directory : PhoneApplicationPage
     {
-        IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
-        
+             
         public Directory()
         {
-            InitializeComponent();
+            InitializeComponent(); //Load the Page
 
-            readFromFile();
+            readFromFile(); //Populate the Page
         }
-          
-        /*
-        //test case to see if i can even open/close the first resource description
-        public void Expand(object sender, System.Windows.Input.GestureEventArgs e)
-        {
-			if (sender.Visibility.Equals("Visible")) //true = "Visibile"
-			{
-                T1.Visibility = System.Windows.Visibility.Collapsed;
-			}
-			else //if (T1.Visibility.Equals("Collapsed")) //false = "Collapsed"
-			{
-                T1.Visibility = System.Windows.Visibility.Visible;
-			}
-        }
-         */
-
-
-        //stuff added to try and make this event work
-        //public delegate void MyEventHandle(object send);
-        //public event MyEventHandle Tapper;
-        //public event EventHandler Tap;
-
-
+       
 
         public void readFromFile()
         {
-            List<Resource> ListResource = new List<Resource>();
-            string thefile = "";
-            var resource = System.Windows.Application.GetResourceStream(new Uri("Resources/CampusResources.txt", UriKind.RelativeOrAbsolute));
-            //StreamReader read = new StreamReader("C:/Users/VVilliam/Documents/GitHub/EECS-393/CWRUtility/CWRUtility/ResourcesCampusResources.txt");
-            //read.Close();
-            /*
-            //ProjectName;component/data/filename.txt
-            System.IO.StreamReader sr = new StreamReader("CWRUtility;Resources/CampusResources.txt"); //the problem is this line, whatever comes after it is hit with a MethodAccessException
-            //GETTING 1 REM cycle then takling it.
-            //thefile = sr.ReadToEnd();
-            //sr.Close();
-            
-
-
-           / T1.Text = thefile;*/
-            StreamReader SR = new StreamReader(resource.Stream);
-            thefile = SR.ReadToEnd();
-            char [] thechar = thefile.ToCharArray();
-            Resource temp = new Resource ("", "", "", "");
-            String Adder = "";
-            int pos = 0;
+            List<Resource> ListResource = new List<Resource>(); //Initialize an empty list of resources
+            string thefile = ""; //make an empty string object
+            var resource = System.Windows.Application.GetResourceStream(new Uri("Resources/CampusResources.txt", UriKind.RelativeOrAbsolute)); //Grab the text File
+            StreamReader SR = new StreamReader(resource.Stream);//Read the text file
+            thefile = SR.ReadToEnd();//make the text file into a string
+            char [] thechar = thefile.ToCharArray();//make the string into a array of characters
+            Resource temp = new Resource ("", "", "", "");//make a temporary resource we will fill again and again to populate the list
+            String Adder = "";//make a temporary string that we'll build by parsing through the char array and ultimate load into the different data fields of Resource
             int WhereAreWe = 0; //marks "CONCERNS" (Name, Phone, Location, and Info) with 0, 1, 2, and 3 respecfully.
-            //int Slasher = 0; //indicates if the last char read was a '\' so we know when a new line was made in the text file so we can update WhereAreWe
-
-            for (int i = 0; i < thefile.Length; i++)
+            for (int i = 0; i < thefile.Length; i++) //iterate through the char array
             {
-                char Un = thechar[i];
+                char Un = thechar[i]; //make a temporary char named 'Un' for 'Unhandled' at index i in the char array
                 if (Un.Equals('\r') || i == thefile.Length) //if we are at the end of the line or end of file
                 {
                     i = i + 1;// we know the next line is a \n which we can skip over
                     if (WhereAreWe == 0)//the line we just finished reading was the Name
                     {
-                        temp.name = Adder;
-                        //Adder = "";//reset adder to an empty string
-                        WhereAreWe = WhereAreWe + 1; //indicate that what we're reading is a new "CONCERN"
+                        temp.name = Adder; //Load the string "Adder" into the name datafield
+                        WhereAreWe = WhereAreWe + 1; //indicate that the next full string read will be phone#
                     }
                     else if (WhereAreWe == 1)//the line we just finished reading was the Phone#
                     {
-                        temp.phone = Adder;
-                        //Adder = "";//reset adder to an empty string
-                        WhereAreWe = WhereAreWe + 1; //indicate that what we're reading is a new "CONCERN"
+                        temp.phone = Adder;//Load the string "Adder" into the phone# datafield
+                        WhereAreWe = WhereAreWe + 1; //indicate that the next full string read will be location
                     }
                     else if (WhereAreWe == 2)//the line we just finished reading was the Address
                     {
-                        temp.location = Adder;
-                       // Adder = "";//reset adder to an empty string
-                        WhereAreWe = WhereAreWe + 1; //indicate that what we're reading is a new "CONCERN"
+                        temp.location = Adder;//Load the string "Adder" into the location datafield
+                        WhereAreWe = WhereAreWe + 1; //indicate that the next full string read will be info
                     }
                      else if (WhereAreWe == 3)//the line we just finished reading was the Short Description, the last data feild for a resource
                     {
-                        temp.info = Adder;
-                        //Adder = "";//reset adder to an empty string
-                        ListResource.Add(temp);
-                        //listBox.i.Add(temp.name, temp.name);
-                        //listBox.FontSize = 40;
-                        //using (listBox.FontSize = 30)
-                        TextBlock NM = new TextBlock();
-                         NM.FontSize = 35;
-                         NM.Text = temp.name;
-
-                         //trying to add the event for expansion, I one of these is close
-
-                        // NM.AddHandler(Name_Tap, new TouchFrameEventHandler(Name_Tap), true);
-
-                         NM.Tap += Name_Tap;
-
-                         //NM.IsReadOnly = true;
-                         listBox.Items.Add(NM);
-                        //pos++;
-                        //listBox.Resources.Add(temp.phone + "\n" + temp.location + "\n" + temp.info, temp.phone + "\n" + temp.location + "\n" + temp.info);
-                         TextBlock PN = new TextBlock();
-                         PN.Text = temp.phone;
-                         PN.Visibility = System.Windows.Visibility.Collapsed;
-                         PN.Tap += Phone_Tap;
-                         listBox.Items.Add(PN);
-                         TextBlock LC = new TextBlock();
-                         LC.Text = temp.location;
-                         LC.Visibility = System.Windows.Visibility.Collapsed;
-                         listBox.Items.Add(LC);
-                         TextBlock IN = new TextBlock();
-                         IN.Text = temp.info;
-                         IN.Visibility = System.Windows.Visibility.Collapsed;
-                         listBox.Items.Add(IN);
+                        temp.info = Adder;//Load the string "Adder" into the info datafield
+                        ListResource.Add(temp); //the temporary Resource now has all 4 data fields entered, time to put it into the List
                         
-                         WhereAreWe = 0;
+                         /*#########################################################
+                          * now de-structing the resources into TextBlocks NM, PN, LC, IN for name, phone number, location, and info 
+                          * #######################################################*/
+                         TextBlock NM = new TextBlock(); //make a textblock for the name
+                         NM.FontSize = 35; //the name should be noticiably larger than the other 3 data feilds
+                         NM.Text = temp.name;//set the text of the textblock to the name of the resource we are currently handeling
+                         NM.Tap += Name_Tap;//set the event for the name being tapped to Name_Tap
+                         listBox.Items.Add(NM);//with the Textblock for name complete it is possible to move onto the next textblock and datafield
+                         TextBlock PN = new TextBlock();//make a textblock for the phone#
+                         PN.Text = temp.phone;//set the text of the textblock to the phone# of the resource we are currently handeling
+                         PN.Visibility = System.Windows.Visibility.Collapsed;//by default this will not be visibile. 
+                         PN.Tap += Phone_Tap;//set the event for the phone# being tapped to Phone_Tap
+                         listBox.Items.Add(PN);//with the Textblock for phone# complete it is possible to move onto the next textblock and datafield
+                         TextBlock LC = new TextBlock();//make a textblock for the location
+                         LC.Text = temp.location;//set the text of the textblock to the location of the resource we are currently handeling
+                         LC.Visibility = System.Windows.Visibility.Collapsed;//by default this will not be visibile. 
+                         listBox.Items.Add(LC);//with the Textblock for location complete it is possible to move onto the next textblock and datafield
+                         TextBlock IN = new TextBlock();//make a textblock for the info
+                         IN.Text = temp.info;//set the text of the textblock to the info of the resource we are currently handeling
+                         IN.Visibility = System.Windows.Visibility.Collapsed;//by default this will not be visibile. 
+                         listBox.Items.Add(IN);//with the Textblock for info complete we have no more textblocks to make for this resource
+                         WhereAreWe = 0;//the next full string read in will be the name of the next resource
                     }
-                    Adder = "";
+                    Adder = "";//reset the temporary string 'Adder'
 
                 }
-                else
+                else //if we are not at the end of the file or end of a line
                 {
-                    Adder = Adder + Un.ToString();
+                    Adder = Adder + Un.ToString();//add the read character to the temporary string
                 }
             }
-            //EVERYTHING IS READ AND SET UP :D
-            
+
         }
+        /*############################################################
+         * METHODS METHODS METHODS METHODS METHODS AND A CLASS
+         * #########################################################*/
+
         int pos = -1; //nothing is expanded yet
-
-
-        public void Phone_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        public void Phone_Tap(object sender, System.Windows.Input.GestureEventArgs e)//method called in the event that the phone# textblock is tapped
         {
-            int IndxSender = listBox.Items.IndexOf(sender);
-            PhoneCallTask PhNum = new PhoneCallTask();
-            PhNum.DisplayName = ((TextBlock) listBox.Items.ElementAt(IndxSender -1)).Text;
-            PhNum.PhoneNumber = ((TextBlock) sender).Text;
-            PhNum.Show();
+            int IndxSender = listBox.Items.IndexOf(sender);//store the index of the textblock which calls this event
+            PhoneCallTask PhNum = new PhoneCallTask();//make a object of the PhoneCallTask Class named PhNum for phonenumber
+            PhNum.DisplayName = ((TextBlock) listBox.Items.ElementAt(IndxSender -1)).Text;//this sets the name that will be displayed when the# is tapped
+            PhNum.PhoneNumber = ((TextBlock) sender).Text;//this sets the number that will be displayed when the number is tapped. this number may be dialed if the user confirms their choice.
+            PhNum.Show();//this simple line of code places the call
         }
 
 
-        public void Name_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        public void Name_Tap(object sender, System.Windows.Input.GestureEventArgs e)//method called in the event that the resources name is tapped and therefor the field underneath need expanding
         {
-            int IndxSender = listBox.Items.IndexOf(sender);
-            TextBlock Node = new TextBlock();
+            int IndxSender = listBox.Items.IndexOf(sender);//store the index of the textblock which calls this event
+            TextBlock Node = new TextBlock();//make a temporary Textblock named Node which we will use to iterate through all relevant textblocks below the one calling the method
             Node = (TextBlock) listBox.Items.ElementAt(IndxSender + 1); //node now points to the textbox below what we selected
             if (Node.Visibility == System.Windows.Visibility.Collapsed) //if this resource is collapsed
             {
@@ -180,7 +130,7 @@ namespace CWRUtility
                 {
                     pos = IndxSender; //let it be known that this is the last opened resource
                 }
-                else
+                else//if something was opened prior to the opening of this resource
                 {
                     //close the last opened resource
                     Node = (TextBlock)listBox.Items.ElementAt(pos + 1);
@@ -201,48 +151,10 @@ namespace CWRUtility
                 Node.Visibility = System.Windows.Visibility.Collapsed;
                 pos = -1;
             }
-            /*
-            //#########################
-            int Mario = listBox.Items.IndexOf(sender);
-            TextBlock Lugie = new TextBlock();
-            Lugie = (TextBlock) listBox.Items.ElementAt(Mario + 1);
-            if (Lugie.Visibility == System.Windows.Visibility.Collapsed) //if the name was selected and not yet expanded
-            {
-                Lugie.Visibility = System.Windows.Visibility.Visible;
-                Mario++;
-                Lugie = (TextBlock) listBox.Items.ElementAt(Mario);
-                Lugie.Visibility = System.Windows.Visibility.Visible;
-                Mario++;
-                Lugie = (TextBlock) listBox.Items.ElementAt(Mario);
-                Lugie.Visibility = System.Windows.Visibility.Visible;
-                if (pos != -1)
-                {
-                    pos = Mario - 3; //keeps track of this, the index of the expanded name
-                }
-                else //if there is another resource expanded, collapse it all
-                {
-                    Lugie = (TextBlock)listBox.Items.ElementAt(pos + 1);
-                    Lugie.Visibility = System.Windows.Visibility.Collapsed;
-                    pos++;
-                    Lugie.Visibility = System.Windows.Visibility.Collapsed;
-                    pos++;
-                    Lugie.Visibility = System.Windows.Visibility.Collapsed;
-                    pos = Mario - 3;//keeps track of this, the index of the expanded name
-                }
-            }
-            else //if this name is already expanded, close it
-            {
-                //Lugie = (TextBlock)listBox.Items.ElementAt(Mario + 1);
-                Lugie.Visibility = System.Windows.Visibility.Collapsed;
-                Mario++;
-                Lugie.Visibility = System.Windows.Visibility.Collapsed;
-                Mario++;
-                Lugie.Visibility = System.Windows.Visibility.Collapsed;
-                pos = -1;
-            }*/
+           
         }
     }
-    public class Resource
+    public class Resource//this class holds the name, phone#, location, and a short description of most campus resources
     {
         public Resource(string name, string phone, string location, string info)
         {

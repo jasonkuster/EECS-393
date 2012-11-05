@@ -111,6 +111,9 @@
     <Compile Include="NextBus.xaml.cs">
       <DependentUpon>NextBus.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Menus.xaml.cs">
+      <DependentUpon>Menus.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\FavoriteViewModel.cs" />
     <Compile Include="ViewModels\ItemViewModel.cs" />
@@ -154,6 +157,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="NextBus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Menus.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
