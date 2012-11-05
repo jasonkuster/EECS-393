@@ -126,6 +126,7 @@ namespace CWRUtility
                          TextBlock PN = new TextBlock();
                          PN.Text = temp.phone;
                          PN.Visibility = System.Windows.Visibility.Collapsed;
+                         PN.Tap += Phone_Tap;
                          listBox.Items.Add(PN);
                          TextBlock LC = new TextBlock();
                          LC.Text = temp.location;
@@ -152,7 +153,14 @@ namespace CWRUtility
         int pos = -1; //nothing is expanded yet
 
 
-        
+        public void Phone_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            int IndxSender = listBox.Items.IndexOf(sender);
+            PhoneCallTask PhNum = new PhoneCallTask();
+            PhNum.DisplayName = ((TextBlock) listBox.Items.ElementAt(IndxSender -1)).Text;
+            PhNum.PhoneNumber = ((TextBlock) sender).Text;
+            PhNum.Show();
+        }
 
 
         public void Name_Tap(object sender, System.Windows.Input.GestureEventArgs e)
