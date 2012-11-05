@@ -157,21 +157,59 @@ namespace CWRUtility
 
         public void Name_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            int Mario = listBox.Items.IndexOf(sender) + 1;
+            int IndxSender = listBox.Items.IndexOf(sender);
+            TextBlock Node = new TextBlock();
+            Node = (TextBlock) listBox.Items.ElementAt(IndxSender + 1); //node now points to the textbox below what we selected
+            if (Node.Visibility == System.Windows.Visibility.Collapsed) //if this resource is collapsed
+            {
+                //Make the 3 fields (Phone, Location, Info) below the name visible
+                Node.Visibility = System.Windows.Visibility.Visible;
+                Node = (TextBlock)listBox.Items.ElementAt(IndxSender + 2);
+                Node.Visibility = System.Windows.Visibility.Visible;
+                Node = (TextBlock)listBox.Items.ElementAt(IndxSender + 3);
+                Node.Visibility = System.Windows.Visibility.Visible;
+                if (pos == -1) //if nothing else is open
+                {
+                    pos = IndxSender; //let it be known that this is the last opened resource
+                }
+                else
+                {
+                    //close the last opened resource
+                    Node = (TextBlock)listBox.Items.ElementAt(pos + 1);
+                    Node.Visibility = System.Windows.Visibility.Collapsed;
+                    Node = (TextBlock)listBox.Items.ElementAt(pos + 2);
+                    Node.Visibility = System.Windows.Visibility.Collapsed;
+                    Node = (TextBlock)listBox.Items.ElementAt(pos + 3);
+                    Node.Visibility = System.Windows.Visibility.Collapsed;
+                    pos = IndxSender; //let it be known that this is the last opened resource
+                }
+            }
+            else//if the Node below the sender is visible then this resource is opened already and we need to close it
+            {
+                Node.Visibility = System.Windows.Visibility.Collapsed;
+                Node = (TextBlock)listBox.Items.ElementAt(IndxSender + 2);
+                Node.Visibility = System.Windows.Visibility.Collapsed;
+                Node = (TextBlock)listBox.Items.ElementAt(IndxSender + 3);
+                Node.Visibility = System.Windows.Visibility.Collapsed;
+                pos = -1;
+            }
+            /*
+            //#########################
+            int Mario = listBox.Items.IndexOf(sender);
             TextBlock Lugie = new TextBlock();
-            Lugie = (TextBlock) listBox.Items.ElementAt(Mario);
+            Lugie = (TextBlock) listBox.Items.ElementAt(Mario + 1);
             if (Lugie.Visibility == System.Windows.Visibility.Collapsed) //if the name was selected and not yet expanded
             {
                 Lugie.Visibility = System.Windows.Visibility.Visible;
                 Mario++;
-                Lugie = (TextBlock)listBox.Items.ElementAt(Mario);
+                Lugie = (TextBlock) listBox.Items.ElementAt(Mario);
                 Lugie.Visibility = System.Windows.Visibility.Visible;
                 Mario++;
-                Lugie = (TextBlock)listBox.Items.ElementAt(Mario);
+                Lugie = (TextBlock) listBox.Items.ElementAt(Mario);
                 Lugie.Visibility = System.Windows.Visibility.Visible;
                 if (pos != -1)
                 {
-                    pos = Mario - 1; //keeps track of this, the index of the expanded name
+                    pos = Mario - 3; //keeps track of this, the index of the expanded name
                 }
                 else //if there is another resource expanded, collapse it all
                 {
@@ -181,19 +219,19 @@ namespace CWRUtility
                     Lugie.Visibility = System.Windows.Visibility.Collapsed;
                     pos++;
                     Lugie.Visibility = System.Windows.Visibility.Collapsed;
-                    pos = Mario - 1;//keeps track of this, the index of the expanded name
+                    pos = Mario - 3;//keeps track of this, the index of the expanded name
                 }
             }
             else //if this name is already expanded, close it
             {
-                Lugie = (TextBlock)listBox.Items.ElementAt(Mario + 1);
+                //Lugie = (TextBlock)listBox.Items.ElementAt(Mario + 1);
                 Lugie.Visibility = System.Windows.Visibility.Collapsed;
                 Mario++;
                 Lugie.Visibility = System.Windows.Visibility.Collapsed;
                 Mario++;
                 Lugie.Visibility = System.Windows.Visibility.Collapsed;
                 pos = -1;
-            }
+            }*/
         }
     }
     public class Resource
