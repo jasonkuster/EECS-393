@@ -38,7 +38,7 @@ namespace CWRUtility
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            if (e.NavigationMode == System.Windows.Navigation.NavigationMode.New || e.NavigationMode == System.Windows.Navigation.NavigationMode.Refresh)
+            if (e.NavigationMode == System.Windows.Navigation.NavigationMode.New)
             {
                 routePicker.ItemsSource = buses.Keys;
                 SetDefault();
