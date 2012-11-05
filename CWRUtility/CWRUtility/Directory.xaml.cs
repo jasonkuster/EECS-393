@@ -43,6 +43,14 @@ namespace CWRUtility
         }
          */
 
+
+        //stuff added to try and make this event work
+        //public delegate void MyEventHandle(object send);
+        //public event MyEventHandle Tapper;
+        //public event EventHandler Tap;
+
+
+
         public void readFromFile()
         {
             List<Resource> ListResource = new List<Resource>();
@@ -58,6 +66,7 @@ namespace CWRUtility
             //sr.Close();
             
 
+
            / T1.Text = thefile;*/
             StreamReader SR = new StreamReader(resource.Stream);
             thefile = SR.ReadToEnd();
@@ -71,7 +80,7 @@ namespace CWRUtility
             for (int i = 0; i < thefile.Length; i++)
             {
                 char Un = thechar[i];
-                if (Un.Equals('\r')) //if we are at the end of the line
+                if (Un.Equals('\r') || i == thefile.Length) //if we are at the end of the line or end of file
                 {
                     i = i + 1;// we know the next line is a \n which we can skip over
                     if (WhereAreWe == 0)//the line we just finished reading was the Name
@@ -103,6 +112,13 @@ namespace CWRUtility
                         TextBlock NM = new TextBlock();
                          NM.FontSize = 35;
                          NM.Text = temp.name;
+
+                         //trying to add the event for expansion, I one of these is close
+
+                        // NM.AddHandler(Name_Tap, new TouchFrameEventHandler(Name_Tap), true);
+
+                         NM.Tap += Name_Tap;
+
                          //NM.IsReadOnly = true;
                          listBox.Items.Add(NM);
                         //pos++;
@@ -134,7 +150,12 @@ namespace CWRUtility
             
         }
         int pos = -1; //nothing is expanded yet
-        private void Name_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+
+
+        
+
+
+        public void Name_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             int Mario = listBox.Items.IndexOf(sender) + 1;
             TextBlock Lugie = new TextBlock();
@@ -174,7 +195,6 @@ namespace CWRUtility
                 pos = -1;
             }
         }
-
     }
     public class Resource
     {
@@ -191,4 +211,5 @@ namespace CWRUtility
         public string location { get; set; }
     }
     
+
 }
