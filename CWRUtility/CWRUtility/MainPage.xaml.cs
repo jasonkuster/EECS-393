@@ -106,7 +106,7 @@ namespace CWRUtility
 
         private void Menus_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-
+            NavigationService.Navigate(new Uri("/Menus.xaml", UriKind.RelativeOrAbsolute));
         }
 
         private void CaseNews_Tap(object sender, System.Windows.Input.GestureEventArgs e)

@@ -71,7 +71,7 @@
             Margin="0" Stroke="White" VerticalAlignment="Center" 
                 Height="26" Width="26"/>
                 <Ellipse HorizontalAlignment="Center" Height="16" Margin="0" 
-                VerticalAlignment="Center" Fill="Yellow" Width="16"/>
+                VerticalAlignment="Center" Fill="#FFDB1111" Width="16"/>
             </Grid>
         </ControlTemplate>
     </phone:PhoneApplicationPage.Resources>

@@ -1,16 +1,44 @@
-Guitar Hero Veterans
-Phone: 777-888-9999
-Location: Village House RockNRoll
-Description: Forged in flames, these rockers know nothing but the sound of shredding metal and screaming flame demons.
-Association of Dancing Panda Breeders
-Phone: 123-345-6789
-Location: The tunnels under the Quad
-Description: Dancing pandas are worth money, good money. Make more money through this club than you ever could through a Co-Op or on campus job.
-Break Bad Spoilers Committtee
-Phone: 123-345-6744
-Location: my pants
-Description: screw the blackjack I have hookers
-this is my hunch
-Phone: this is irrelevant
-Location: this is my last ciggarretee
-Description: microsoft won't hire this
+Career Center
+216-368-446
+229 Sears Building
+The Career Center offers individualized assistance and technologically advanced resources to enable students and alumni to develop lifelong career management skills, to obtain work experience, and to integrate academic and career plans. 
+Case Western Bookstore
+216-368-2650
+11111 Euclid Avenue  Cleveland, OH 44106
+Buy marked up textbooks, school supplies, school spirited clothing, and basic living necessities here.
+Co-op Office
+216-368-2000
+Nord 304
+The Co-op Program at CWRU strives to provide students a comprehensive experiential education opportunity: prepare students academically and professionally for the transition from the classroom learning to co-op learning, provide support throughout the duration of their co-op, and assist the student in the process of integrating curriculum and co-op learning.
+Counseling Services
+216-368-5872
+220 Sears Building
+University Counseling Servives (UCS) and its divisions of Collegiate Behavioral Health (CBH) and Prevention & Recovery Services (PRS) offers students help with their personal counseling and behavioral health needs, including individual, couples and group counseling, psychiatric medication management, stress management and recovery support. Our offices are staffed with psychologists, social workers and consulting psychiatrists.
+Educational Services for Students
+216-368-5230
+470 Sears Building
+We empower students to achieve their potential as active, confident learners and as full participants in a community of scholars.
+Housing & Residence Life
+216-368-3780
+35 Yost Hall
+The Office of Housing & Residence Life offers developmental, intentional and comprehensive campus living programs to meet the diverse needs of Case students. We're building the premier residential community in which to live, learn and lead!
+The Jolly Scholar
+216-368-0090
+11111 Euclid Avenue  Cleveland, OH 44106
+On campus resturant that offers options from salads and wraps to burgers and milkshakes. Run by Case Western Reserve University students!
+North Residential Village Area Office
+216-368-1010
+Wade Commons
+The North Residential Village Area Office is located in Wade Commons and serves as the hub for all student package deliveries. It also provides services such as faxing, postage stamp sales, and the laundry/dry cleaning pickup program.
+Office of Greek Life
+216-368-3954
+43 Yost Hall
+The members of the Greek community at Case Western Reserve University, believe that in order to foster the positive development of campus fraternities and of each individual member, it must uphold the values of Citizenship, Scholarship, Ritual, and Leadership. 
+Office of Multicultural Affairs
+216-368-2904
+450 Sears Building
+The Office of Multicultural Affairs (OMA) encourages, supports and facilitates the success of all Case students by providing opportunities for diverse interaction and cultural education that occurs outside of the classroom environment.
+South Residential Village Area Office
+216-368-1011
+Fribley Commons
+Fribley Commons is located in the South Residential Village (SRV) and offers a spacious dining facility and seminar rooms. The RHA Southside Office is also located in Fribley, as well as a tutoring and advising office and 24-hour study area.
