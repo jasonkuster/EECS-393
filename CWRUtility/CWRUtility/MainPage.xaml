@@ -23,8 +23,8 @@
     <Grid x:Name="MainGrid" Margin="8">
 		<Image Source="Resources/CWRUsealWhite.png" Stretch="Fill" Margin="8,156,8,158" Opacity="0.2"/>
 		<TextBlock x:Name="Title" Height="106" Margin="8,8,8,0" Style="{StaticResource PhoneTextTitle1Style}" TextWrapping="Wrap" Text="CWRUtility" VerticalAlignment="Top"/>
-		<StackPanel x:Name="Features" Margin="0,118,24,51" HorizontalAlignment="Right" Width="432">
-			<StackPanel x:Name="NextBus" Orientation="Horizontal" Tap="NextBus_Tap">
+		<StackPanel x:Name="Features" Margin="0,118,24,51" HorizontalAlignment="Right" Width="432" >
+            <StackPanel x:Name="NextBus" Orientation="Horizontal" Tap="NextBus_Tap" Height="100">
 				<TextBlock x:Name="nbText" Margin="8,0" Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap" Text="NextBus" FontSize="37.333" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 				<StackPanel x:Name="nbPanel" Height="100" Visibility="Collapsed">
 					<TextBlock x:Name="nbDef" Margin="17,13,0,0" Width="275.1" Height="26.6033325195312" HorizontalAlignment="Left"/>
