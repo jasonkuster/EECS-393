@@ -1,0 +1,349 @@
+﻿<!--
+Copyright (c) Microsoft Corporation.  All rights reserved.
+-->
+<!--
+Use of this source code is subject to the terms of the Microsoft
+premium shared source license agreement under which you licensed
+this source code. If you did not accept the terms of the license
+agreement, you are not authorized to use this source code.
+For the terms of the license, please see the license agreement
+signed by you and Microsoft.
+THE SOURCE CODE IS PROVIDED "AS IS", WITH NO WARRANTIES OR INDEMNITIES.
+-->
+
+<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:System="clr-namespace:System;assembly=mscorlib">
+
+  <!-- Common colors -->
+
+<!-- 100 percent White -->
+<Color x:Key="PhoneForegroundColor">Red</Color>
+
+<!-- 100 percent Yellow -->
+<Color x:Key="PhoneBackgroundColor">Yellow</Color>
+
+<!-- 100 percent Yellow -->
+<Color x:Key="PhoneContrastForegroundColor">Red</Color>
+
+<!-- 100 percent White -->
+<Color x:Key="PhoneContrastBackgroundColor">Red</Color>
+
+<!-- 40 percent White -->
+<Color x:Key="PhoneDisabledColor">Yellow</Color>
+
+
+
+<!-- TextBox colors -->
+
+<!-- 100 percent Yellow -->
+<Color x:Key="PhoneTextCaretColor">Yellow</Color>
+
+<!-- 75 percent White -->
+<Color x:Key="PhoneTextBoxColor">Yellow</Color>
+
+<!-- 100 percent Yellow -->
+<Color x:Key="PhoneTextBoxForegroundColor">Yellow</Color>
+
+<!-- 100 percent White -->
+<Color x:Key="PhoneTextBoxEditBackgroundColor">Red</Color>
+
+<!-- 100 percent White -->
+<Color x:Key="PhoneTextBoxEditBorderColor">Red</Color>
+
+<!-- 47 percent percent Yellow -->
+<Color x:Key="PhoneTextBoxReadOnlyColor">Brown</Color>
+
+<!-- 60 percent White -->
+<Color x:Key="PhoneSubtleColor">Red</Color>
+
+<!-- 100 percent White -->
+<Color x:Key="PhoneTextBoxSelectionForegroundColor">Red</Color>
+
+
+<!-- RadioButton and CheckBox colors -->
+
+<!-- 75 percent White -->
+<Color x:Key="PhoneRadioCheckBoxColor">Red</Color>
+
+<!-- 40 percent White -->
+<Color x:Key="PhoneRadioCheckBoxDisabledColor">Brown</Color>
+
+<!-- 100 percent Yellow -->
+<Color x:Key="PhoneRadioCheckBoxCheckColor">#FFFFF700</Color>
+
+<!-- 40 percent Yellow -->
+<Color x:Key="PhoneRadioCheckBoxCheckDisabledColor">Brown</Color>
+
+<!-- 100 percent White -->
+<Color x:Key="PhoneRadioCheckBoxPressedColor">Red</Color>
+
+<!-- 100 percent White -->
+<Color x:Key="PhoneRadioCheckBoxPressedBorderColor">Red</Color>
+
+
+
+<!-- Special colors -->
+
+<!-- 66 percent transparent -->
+<Color x:Key="PhoneSemitransparentColor">#AA000000</Color>
+
+<!-- System chrome color -->
+<Color x:Key="PhoneChromeColor">#FF1F1F1F</Color>
+
+
+
+<!-- Deprecated colors -->
+
+<!-- 20 percent White -->
+<Color x:Key="PhoneInactiveColor">Yellow</Color>
+
+<!-- Inverse inactive background color -->
+<Color x:Key="PhoneInverseInactiveColor">Yellow</Color>
+
+<!-- Inverse background color -->
+<Color x:Key="PhoneInverseBackgroundColor">Red</Color>
+
+<!-- 75 percent White -->
+<Color x:Key="PhoneBorderColor">Red</Color>
+
+
+
+<!-- Visibility -->
+<Visibility x:Key="PhoneDarkThemeVisibility">Visible</Visibility>
+<Visibility x:Key="PhoneLightThemeVisibility">Collapsed</Visibility>
+
+
+
+<!-- Opacity -->
+<System:Double x:Key="PhoneDarkThemeOpacity">1</System:Double>
+<System:Double x:Key="PhoneLightThemeOpacity">0</System:Double>
+
+<!-- Blue -->
+<Color x:Key="PhoneAccentColor">#FF501A05</Color>
+
+<LinearGradientBrush x:Key="PhoneForegroundBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+	<GradientStop Color="Red" Offset="0"/>
+	<GradientStop Color="Red" Offset="1"/>
+	<GradientStop Color="Red" Offset="0.992"/>
+</LinearGradientBrush>
+
+<LinearGradientBrush x:Key="PhoneBackgroundBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+	<GradientStop Color="Yellow" Offset="0"/>
+	<GradientStop Color="Yellow" Offset="1"/>
+</LinearGradientBrush>
+
+<LinearGradientBrush x:Key="PhoneContrastForegroundBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+	<GradientStop Color="Red" Offset="0"/>
+	<GradientStop Color="Red" Offset="1"/>
+</LinearGradientBrush>
+
+<LinearGradientBrush x:Key="PhoneContrastBackgroundBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+	<GradientStop Color="Yellow" Offset="0"/>
+	<GradientStop Color="Yellow" Offset="1"/>
+</LinearGradientBrush>
+
+<LinearGradientBrush x:Key="PhoneTextCaretBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+	<GradientStop Color="Yellow" Offset="0"/>
+	<GradientStop Color="#FFFFF700" Offset="1"/>
+</LinearGradientBrush>
+
+<LinearGradientBrush x:Key="PhoneTextBoxBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+	<GradientStop Color="Yellow" Offset="0"/>
+	<GradientStop Color="#FFFFF700" Offset="1"/>
+</LinearGradientBrush>
+
+<LinearGradientBrush x:Key="PhoneTextBoxForegroundBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+	<GradientStop Color="Yellow" Offset="0"/>
+	<GradientStop Color="#FFFFF700" Offset="1"/>
+</LinearGradientBrush>
+
+<LinearGradientBrush x:Key="PhoneTextBoxEditBackgroundBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+	<GradientStop Color="Yellow" Offset="0"/>
+	<GradientStop Color="Red" Offset="1"/>
+</LinearGradientBrush>
+
+<LinearGradientBrush x:Key="PhoneTextBoxEditBorderBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+	<GradientStop Color="Yellow" Offset="0"/>
+	<GradientStop Color="Red" Offset="1"/>
+</LinearGradientBrush>
+
+<SolidColorBrush x:Key="PhoneTextBoxReadOnlyBrush" Color="{StaticResource PhoneTextBoxReadOnlyColor}"/>
+
+<LinearGradientBrush x:Key="PhoneTextBoxSelectionForegroundBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+	<GradientStop Color="Yellow" Offset="0"/>
+	<GradientStop Color="Red" Offset="1"/>
+</LinearGradientBrush>
+
+<SolidColorBrush x:Key="PhoneSubtleBrush" Color="{StaticResource PhoneSubtleColor}"/>
+
+<LinearGradientBrush x:Key="PhoneRadioCheckBoxBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+	<GradientStop Color="Yellow" Offset="0"/>
+	<GradientStop Color="Red" Offset="1"/>
+</LinearGradientBrush>
+
+<SolidColorBrush x:Key="PhoneRadioCheckBoxDisabledBrush" Color="{StaticResource PhoneRadioCheckBoxDisabledColor}"/>
+
+<LinearGradientBrush x:Key="PhoneRadioCheckBoxCheckBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+	<GradientStop Color="Yellow" Offset="0"/>
+	<GradientStop Color="#FFFFF700" Offset="1"/>
+</LinearGradientBrush>
+
+<SolidColorBrush x:Key="PhoneRadioCheckBoxCheckDisabledBrush" Color="{StaticResource PhoneRadioCheckBoxCheckDisabledColor}"/>
+
+<LinearGradientBrush x:Key="PhoneRadioCheckBoxPressedBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+	<GradientStop Color="Yellow" Offset="0"/>
+	<GradientStop Color="Red" Offset="1"/>
+</LinearGradientBrush>
+
+<LinearGradientBrush x:Key="PhoneRadioCheckBoxPressedBorderBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+	<GradientStop Color="Yellow" Offset="0"/>
+	<GradientStop Color="Red" Offset="1"/>
+</LinearGradientBrush>
+
+<SolidColorBrush x:Key="PhoneDisabledBrush" Color="{StaticResource PhoneDisabledColor}"/>
+
+<SolidColorBrush x:Key="TransparentBrush" Color="Transparent"/>
+
+<SolidColorBrush x:Key="PhoneSemitransparentBrush" Color="{StaticResource PhoneSemitransparentColor}"/>
+
+<LinearGradientBrush x:Key="PhoneChromeBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+	<GradientStop Color="Yellow" Offset="0"/>
+	<GradientStop Color="#FF412100" Offset="1"/>
+</LinearGradientBrush>
+
+<SolidColorBrush x:Key="PhoneAccentBrush" Color="{StaticResource PhoneAccentColor}"/>
+
+
+<!-- Deprecated brushes -->
+
+<SolidColorBrush x:Key="PhoneInactiveBrush" Color="{StaticResource PhoneInactiveColor}"/>
+
+<SolidColorBrush x:Key="PhoneInverseInactiveBrush" Color="{StaticResource PhoneInverseInactiveColor}"/>
+
+<LinearGradientBrush x:Key="PhoneInverseBackgroundBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+	<GradientStop Color="Yellow" Offset="0"/>
+	<GradientStop Color="Red" Offset="1"/>
+</LinearGradientBrush>
+
+<LinearGradientBrush x:Key="PhoneBorderBrush" EndPoint="0.5,1" StartPoint="0.5,0">
+	<GradientStop Color="Yellow" Offset="0"/>
+	<GradientStop Color="Red" Offset="1"/>
+</LinearGradientBrush>
+
+
+<!-- Touch Target area -->
+<Thickness x:Key="PhoneTouchTargetOverhang">12</Thickness>
+
+<!-- Touch Target area for CheckBox / RadioButton -->
+<Thickness x:Key="PhoneTouchTargetLargeOverhang">12,20</Thickness>
+
+<!-- Default margins for non-touch items -->
+<Thickness x:Key="PhoneHorizontalMargin">12,0</Thickness>
+<Thickness x:Key="PhoneVerticalMargin">0,12</Thickness>
+<Thickness x:Key="PhoneMargin">12</Thickness>
+
+<!-- Inner margins for text controls -->
+<Thickness x:Key="PhoneTextBoxInnerMargin">1,2</Thickness>
+<Thickness x:Key="PhonePasswordBoxInnerMargin">3,2</Thickness>
+
+<!-- Default border size-->
+<Thickness x:Key="PhoneBorderThickness">3</Thickness>
+
+<!-- Default stroke for RadioButton -->
+<System:Double x:Key="PhoneStrokeThickness">3</System:Double>
+
+<!-- Font names -->
+<FontFamily x:Key="PhoneFontFamilyNormal">Segoe WP</FontFamily>
+<FontFamily x:Key="PhoneFontFamilyLight">Segoe WP Light</FontFamily>
+<FontFamily x:Key="PhoneFontFamilySemiLight">Segoe WP SemiLight</FontFamily>
+<FontFamily x:Key="PhoneFontFamilySemiBold">Segoe WP Semibold</FontFamily>
+
+<!-- Font sizes -->
+
+<!--14pt-->
+<System:Double x:Key="PhoneFontSizeSmall">18.667</System:Double>
+<!--15pt-->
+<System:Double x:Key="PhoneFontSizeNormal">20</System:Double>
+<!--17pt-->
+<System:Double x:Key="PhoneFontSizeMedium">22.667</System:Double>
+<!--19pt-->
+<System:Double x:Key="PhoneFontSizeMediumLarge">25.333</System:Double>
+<!--24pt-->
+<System:Double x:Key="PhoneFontSizeLarge">32</System:Double>
+<!--32pt-->
+<System:Double x:Key="PhoneFontSizeExtraLarge">42.667</System:Double>
+<!--54pt-->
+<System:Double x:Key="PhoneFontSizeExtraExtraLarge">72</System:Double>
+<!--140pt-->
+<System:Double x:Key="PhoneFontSizeHuge">186.667</System:Double>
+
+<!-- TextBlock styles -->
+
+<Style x:Key="PhoneTextBlockBase" TargetType="TextBlock">
+  <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyNormal}"/>
+  <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeNormal}"/>
+  <Setter Property="Foreground" Value="{StaticResource PhoneForegroundBrush}"/>
+  <Setter Property="Margin" Value="{StaticResource PhoneHorizontalMargin}"/>
+</Style>
+
+<Style x:Key="PhoneTextNormalStyle" TargetType="TextBlock" BasedOn="{StaticResource PhoneTextBlockBase}" />
+  
+<Style x:Key="PhoneTextSubtleStyle" TargetType="TextBlock" BasedOn="{StaticResource PhoneTextBlockBase}">
+  <Setter Property="Foreground" Value="{StaticResource PhoneSubtleBrush}"/>
+</Style>
+
+<Style x:Key="PhoneTextTitle1Style" TargetType="TextBlock" BasedOn="{StaticResource PhoneTextBlockBase}">
+  <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiLight}"/>
+  <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeExtraExtraLarge}"/>
+</Style>
+
+<Style x:Key="PhoneTextTitle2Style" TargetType="TextBlock" BasedOn="{StaticResource PhoneTextBlockBase}">
+  <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiLight}"/>
+  <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeLarge}"/>
+</Style>
+
+<Style x:Key="PhoneTextTitle3Style" TargetType="TextBlock" BasedOn="{StaticResource PhoneTextBlockBase}">
+  <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiLight}"/>
+  <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeMedium}"/>
+</Style>
+
+<Style x:Key="PhoneTextExtraLargeStyle" TargetType="TextBlock" BasedOn="{StaticResource PhoneTextBlockBase}">
+  <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiLight}"/>
+  <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeExtraLarge}"/>
+</Style>
+
+<Style x:Key="PhoneTextGroupHeaderStyle" TargetType="TextBlock" BasedOn="{StaticResource PhoneTextBlockBase}">
+  <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiLight}"/>
+  <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeLarge}"/>
+  <Setter Property="Foreground" Value="{StaticResource PhoneSubtleBrush}"/>
+</Style>
+
+<Style x:Key="PhoneTextLargeStyle" TargetType="TextBlock" BasedOn="{StaticResource PhoneTextBlockBase}">
+  <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiLight}"/>
+  <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeLarge}"/>
+</Style>
+
+<Style x:Key="PhoneTextSmallStyle" TargetType="TextBlock" BasedOn="{StaticResource PhoneTextBlockBase}">
+  <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeSmall}"/>
+  <Setter Property="Foreground" Value="{StaticResource PhoneSubtleBrush}"/>
+</Style>
+
+<Style x:Key="PhoneTextContrastStyle" TargetType="TextBlock" BasedOn="{StaticResource PhoneTextBlockBase}">
+  <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiBold}"/>
+  <Setter Property="Foreground" Value="{StaticResource PhoneContrastForegroundBrush}"/>
+</Style>
+
+<Style x:Key="PhoneTextAccentStyle" TargetType="TextBlock" BasedOn="{StaticResource PhoneTextBlockBase}">
+  <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilySemiBold}"/>
+  <Setter Property="Foreground" Value="{StaticResource PhoneAccentBrush}"/>
+</Style>
+
+<Style x:Key="PhoneTextHugeStyle" TargetType="TextBlock" BasedOn="{StaticResource PhoneTextBlockBase}">
+  <Setter Property="FontFamily" Value="{StaticResource PhoneFontFamilyLight}"/>
+  <Setter Property="FontSize" Value="{StaticResource PhoneFontSizeHuge}"/>
+</Style>
+</ResourceDictionary>
+
+  

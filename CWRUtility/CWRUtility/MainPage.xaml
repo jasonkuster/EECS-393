@@ -9,10 +9,10 @@
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" xmlns:ec="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions" 
     x:Class="CWRUtility.MainPage" 
     mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768" 
-    d:DataContext="{d:DesignData SampleData/MainViewModelSampleData.xaml}"
+    
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
-    Foreground="{StaticResource PhoneForegroundBrush}"
+   
     SupportedOrientations="Portrait"  Orientation="Portrait"
     shell:SystemTray.IsVisible="True">
 
@@ -35,7 +35,7 @@
 					</StackPanel>
 				</StackPanel>
 			</StackPanel>
-			<TextBlock x:Name="Map" Margin="7,0,17,0" Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap" Text="Campus Map" FontSize="37.333" Foreground="White" VerticalAlignment="Top" Tap="Map_Tap"/>
+			<TextBlock x:Name="Map" Margin="7,0,17,0" Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap" Text="Campus Map" FontSize="37.333" VerticalAlignment="Top" Tap="Map_Tap"/>
             <StackPanel x:Name="eSuds" Orientation="Horizontal" Margin="8,0,0,0" Tap="eSuds_Tap" Height="100">
 				<TextBlock x:Name="esText" Margin="0" Style="{StaticResource PhoneTextLargeStyle}" TextWrapping="Wrap" Text="eSuds" FontSize="37.333" VerticalAlignment="Center"/>
 				<StackPanel x:Name="esPanel" Orientation="Vertical" Margin="60,10,0,0" Height="75" Visibility="Collapsed">
