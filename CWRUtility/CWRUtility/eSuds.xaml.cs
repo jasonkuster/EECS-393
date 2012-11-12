@@ -18,19 +18,20 @@ namespace CWRUtility
 {
     public partial class eSuds : PhoneApplicationPage
     {
-        Dictionary<string, Uri> locUris = new Dictionary<string, Uri>();
+        public Dictionary<string, Uri> locUris { get; private set;}
         IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
         bool gettingTimes = false;
         bool loading = false;
 
         public eSuds()
         {
-            CreateBuildingsDict();
+            locUris = CreateBuildingsDict();
             InitializeComponent();
         }
 
-        private void CreateBuildingsDict()
+        public Dictionary<string, Uri> CreateBuildingsDict()
         {
+            Dictionary<string, Uri> retDict = new Dictionary<string, Uri>();
             List<string> buildings = new List<string>() { "Alumni", "Clarke Tower", "Cutler", "Cutter", "Glaser", "Hitchcock", "Howe", "Kusch", "Michelson", "Norton", 
                 "Pierce", "Raymond", "Sherman", "Smith", "Staley", "Storrs", "Taft", "Taplin", "Tippit", "Tyler", "Village House 1", "Village House 2", 
                 "Village House 4", "Village House 5", "Village House 6", "Village House 7" };
@@ -39,8 +40,9 @@ namespace CWRUtility
 
             for (int i = 0; i < buildings.Count; i++)
             {
-                locUris.Add(buildings[i], new Uri("http://case-asi.esuds.net/RoomStatus/machineStatus.i?bottomLocationId=" + bIDs[i]));
+                retDict.Add(buildings[i], new Uri("http://case-asi.esuds.net/RoomStatus/machineStatus.i?bottomLocationId=" + bIDs[i]));
             }
+            return retDict;
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
