@@ -10,6 +10,7 @@ using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Silverlight.Testing;
+using System.Device.Location;
 
 namespace UnitTester
 {
@@ -20,12 +21,6 @@ namespace UnitTester
         public void AlwaysTrue()
         {
             Assert.IsTrue(true, "always true");
-        }
-
-        [TestMethod]
-        public void CaseNewsTest()
-        {
-            CWRUtility.CaseNews hey = new CWRUtility.CaseNews();
         }
     }
 }
