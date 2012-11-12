@@ -24,7 +24,7 @@
     <Tokens>
       <PrimaryToken TokenID="CWRUtilityToken" TaskName="_default">
         <TemplateType5>
-          <BackgroundImageURI IsRelative="true" IsResource="false">Background.png</BackgroundImageURI>
+          <BackgroundImageURI IsRelative="true" IsResource="false">Resources\CWRUlogoSmall.png</BackgroundImageURI>
           <Count>0</Count>
           <Title>CWRUtility</Title>
         </TemplateType5>
