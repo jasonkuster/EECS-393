@@ -19,14 +19,17 @@
             <shell:ApplicationBarIconButton x:Name="refreshFeed" Text="refresh feed" Click="refreshFeed_Click" IconUri="/icons/appbar.refresh.rest.png"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
-
+    <shell:SystemTray.ProgressIndicator>
+        <shell:ProgressIndicator x:Name="ProgressBar" IsIndeterminate="true" IsVisible="False" Text="Updating..." />
+    </shell:SystemTray.ProgressIndicator>
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" MinHeight="142"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-    <Image Source="Resources/CWRUsealWhite.png" Stretch="Fill" Margin="8,156,8,102" Opacity="0.2"/>
+
+        <Image Source="Resources/CWRUsealWhite.png" Stretch="Fill" Margin="8,156,8,102" Opacity="0.2"/>
     <Grid x:Name="ContentPanel" Margin="0,0,-192,-396">
         <!--TitlePanel contains the name of the application and page title-->
         <controls:Pivot Margin="0,0,8,8" Title="CWRUTILITY" Grid.RowSpan="2" LoadingPivotItem="Pivot_LoadingPivotItem">

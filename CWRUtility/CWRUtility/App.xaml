@@ -11,6 +11,16 @@
     	<DataStore:DataStore x:Key="DataStore" d:IsDataSource="True"/>
     </Application.Resources>
 
+    <!--Applies hot dog, currently broken :( -->
+    <!--<Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/HotDogStand.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>-->
+
+
     <Application.ApplicationLifetimeObjects>
         <!--Required object that handles lifetime events for the application-->
         <shell:PhoneApplicationService 

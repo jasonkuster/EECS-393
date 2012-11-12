@@ -80,6 +80,8 @@ namespace CWRUtility
                 // Bind the list of SyndicationItems to our ListBox.
                 feedListBox.ItemsSource = feed.Items;
             });
+
+            ProgressBar.IsVisible = false;
         }
 
         // The SelectionChanged handler for the feed items 
@@ -104,6 +106,7 @@ namespace CWRUtility
 
         private void refreshFeed_Click(object sender, EventArgs e)
         {
+            ProgressBar.IsVisible = true;
             // WebClient is used instead of HttpWebRequest in this code sample because 
             // the implementation is simpler and easier to use, and we do not need to use 
             // advanced functionality that HttpWebRequest provides, such as the ability to send headers.
@@ -115,6 +118,7 @@ namespace CWRUtility
             // to leave a stream open, and we will not need to worry about closing the channel. 
 
             webClient.DownloadStringAsync(new System.Uri(feedUri));
+            
         }
 
         private void Pivot_LoadingPivotItem(object sender, PivotItemEventArgs e)
