@@ -120,7 +120,7 @@ namespace CWRUtility
         private void Pivot_LoadingPivotItem(object sender, PivotItemEventArgs e)
         {
             feedListBox = e.Item == Leutner ? feedListBox2 : feedListBox1;
-            feedUri = e.Item == Leutner ? "http://cwru-daily.com/news/?feed=rss2" : "http://www.thecwruobserver.com/feed/";
+            feedUri = e.Item == Leutner ? "http://www.cafebonappetit.com/rss/menu/45" : "http://www.cafebonappetit.com/rss/menu/43";
             refreshFeed_Click(null, null);
         }
     }
