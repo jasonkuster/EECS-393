@@ -21,6 +21,12 @@ namespace unitTester
         {
             CWRUtility.eSuds esTest = new CWRUtility.eSuds();
             Assert.IsNotNull(esTest.locUris);
+            CWRUtility.LaundryMachine lmTest = new CWRUtility.LaundryMachine("5", "Washer", "Cycle Complete", "", "red");
+
+            Assert.IsTrue(lmTest.availability.Equals("Cycle Complete"));
+            Assert.IsTrue(lmTest.number.Equals("5"));
+            Assert.IsTrue(lmTest.type.Equals("Washer"));
+            Assert.IsTrue(lmTest.color.Equals("red"));
 
         }
 

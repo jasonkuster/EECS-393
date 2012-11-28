@@ -78,6 +78,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MapTesting.cs" />
+    <Compile Include="NextBusTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="sampleTest.cs" />
   </ItemGroup>

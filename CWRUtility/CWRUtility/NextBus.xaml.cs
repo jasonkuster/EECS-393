@@ -19,8 +19,8 @@ namespace CWRUtility
 {
     public partial class NextBus : PhoneApplicationPage
     {
-        IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
-        Dictionary<string, Dictionary<string, Dictionary<string, Uri>>> buses;
+        public IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
+        public Dictionary<string, Dictionary<string, Dictionary<string, Uri>>> buses { get; private set; }
         DispatcherTimer timer;
         Uri currentUri;
 
@@ -378,6 +378,7 @@ namespace CWRUtility
             string fav = route + '!' + direction + '!' + stop + '!' + uri;
             settings["nbDefault"] = fav;
             MessageBox.Show(stop + " set as default.", "Default Set", MessageBoxButton.OK);
+            getBusPrediction();
             /*
             if (((List<string>)settings["nbFavorites"]).Contains(fav))
             {
