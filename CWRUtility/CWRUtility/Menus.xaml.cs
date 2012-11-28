@@ -19,9 +19,12 @@ namespace CWRUtility
 {
     public partial class Menus : PhoneApplicationPage
     {
+        string[] Leut = new string[7];
+        string[] Frib = new string[7];
+        string ToParse = "";
         ListBox feedListBox;
         string feedUri;
-        // Constructor
+
         public Menus()
         {
             InitializeComponent();
@@ -44,6 +47,7 @@ namespace CWRUtility
                 this.State["feed"] = e.Result;
 
                 UpdateFeedList(e.Result);
+                int color = 17;
             }
         }
 
@@ -68,19 +72,165 @@ namespace CWRUtility
         {
             // Load the feed into a SyndicationFeed instance.
             StringReader stringReader = new StringReader(feedXML);
-            XmlReader xmlReader = XmlReader.Create(stringReader);
-            SyndicationFeed feed = SyndicationFeed.Load(xmlReader);
+            ToParse = (string)stringReader.ReadToEnd();
+            char[] CharArr = ToParse.ToCharArray();
+            int date = -1;
+            int comment = 0;
+            for (int i = 0; i < CharArr.Length; i++)
+            {
+                char Un = CharArr[i]; //make a temporary char named 'Un' for 'Unhandled' at index i in the char array
+                if (Un.Equals('<'))
+                {
+                    if (CharArr[i + 1] == 't' && CharArr[i + 2] == 'i' && CharArr[i + 3] == 't' && CharArr[i + 4] == 'l' && CharArr[i + 5] == 'e' && CharArr[i + 6] == '>')
+                    {
+                        int x = i + 7;
+                        while (CharArr[x] != '<')
+                        {
+                            x++;
+                        }
+                        i = x + 7;
+                        date = date + 1;
+                    }
+                    else if (CharArr[i + 1] == 'd' && CharArr[i + 2] == 'e' && CharArr[i + 3] == 's' && CharArr[i + 4] == 'c' && CharArr[i + 5] == 'r' && CharArr[i + 6] == 'i')
+                    {
+                        int g = i + 13;
+                        char debugger = CharArr[i];
+                        string realTemp = "";
+                        while (!(CharArr[g + 1] == '/' && CharArr[i + 2] == 'd' && CharArr[i + 3] == 'e' && CharArr[i + 4] == 's' && CharArr[i + 5] == 'c' && CharArr[i + 6] == 'r'))
+                        {
+                            char debuggery = CharArr[g];
+                            if (CharArr[g] == '&' && CharArr[g + 1] == 'l' && CharArr[g + 2] == 't' && CharArr[g + 3] == ';' && CharArr[g + 4] == 'h' && CharArr[g + 5] == '3')
+                            {
+                                realTemp = realTemp + "#";
+                                g = g + 10;
+                                while (!(CharArr[g] == '&' && CharArr[g + 1] == 'l' && CharArr[g + 2] == 't' && CharArr[g + 3] == ';' && CharArr[g + 4] == '/' && CharArr[g + 5] == 'h' && CharArr[g + 6] == '3'))
+                                {
+                                    realTemp = realTemp + CharArr[g];
+                                    g++;
+                                }
+                                realTemp = realTemp + "#";
+                            }
 
-            // In Windows Phone OS 7.1, WebClient events are raised on the same type of thread they were called upon. 
+                            else if (CharArr[g] == '&' && CharArr[g + 1] == 'l' && CharArr[g + 2] == 't' && CharArr[g + 3] == ';' && CharArr[g + 4] == 'h' && CharArr[g + 5] == '4')
+                            {
+                                realTemp = realTemp + "=";
+                                g = g + 10;
+                                while (!(CharArr[g] == '&' && CharArr[g + 1] == 'a' && CharArr[g + 2] == 'm' && CharArr[g + 3] == 'p' && CharArr[g + 4] == ';' && CharArr[g + 5] == 'n' && CharArr[g + 6] == 'b'))
+                                {
+                                    if (CharArr[g] == '[')
+                                    {
+                                        while (CharArr[g] != ']')
+                                        {
+                                            g++;
+                                        }
+                                        g++;
+                                    }
+                                    char dumb = CharArr[g];
+                                    char dumbb = CharArr[g + 1];
+                                    char dumbbb = CharArr[g + 2];
+                                    char dumbbbb = CharArr[g + 3];
+                                    realTemp = realTemp + CharArr[g];
+                                    g = g + 1;
+                                }
+                                realTemp = realTemp + "=";
+                            }
+
+                            else if (CharArr[g] == '&' && CharArr[g + 1] == 'l' && CharArr[g + 2] == 't' && CharArr[g + 3] == ';' && CharArr[g + 4] == 'p')
+                            {
+                                realTemp = realTemp + "}";
+                                g = g + 9;
+                                while (!(CharArr[g] == '&' && CharArr[g + 1] == 'l' && CharArr[g + 2] == 't' && CharArr[g + 3] == ';' && CharArr[g + 4] == '/' && CharArr[g + 5] == 'p'))
+                                {
+                                    realTemp = realTemp + CharArr[g];
+                                    g++;
+                                }
+                                realTemp = realTemp + "}";
+                            }
+                            else
+                                g++;
+                            i = g;
+
+                        }
+                        if (date > 0 && date <= 7)
+                            Leut[date - 1] = realTemp;
+                    }
+                }
+
+
+            }
+            // In Windows Phone OS 7.1 and higher, WebClient events are raised on the same type of thread they were called upon. 
             // For example, if WebClient was run on a background thread, the event would be raised on the background thread. 
             // While WebClient can raise an event on the UI thread if called from the UI thread, a best practice is to always 
             // use the Dispatcher to update the UI. This keeps the UI thread free from heavy processing.
-            Deployment.Current.Dispatcher.BeginInvoke(() =>
-            {
-                // Bind the list of SyndicationItems to our ListBox.
-                feedListBox.ItemsSource = feed.Items;
-            });
+            //Deployment.Current.Dispatcher.BeginInvoke(() =>
+            //{
+            // Bind the list of SyndicationItems to our ListBox.
+            //feedListBox.ItemsSource = feed.Items;
+            //loadFeedButton.Content = "Refresh Feed";
+            //});
+            UpdateLunchables();
         }
+
+        private void UpdateLunchables()
+        {
+            for (int y = 0; y < Leut.Length; y++)
+            {
+                TextBlock NM = new TextBlock();
+                for (int k = 0; k < Leut[y].Length; k++)
+                {
+                    if (Leut[y].ElementAt(k) == '#')
+                    {
+                        k = k + 1;
+                        string toBlock = "";
+                        while (!(Leut[y].ElementAt(k) == '#'))
+                        {
+                            toBlock = toBlock + Leut[y].ElementAt(k);
+                            k = k + 1;
+                        }
+                        NM.Text = toBlock;
+                        NM.FontSize = 40;
+                        NM.TextWrapping = TextWrapping.Wrap;
+                        NM.Margin = new Thickness(12, 12, 12, 12);
+                        feedListBox1.Items.Add(NM);
+                    }
+                    else if (Leut[y].ElementAt(k) == '=')
+                    {
+                        k = k + 1;
+                        string toBlock = "";
+                        while (!(Leut[y].ElementAt(k) == '='))
+                        {
+                            toBlock = toBlock + Leut[y].ElementAt(k);
+                            k = k + 1;
+                        }
+                        NM.Text = toBlock;
+                        NM.FontSize = 35;
+                        NM.TextWrapping = TextWrapping.Wrap;
+                        NM.Margin = new Thickness(12, 12, 12, 12);
+                        feedListBox1.Items.Add(NM);
+                    }
+                    else if (Leut[y].ElementAt(k) == '}')
+                    {
+                        k = k + 1;
+                        string toBlock = "";
+                        while (!(Leut[y].ElementAt(k) == '}'))
+                        {
+                            toBlock = toBlock + Leut[y].ElementAt(k);
+                            k = k + 1;
+                        }
+                        NM.Text = toBlock;
+                        NM.FontSize = 30;
+                        NM.TextWrapping = TextWrapping.Wrap;
+                        NM.Margin = new Thickness(12, 12, 12, 12);
+                        feedListBox1.Items.Add(NM);
+                    }
+
+
+                }
+
+            }
+        }
+
+
 
         // The SelectionChanged handler for the feed items 
         private void feedListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
