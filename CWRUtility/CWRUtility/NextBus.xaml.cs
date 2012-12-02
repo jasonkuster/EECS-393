@@ -147,7 +147,7 @@ namespace CWRUtility
                             break;
                         case "To Cleveland Museum of Art":
                             nbDirection = "2artmus";
-                            stops = new List<string>() { "Circle Station - Departure", "Murray Hill & Glenwood", "Murray Hill & Adelbert", "Adelbert Lot 13A East",
+                            stops = new List<string>() { "Circle Station - Departure", "Murray Hill & Glenwood", "Murray Hill & Adelbert", "Adelbert 1-2-1 East", "Adelbert Lot 13A East",
                                 "East Blvd Lot 29 East", "East Blvd Central East", "Bellflower CIA South", "Bellflower PBL South", "Ford & Juniper", "CIM", "Hazel North",
                                 "Magnolia North", "VA Hospital", "Natural History Museum", "Cleveland Museum of Art - Arrival" };
                             uris = new List<string>(){ "circlestat_d", "murrayhg", "murrayadel", "adel121e", "adellot13ae", "eastlot29e", "eastce", "belcias", "belpbls", "junipw",
