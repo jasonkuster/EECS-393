@@ -26,7 +26,7 @@ namespace CWRUtility
         ListBox feedListBox;
         string feedUri;
         DateTime date3 = DateTime.Today;
-        
+        DateTime date4 = DateTime.Today;
         public Menus()
         {
             
@@ -73,6 +73,10 @@ namespace CWRUtility
                     refreshFeed_Click(null, null);
                 }
             }
+            DateBox.Text = date4.ToShortDateString() + "   " + date3.DayOfWeek;
+            DateBox.FontSize = 40; //the name should be noticiably larger than the other 3 data feilds
+            //DateBox.Margin = new Thickness(12, 12, 12, 12);
+            DateBox.Tap += Date_Click;
         }
 
         // This method sets up the feed and binds it to our ListBox. 
@@ -213,13 +217,16 @@ namespace CWRUtility
                             toBlock = toBlock + Leut[y].ElementAt(k);
                             k = k + 1;
                         }
-                        NM.Text = toBlock;
-                        NM.FontSize = 45;
-                        NM.Foreground = new SolidColorBrush(Colors.Blue);
-                        
-                        NM.TextWrapping = TextWrapping.Wrap;
-                        NM.Margin = new Thickness(12, 12, 12, 12);
-                        this.feedListBox.Items.Add(NM);
+                        if (toBlock != "")
+                        {
+                            NM.Text = toBlock;
+                            NM.FontSize = 45;
+                            NM.Foreground = new SolidColorBrush(Colors.Blue);
+                            NM.TextAlignment = TextAlignment.Center;
+                            NM.TextWrapping = TextWrapping.Wrap;
+                            NM.Margin = new Thickness(128, 12, 12, 12);
+                            this.feedListBox.Items.Add(NM);
+                        }
                     }
                     else if (Leut[y].ElementAt(k) == '=')
                     {
@@ -230,12 +237,16 @@ namespace CWRUtility
                             toBlock = toBlock + Leut[y].ElementAt(k);
                             k = k + 1;
                         }
+                        if (toBlock != "")
+                        {
                         NM.Text = toBlock;
+                        NM.TextAlignment = TextAlignment.Left;
                         NM.FontSize = 35;
                         NM.Foreground = new SolidColorBrush(Colors.Red);
                         NM.TextWrapping = TextWrapping.Wrap;
                         NM.Margin = new Thickness(12, 12, 12, 12);
                         this.feedListBox.Items.Add(NM);
+                        }
                     }
                     else if (Leut[y].ElementAt(k) == '}')
                     {
@@ -246,12 +257,16 @@ namespace CWRUtility
                             toBlock = toBlock + Leut[y].ElementAt(k);
                             k = k + 1;
                         }
-                        NM.Text = toBlock;
-                        NM.FontSize = 25;
-                        NM.Foreground = new SolidColorBrush(Colors.LightGray);
-                        NM.TextWrapping = TextWrapping.Wrap;
-                        NM.Margin = new Thickness(12, 12, 12, 12);
-                        this.feedListBox.Items.Add(NM);
+                        if (toBlock != "")
+                        {
+                            NM.Text = toBlock;
+                            NM.FontSize = 25;
+                            NM.TextAlignment = TextAlignment.Left;
+                            NM.Foreground = new SolidColorBrush(Colors.LightGray);
+                            NM.TextWrapping = TextWrapping.Wrap;
+                            NM.Margin = new Thickness(12, 12, 12, 12);
+                            this.feedListBox.Items.Add(NM);
+                        }
                     }
 
 
@@ -308,6 +323,10 @@ namespace CWRUtility
             feedListBox = e.Item == Leutner ? feedListBox2 : feedListBox1;
             feedUri = e.Item == Leutner ? "http://www.cafebonappetit.com/rss/menu/45" : "http://www.cafebonappetit.com/rss/menu/43";
             refreshFeed_Click(null, null);
+        }
+        private void Date_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

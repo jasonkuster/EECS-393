@@ -27,7 +27,7 @@
                 <controls:PivotItem x:Name="Fribley" Header="Fribley">
                     <!--ContentPanel - place additional content here-->
 
-                    <ListBox x:Name="feedListBox1" Height="568" HorizontalAlignment="Left" VerticalAlignment="Top" Width="464" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                    <ListBox x:Name="feedListBox1" Height="503" HorizontalAlignment="Left" VerticalAlignment="Top" Width="464" ScrollViewer.VerticalScrollBarVisibility="Auto">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel VerticalAlignment="Top">
@@ -42,7 +42,7 @@
 
                 </controls:PivotItem>
                 <controls:PivotItem x:Name="Leutner" Header="Leutner">
-                    <ListBox x:Name="feedListBox2" Height="568" HorizontalAlignment="Left" VerticalAlignment="Top" Width="464" ScrollViewer.VerticalScrollBarVisibility="Auto">
+                    <ListBox x:Name="feedListBox2" Height="503" HorizontalAlignment="Left" VerticalAlignment="Top" Width="464" ScrollViewer.VerticalScrollBarVisibility="Auto">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel VerticalAlignment="Top">
@@ -56,6 +56,13 @@
                     </ListBox>
                 </controls:PivotItem>
             </controls:Pivot>
+            <StackPanel Height="100" VerticalAlignment="Bottom" Margin="128,0,328,343">
+            	<TextBox x:Name="DateBox" TextWrapping="Wrap" Text="TextBox" TextAlignment="Center" Foreground="Black" BorderBrush="{x:Null}" SelectionBackground="White" FontSize="16" Margin="-128,0">
+            		<TextBox.Background>
+            			<SolidColorBrush Color="{StaticResource PhoneBorderColor}"/>
+            		</TextBox.Background>
+            	</TextBox>
+            </StackPanel>
         </Grid>
         <!--TitlePanel contains the name of the application and page title-->
 
