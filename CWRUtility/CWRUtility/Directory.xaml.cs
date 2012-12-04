@@ -79,12 +79,14 @@ namespace CWRUtility
                          TextBlock PN = new TextBlock();//make a textblock for the phone#
                          PN.Text = temp.phone;//set the text of the textblock to the phone# of the resource we are currently handeling
                          PN.Visibility = System.Windows.Visibility.Collapsed;//by default this will not be visibile. 
+
                          PN.Tap += Phone_Tap;//set the event for the phone# being tapped to Phone_Tap
                          PN.Margin = new Thickness(12, 12, 12, 12);
                          listBox.Items.Add(PN);//with the Textblock for phone# complete it is possible to move onto the next textblock and datafield
                          TextBlock LC = new TextBlock();//make a textblock for the location
                          LC.Text = temp.location;//set the text of the textblock to the location of the resource we are currently handeling
                          LC.Visibility = System.Windows.Visibility.Collapsed;//by default this will not be visibile. 
+                         LC.Foreground = new SolidColorBrush(Colors.LightGray);
                          LC.Margin = new Thickness(12, 12, 12, 12);
                          LC.TextWrapping = TextWrapping.Wrap;
                          listBox.Items.Add(LC);//with the Textblock for location complete it is possible to move onto the next textblock and datafield
@@ -93,6 +95,7 @@ namespace CWRUtility
                          //IN.TextTrimming = TextTrimming.WordEllipsis;   text trimming only adds an ellipses if the text runs off the screen
                          IN.Text = temp.info;//set the text of the textblock to the info of the resource we are currently handeling
                          IN.Margin = new Thickness(12, 12, 12, 12);
+                         IN.Foreground = new SolidColorBrush(Colors.LightGray);
                          IN.Visibility = System.Windows.Visibility.Collapsed;//by default this will not be visibile. 
                          listBox.Items.Add(IN);//with the Textblock for info complete we have no more textblocks to make for this resource
                          WhereAreWe = 0;//the next full string read in will be the name of the next resource

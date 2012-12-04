@@ -43,11 +43,16 @@ namespace CWRUtility
             }
             else
             {
-                // Save the feed into the State property in case the application is tombstoned. 
-                this.State["feed"] = e.Result;
+                
+                    // Save the feed into the State property in case the application is tombstoned. 
+                    this.State["feed"] = e.Result;
 
-                UpdateFeedList(e.Result);
-                int color = 17;
+                    UpdateFeedList(e.Result);
+                
+                
+                
+                    int color = 17;
+                
             }
         }
 
@@ -175,53 +180,59 @@ namespace CWRUtility
         {
             for (int y = 0; y < Leut.Length; y++)
             {
-                TextBlock NM = new TextBlock();
+              //  TextBlock NM = new TextBlock();
                 for (int k = 0; k < Leut[y].Length; k++)
                 {
+                    TextBlock NM = new TextBlock();
                     if (Leut[y].ElementAt(k) == '#')
                     {
+                       
                         k = k + 1;
                         string toBlock = "";
-                        while (!(Leut[y].ElementAt(k) == '#'))
+                        while (!(Leut[y].ElementAt(k) == '#') && (k != Leut[y].Length))
                         {
                             toBlock = toBlock + Leut[y].ElementAt(k);
                             k = k + 1;
                         }
                         NM.Text = toBlock;
-                        NM.FontSize = 40;
+                        NM.FontSize = 45;
+                        NM.Foreground = new SolidColorBrush(Colors.Blue);
+                        
                         NM.TextWrapping = TextWrapping.Wrap;
                         NM.Margin = new Thickness(12, 12, 12, 12);
-                        feedListBox1.Items.Add(NM);
+                        this.feedListBox.Items.Add(NM);
                     }
                     else if (Leut[y].ElementAt(k) == '=')
                     {
                         k = k + 1;
                         string toBlock = "";
-                        while (!(Leut[y].ElementAt(k) == '='))
+                        while (!(Leut[y].ElementAt(k) == '=') && (k != Leut[y].Length))
                         {
                             toBlock = toBlock + Leut[y].ElementAt(k);
                             k = k + 1;
                         }
                         NM.Text = toBlock;
                         NM.FontSize = 35;
+                        NM.Foreground = new SolidColorBrush(Colors.Red);
                         NM.TextWrapping = TextWrapping.Wrap;
                         NM.Margin = new Thickness(12, 12, 12, 12);
-                        feedListBox1.Items.Add(NM);
+                        this.feedListBox.Items.Add(NM);
                     }
                     else if (Leut[y].ElementAt(k) == '}')
                     {
                         k = k + 1;
                         string toBlock = "";
-                        while (!(Leut[y].ElementAt(k) == '}'))
+                        while (!(Leut[y].ElementAt(k) == '}') && (k != Leut[y].Length))
                         {
                             toBlock = toBlock + Leut[y].ElementAt(k);
                             k = k + 1;
                         }
                         NM.Text = toBlock;
-                        NM.FontSize = 30;
+                        NM.FontSize = 25;
+                        NM.Foreground = new SolidColorBrush(Colors.LightGray);
                         NM.TextWrapping = TextWrapping.Wrap;
                         NM.Margin = new Thickness(12, 12, 12, 12);
-                        feedListBox1.Items.Add(NM);
+                        this.feedListBox.Items.Add(NM);
                     }
 
 
@@ -233,6 +244,7 @@ namespace CWRUtility
 
 
         // The SelectionChanged handler for the feed items 
+        /*
         private void feedListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ListBox listBox = sender as ListBox;
@@ -250,7 +262,7 @@ namespace CWRUtility
                     NavigationService.Navigate(new Uri(string.Format("/NewsStoryPage.xaml?storyUri={0}", uri), UriKind.RelativeOrAbsolute));
                 }
             }
-        }
+        }*/
 
         private void refreshFeed_Click(object sender, EventArgs e)
         {
@@ -265,6 +277,11 @@ namespace CWRUtility
             // to leave a stream open, and we will not need to worry about closing the channel. 
 
             webClient.DownloadStringAsync(new System.Uri(feedUri));
+        }
+
+        public void Blank_Tap(object sender, System.Windows.Input.GestureEventArgs e)//method called in the event that the resources name is tapped and therefor the field underneath need expanding
+        {
+            this.Foreground = new SolidColorBrush(Colors.Blue);
         }
 
         private void Pivot_LoadingPivotItem(object sender, PivotItemEventArgs e)

@@ -27,7 +27,7 @@
                 <controls:PivotItem x:Name="Fribley" Header="Fribley">
                     <!--ContentPanel - place additional content here-->
 
-                    <ListBox x:Name="feedListBox1" Height="568" HorizontalAlignment="Left" VerticalAlignment="Top" Width="464" ScrollViewer.VerticalScrollBarVisibility="Auto" SelectionChanged="feedListBox_SelectionChanged">
+                    <ListBox x:Name="feedListBox1" Height="568" HorizontalAlignment="Left" VerticalAlignment="Top" Width="464" ScrollViewer.VerticalScrollBarVisibility="Auto">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel VerticalAlignment="Top">
@@ -42,7 +42,7 @@
 
                 </controls:PivotItem>
                 <controls:PivotItem x:Name="Leutner" Header="Leutner">
-                    <ListBox x:Name="feedListBox2" Height="568" HorizontalAlignment="Left" VerticalAlignment="Top" Width="464" ScrollViewer.VerticalScrollBarVisibility="Auto" SelectionChanged="feedListBox_SelectionChanged">
+                    <ListBox x:Name="feedListBox2" Height="568" HorizontalAlignment="Left" VerticalAlignment="Top" Width="464" ScrollViewer.VerticalScrollBarVisibility="Auto">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel VerticalAlignment="Top">
