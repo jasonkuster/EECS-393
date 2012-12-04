@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Windows;
@@ -20,13 +21,15 @@ namespace CWRUtility
     public partial class Menus : PhoneApplicationPage
     {
         string[] Leut = new string[7];
-        string[] Frib = new string[7];
+       // string[] Frib = new string[7];
         string ToParse = "";
         ListBox feedListBox;
         string feedUri;
-
+        DateTime date3 = DateTime.Today;
+        
         public Menus()
         {
+            
             InitializeComponent();
         }
         // Event handler which runs after the feed is fully downloaded.
@@ -75,6 +78,7 @@ namespace CWRUtility
         // This method sets up the feed and binds it to our ListBox. 
         private void UpdateFeedList(string feedXML)
         {
+            
             // Load the feed into a SyndicationFeed instance.
             StringReader stringReader = new StringReader(feedXML);
             ToParse = (string)stringReader.ReadToEnd();
@@ -178,9 +182,24 @@ namespace CWRUtility
 
         private void UpdateLunchables()
         {
-            for (int y = 0; y < Leut.Length; y++)
-            {
+            //for (int y = 0; y < Leut.Length; y++)
+            //{
               //  TextBlock NM = new TextBlock();
+            int y = 0;
+            if (date3.DayOfWeek == DayOfWeek.Sunday)
+                y = 6;
+            if (date3.DayOfWeek == DayOfWeek.Monday)
+                y = 0;
+            if (date3.DayOfWeek == DayOfWeek.Tuesday)
+                y = 1;
+            if (date3.DayOfWeek == DayOfWeek.Wednesday)
+                y = 2;
+            if (date3.DayOfWeek == DayOfWeek.Thursday)
+                y = 3;
+            if (date3.DayOfWeek == DayOfWeek.Friday)
+                y = 4;
+            if (date3.DayOfWeek == DayOfWeek.Saturday)
+                y = 5;
                 for (int k = 0; k < Leut[y].Length; k++)
                 {
                     TextBlock NM = new TextBlock();
@@ -238,7 +257,7 @@ namespace CWRUtility
 
                 }
 
-            }
+           // }
         }
 
 
