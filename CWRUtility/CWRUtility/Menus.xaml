@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:controls="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls" 
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit" 
     x:Class="CWRUtility.Menus"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -57,11 +58,18 @@
                 </controls:PivotItem>
             </controls:Pivot>
             <StackPanel Height="100" VerticalAlignment="Bottom" Margin="128,0,328,343">
-            	<TextBox x:Name="DateBox" TextWrapping="Wrap" Text="TextBox" TextAlignment="Center" Foreground="Black" BorderBrush="{x:Null}" SelectionBackground="White" FontSize="16" Margin="-128,0">
+            	<!--<TextBox x:Name="DateBox" TextWrapping="Wrap" Text="TextBox" TextAlignment="Center" Foreground="Black" BorderBrush="{x:Null}" SelectionBackground="White" FontSize="16" Margin="-128,0">
             		<TextBox.Background>
             			<SolidColorBrush Color="{StaticResource PhoneBorderColor}"/>
             		</TextBox.Background>
-            	</TextBox>
+            	</TextBox>-->
+                <toolkit:ListPicker x:Name="DateBox" ExpansionMode="FullScreenOnly" Margin="0" SelectionChanged="DateBox_SelectionChanged">
+                    <toolkit:ListPicker.FullModeItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding BindsDirectlyToSource=True}" FontSize="40" Width="460"/>
+                        </DataTemplate>
+                    </toolkit:ListPicker.FullModeItemTemplate>
+                </toolkit:ListPicker>
             </StackPanel>
         </Grid>
         <!--TitlePanel contains the name of the application and page title-->

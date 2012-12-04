@@ -27,10 +27,34 @@ namespace CWRUtility
         string feedUri;
         DateTime date3 = DateTime.Today;
         DateTime date4 = DateTime.Today;
+        int WhatToShow = 0;
+
+
         public Menus()
         {
             
             InitializeComponent();
+
+            DateBox.FontSize = 40; //the name should be noticiably larger than the other 3 data feilds
+            //DateBox.Margin = new Thickness(12, 12, 12, 12);
+            List<String> Days = new List<string> { "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" };
+            DateBox.ItemsSource = Days;
+            
+            if (date3.DayOfWeek == DayOfWeek.Sunday)
+                WhatToShow = 6;
+            if (date3.DayOfWeek == DayOfWeek.Monday)
+                WhatToShow = 0;
+            if (date3.DayOfWeek == DayOfWeek.Tuesday)
+                WhatToShow = 1;
+            if (date3.DayOfWeek == DayOfWeek.Wednesday)
+                WhatToShow = 2;
+            if (date3.DayOfWeek == DayOfWeek.Thursday)
+                WhatToShow = 3;
+            if (date3.DayOfWeek == DayOfWeek.Friday)
+                WhatToShow = 4;
+            if (date3.DayOfWeek == DayOfWeek.Saturday)
+                WhatToShow = 5;
+            DateBox.SelectedItem = Days.ElementAt(WhatToShow);
         }
         // Event handler which runs after the feed is fully downloaded.
         private void webClient_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
@@ -73,16 +97,17 @@ namespace CWRUtility
                     refreshFeed_Click(null, null);
                 }
             }
-            DateBox.Text = date4.ToShortDateString() + "   " + date3.DayOfWeek;
-            DateBox.FontSize = 40; //the name should be noticiably larger than the other 3 data feilds
-            //DateBox.Margin = new Thickness(12, 12, 12, 12);
-            DateBox.Tap += Date_Click;
+           
         }
+
+
 
         // This method sets up the feed and binds it to our ListBox. 
         private void UpdateFeedList(string feedXML)
         {
-            
+
+
+
             // Load the feed into a SyndicationFeed instance.
             StringReader stringReader = new StringReader(feedXML);
             ToParse = (string)stringReader.ReadToEnd();
@@ -189,7 +214,7 @@ namespace CWRUtility
             //for (int y = 0; y < Leut.Length; y++)
             //{
               //  TextBlock NM = new TextBlock();
-            int y = 0;
+           /* int y = 0;
             if (date3.DayOfWeek == DayOfWeek.Sunday)
                 y = 6;
             if (date3.DayOfWeek == DayOfWeek.Monday)
@@ -203,18 +228,18 @@ namespace CWRUtility
             if (date3.DayOfWeek == DayOfWeek.Friday)
                 y = 4;
             if (date3.DayOfWeek == DayOfWeek.Saturday)
-                y = 5;
-                for (int k = 0; k < Leut[y].Length; k++)
+                y = 5;*/
+            for (int k = 0; k < Leut[WhatToShow].Length; k++)
                 {
                     TextBlock NM = new TextBlock();
-                    if (Leut[y].ElementAt(k) == '#')
+                    if (Leut[WhatToShow].ElementAt(k) == '#')
                     {
                        
                         k = k + 1;
                         string toBlock = "";
-                        while (!(Leut[y].ElementAt(k) == '#') && (k != Leut[y].Length))
+                        while (!(Leut[WhatToShow].ElementAt(k) == '#') && (k != Leut[WhatToShow].Length))
                         {
-                            toBlock = toBlock + Leut[y].ElementAt(k);
+                            toBlock = toBlock + Leut[WhatToShow].ElementAt(k);
                             k = k + 1;
                         }
                         if (toBlock != "")
@@ -228,13 +253,13 @@ namespace CWRUtility
                             this.feedListBox.Items.Add(NM);
                         }
                     }
-                    else if (Leut[y].ElementAt(k) == '=')
+                    else if (Leut[WhatToShow].ElementAt(k) == '=')
                     {
                         k = k + 1;
                         string toBlock = "";
-                        while (!(Leut[y].ElementAt(k) == '=') && (k != Leut[y].Length))
+                        while (!(Leut[WhatToShow].ElementAt(k) == '=') && (k != Leut[WhatToShow].Length))
                         {
-                            toBlock = toBlock + Leut[y].ElementAt(k);
+                            toBlock = toBlock + Leut[WhatToShow].ElementAt(k);
                             k = k + 1;
                         }
                         if (toBlock != "")
@@ -248,13 +273,13 @@ namespace CWRUtility
                         this.feedListBox.Items.Add(NM);
                         }
                     }
-                    else if (Leut[y].ElementAt(k) == '}')
+                    else if (Leut[WhatToShow].ElementAt(k) == '}')
                     {
                         k = k + 1;
                         string toBlock = "";
-                        while (!(Leut[y].ElementAt(k) == '}') && (k != Leut[y].Length))
+                        while (!(Leut[WhatToShow].ElementAt(k) == '}') && (k != Leut[WhatToShow].Length))
                         {
-                            toBlock = toBlock + Leut[y].ElementAt(k);
+                            toBlock = toBlock + Leut[WhatToShow].ElementAt(k);
                             k = k + 1;
                         }
                         if (toBlock != "")
@@ -324,9 +349,39 @@ namespace CWRUtility
             feedUri = e.Item == Leutner ? "http://www.cafebonappetit.com/rss/menu/45" : "http://www.cafebonappetit.com/rss/menu/43";
             refreshFeed_Click(null, null);
         }
-        private void Date_Click(object sender, EventArgs e)
-        {
 
+        private void DateBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (Leut[WhatToShow] != null)
+            {
+                if (DateBox.SelectedItem == "Monday")
+                    WhatToShow = 0;
+                if (DateBox.SelectedItem == "Tuesday")
+                    WhatToShow = 1;
+                if (DateBox.SelectedItem == "Wednesday")
+                    WhatToShow = 2;
+                if (DateBox.SelectedItem == "Thursday")
+                    WhatToShow = 3;
+                if (DateBox.SelectedItem == "Friday")
+                    WhatToShow = 4;
+                if (DateBox.SelectedItem == "Saturday")
+                    WhatToShow = 5;
+                if (DateBox.SelectedItem == "Sunday")
+                    WhatToShow = 6;
+                feedListBox.SelectionMode = SelectionMode.Extended;
+                feedListBox1.SelectionMode = SelectionMode.Extended;
+                feedListBox2.SelectionMode = SelectionMode.Extended;
+                feedListBox.SelectAll();
+                feedListBox.SelectedItems.Clear();
+                    feedListBox1.SelectAll();
+                    feedListBox1.Items.Clear();
+                    feedListBox2.SelectAll();
+                    feedListBox2.Items.Clear();
+                    feedListBox1.SelectionMode = SelectionMode.Single;
+                    feedListBox2.SelectionMode = SelectionMode.Single;
+                    feedListBox.SelectionMode = SelectionMode.Single;
+                UpdateLunchables();
+            }
         }
     }
 }
