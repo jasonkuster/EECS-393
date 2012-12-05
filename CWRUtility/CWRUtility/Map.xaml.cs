@@ -20,7 +20,7 @@ namespace CWRUtility
         public Map()
         {
             InitializeComponent();
-            actualMap.CredentialsProvider = new ApplicationIdCredentialsProvider("Bing Maps Key");
+            actualMap.CredentialsProvider = new ApplicationIdCredentialsProvider("Aj_Ng1YdpWLbXV2tPx9hkHrYrs83gJwMH2FeJwq2eaxlba2v0XpNXPfy0mic1C6j");
 
 
             currLoc = new Pushpin();
@@ -168,6 +168,12 @@ namespace CWRUtility
 
                 loc.Stop();
             }
+        }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+           // string uri = this.NavigationContext.QueryString["address"];
         }
 
         
