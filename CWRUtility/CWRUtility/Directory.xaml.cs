@@ -92,6 +92,7 @@ namespace CWRUtility
                          LC.Margin = new Thickness(12, 12, 12, 12);
                          LC.TextWrapping = TextWrapping.Wrap;
                          LC.Tap += LC_Tap;
+                         LC.Name = NM.Text;
                          listBox.Items.Add(LC);//with the Textblock for location complete it is possible to move onto the next textblock and datafield
                          TextBlock IN = new TextBlock();//make a textblock for the info
                          IN.TextWrapping = TextWrapping.Wrap;
@@ -118,8 +119,9 @@ namespace CWRUtility
          * #########################################################*/
         private void LC_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            String address = ((TextBlock)sender).Text;
-            NavigationService.Navigate(new Uri(string.Format("/CampusMap.xaml?address={0}", address), UriKind.RelativeOrAbsolute));
+            String name = ((TextBlock)sender).Name;
+            
+            NavigationService.Navigate(new Uri(string.Format("/Map.xaml?name={0}", name), UriKind.RelativeOrAbsolute));
         }
         int pos = -1; //nothing is expanded yet
         public void Phone_Tap(object sender, System.Windows.Input.GestureEventArgs e)//method called in the event that the phone# textblock is tapped

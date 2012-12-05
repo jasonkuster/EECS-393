@@ -17,7 +17,6 @@ namespace CWRUtility
         private MapLayer outline;
         private GeoCoordinateWatcher loc = null;
         private Pushpin currLoc = null;
-        private Pushpin inputPin = null;
 
         public Map()
         {
@@ -176,12 +175,44 @@ namespace CWRUtility
         {
             base.OnNavigatedTo(e);
 
-            Dictionary<String, GeoCoordinate> addresses = new Dictionary<string,GeoCoordinate>();
-            
-            string uri = this.NavigationContext.QueryString["address"];
-            if (uri != null)
+            try
             {
-             //   inputPin.Location = addresses
+                string name = this.NavigationContext.QueryString["name"];
+                System.Diagnostics.Debug.WriteLine(name);
+
+                Dictionary<String, GeoCoordinate> addresses = new Dictionary<string, GeoCoordinate>();
+                addresses.Add("Team KOALAA", new GeoCoordinate(41.512215, -81.603231));
+                addresses.Add("Case Western Police & Security Services", new GeoCoordinate(41.512214, -81.606740));
+                addresses.Add("Access Services", new GeoCoordinate(41.504638, -81.609819));
+                addresses.Add("Veale Center", new GeoCoordinate(41.501207, -81.605967));
+                addresses.Add("Career Center", new GeoCoordinate(41.502806, -81.608253));
+                addresses.Add("Case Western Bookstore", new GeoCoordinate(41.509961, -81.604563));
+                addresses.Add("Co-op Office", new GeoCoordinate(41.502806, -81.608253));
+                addresses.Add("Center for Civic Engagement and Learning", new GeoCoordinate(41.508302, -81.607428));
+                addresses.Add("Counseling Services", new GeoCoordinate(41.502806, -81.608253));
+                addresses.Add("Disability Services", new GeoCoordinate(41.502806, -81.608253));
+                addresses.Add("Educational Services for Students", new GeoCoordinate(41.502806, -81.608253));
+                addresses.Add("Financial Aid", new GeoCoordinate(41.503617, -81.609079));
+                addresses.Add("Housing & Residence Life", new GeoCoordinate());
+                addresses.Add("The Jolly Scholar", new GeoCoordinate(41.508302, -81.607428));
+                addresses.Add("North Residential Village Area Office", new GeoCoordinate(41.513050, -81.605271));
+                addresses.Add("Office of Greek Life", new GeoCoordinate(41.503648, -81.609079));
+                addresses.Add("Office of Multicultural Affairs", new GeoCoordinate(41.502806, -81.608253));
+                addresses.Add("South Residential Village Area Office", new GeoCoordinate(41.501098, -81.602847));
+                addresses.Add("Student Employment", new GeoCoordinate(41.503617, -81.609079));
+
+                if (name != null && !"".Equals(name))
+                {
+                    Pushpin inputPin = new Pushpin();
+                    System.Diagnostics.Debug.WriteLine(name);
+                    inputPin.Location = addresses[name];
+                    inputPin.Content = name;
+                    outline.Children.Add(inputPin);
+                }
+            }
+            catch (KeyNotFoundException)
+            {
+                // do nothing
             }
         }
     }
