@@ -28,7 +28,7 @@ namespace CWRUtility
         DateTime date3 = DateTime.Today;
         DateTime date4 = DateTime.Today;
         int WhatToShow = 0;
-
+        Boolean nono = true;
 
         public Menus()
         {
@@ -75,10 +75,7 @@ namespace CWRUtility
                     this.State["feed"] = e.Result;
 
                     UpdateFeedList(e.Result);
-                
-                
-                
-                    int color = 17;
+                    DateBox.IsEnabled = true;
                 
             }
         }
@@ -330,6 +327,7 @@ namespace CWRUtility
             // advanced functionality that HttpWebRequest provides, such as the ability to send headers.
             WebClient webClient = new WebClient();
             // Subscribe to the DownloadStringCompleted event prior to downloading the RSS feed.
+            DateBox.IsEnabled = false;
             webClient.DownloadStringCompleted += new DownloadStringCompletedEventHandler(webClient_DownloadStringCompleted);
 
             // Download the RSS feed. DownloadStringAsync was used instead of OpenStreamAsync because we do not need 
@@ -352,6 +350,7 @@ namespace CWRUtility
 
         private void DateBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            nono = false;
             if (Leut[WhatToShow] != null)
             {
                 if (DateBox.SelectedItem == "Monday")
@@ -381,7 +380,9 @@ namespace CWRUtility
                  //   feedListBox2.SelectionMode = SelectionMode.Single;
                  //   feedListBox.SelectionMode = SelectionMode.Single;
                 UpdateLunchables();
+                
             }
+            nono = true;
         }
     }
 }
