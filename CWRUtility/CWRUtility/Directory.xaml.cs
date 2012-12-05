@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using Microsoft.Phone.Controls;
 using System.IO;
 using System.IO.IsolatedStorage;
@@ -19,6 +20,7 @@ namespace CWRUtility
 
     public partial class Directory : PhoneApplicationPage
     {
+        
              
         public Directory()
         {
@@ -127,6 +129,8 @@ namespace CWRUtility
 
         public void Name_Tap(object sender, System.Windows.Input.GestureEventArgs e)//method called in the event that the resources name is tapped and therefor the field underneath need expanding
         {
+            
+
             int IndxSender = listBox.Items.IndexOf(sender);//store the index of the textblock which calls this event
             TextBlock Node = new TextBlock();//make a temporary Textblock named Node which we will use to iterate through all relevant textblocks below the one calling the method
             Node = (TextBlock) listBox.Items.ElementAt(IndxSender + 1); //node now points to the textbox below what we selected
@@ -138,6 +142,17 @@ namespace CWRUtility
                 Node.Visibility = System.Windows.Visibility.Visible;
                 Node = (TextBlock)listBox.Items.ElementAt(IndxSender + 3);
                 Node.Visibility = System.Windows.Visibility.Visible;
+                /*
+                int High = (int) Node.ActualHeight;
+                if (High < 8000)
+                {
+                    
+                }
+                ScrollViewer myScrollViewer = new ScrollViewer();
+                int Higher = (int) myScrollViewer.ActualHeight;*/
+                //Node.VerticalAlignment = VerticalContentAlignment;
+               
+
                 if (pos == -1) //if nothing else is open
                 {
                     pos = IndxSender; //let it be known that this is the last opened resource
@@ -165,6 +180,8 @@ namespace CWRUtility
             }
            
         }
+
+
     }
     public class Resource//this class holds the name, phone#, location, and a short description of most campus resources
     {

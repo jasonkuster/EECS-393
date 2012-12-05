@@ -368,18 +368,18 @@ namespace CWRUtility
                     WhatToShow = 5;
                 if (DateBox.SelectedItem == "Sunday")
                     WhatToShow = 6;
-                feedListBox.SelectionMode = SelectionMode.Extended;
-                feedListBox1.SelectionMode = SelectionMode.Extended;
-                feedListBox2.SelectionMode = SelectionMode.Extended;
-                feedListBox.SelectAll();
-                feedListBox.SelectedItems.Clear();
-                    feedListBox1.SelectAll();
+               // feedListBox.SelectionMode = SelectionMode.Extended;
+                //feedListBox1.SelectionMode = SelectionMode.Extended;
+                //feedListBox2.SelectionMode = SelectionMode.Extended;
+                //feedListBox.SelectAll();
+                //feedListBox.SelectedItems.Clear();
+                 //   feedListBox1.SelectAll();
                     feedListBox1.Items.Clear();
-                    feedListBox2.SelectAll();
+                 //   feedListBox2.SelectAll();
                     feedListBox2.Items.Clear();
-                    feedListBox1.SelectionMode = SelectionMode.Single;
-                    feedListBox2.SelectionMode = SelectionMode.Single;
-                    feedListBox.SelectionMode = SelectionMode.Single;
+                //    feedListBox1.SelectionMode = SelectionMode.Single;
+                 //   feedListBox2.SelectionMode = SelectionMode.Single;
+                 //   feedListBox.SelectionMode = SelectionMode.Single;
                 UpdateLunchables();
             }
         }
