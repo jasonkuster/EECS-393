@@ -69,7 +69,7 @@
             			<SolidColorBrush Color="{StaticResource PhoneBorderColor}"/>
             		</TextBox.Background>
             	</TextBox>-->
-                <toolkit:ListPicker x:Name="DateBox" ExpansionMode="FullScreenOnly" Margin="0" SelectionChanged="DateBox_SelectionChanged">
+                <toolkit:ListPicker x:Name="DateBox" ExpansionMode="FullScreenOnly" Margin="-128,0" SelectionChanged="DateBox_SelectionChanged" Padding="{StaticResource PhoneMargin}" HorizontalContentAlignment="Center">
                     <toolkit:ListPicker.FullModeItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding BindsDirectlyToSource=True}" FontSize="40" Width="460"/>

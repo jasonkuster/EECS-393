@@ -55,6 +55,7 @@ namespace CWRUtility
             if (date3.DayOfWeek == DayOfWeek.Saturday)
                 WhatToShow = 5;
             DateBox.SelectedItem = Days.ElementAt(WhatToShow);
+
         }
         // Event handler which runs after the feed is fully downloaded.
         private void webClient_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
@@ -76,6 +77,7 @@ namespace CWRUtility
 
                     UpdateFeedList(e.Result);
                     DateBox.IsEnabled = true;
+                    ProgressBar.IsVisible = false;
                 
             }
         }
@@ -252,7 +254,7 @@ namespace CWRUtility
                     }
                     else if (Leut[WhatToShow].ElementAt(k) == '=')
                     {
-                        k = k + 1;
+                        k = k + 2;
                         string toBlock = "";
                         while (!(Leut[WhatToShow].ElementAt(k) == '=') && (k != Leut[WhatToShow].Length))
                         {
@@ -266,6 +268,7 @@ namespace CWRUtility
                         NM.FontSize = 35;
                         NM.Foreground = new SolidColorBrush(Colors.Cyan);
                         NM.TextWrapping = TextWrapping.Wrap;
+                        //NM.Width = 465;
                         NM.Margin = new Thickness(12, 12, 12, 12);
                         this.feedListBox.Items.Add(NM);
                         }
@@ -287,6 +290,7 @@ namespace CWRUtility
                             NM.Foreground = new SolidColorBrush(Colors.LightGray);
                             NM.TextWrapping = TextWrapping.Wrap;
                             NM.Margin = new Thickness(12, 12, 12, 12);
+                            //NM.Width = 465;
                             this.feedListBox.Items.Add(NM);
                         }
                     }
@@ -328,6 +332,7 @@ namespace CWRUtility
             WebClient webClient = new WebClient();
             // Subscribe to the DownloadStringCompleted event prior to downloading the RSS feed.
             DateBox.IsEnabled = false;
+            ProgressBar.IsVisible = true;
             webClient.DownloadStringCompleted += new DownloadStringCompletedEventHandler(webClient_DownloadStringCompleted);
 
             // Download the RSS feed. DownloadStringAsync was used instead of OpenStreamAsync because we do not need 
