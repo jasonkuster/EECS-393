@@ -178,7 +178,6 @@ namespace CWRUtility
             try
             {
                 string name = this.NavigationContext.QueryString["name"];
-                System.Diagnostics.Debug.WriteLine(name);
 
                 Dictionary<String, GeoCoordinate> addresses = new Dictionary<string, GeoCoordinate>();
                 addresses.Add("Team KOALAA", new GeoCoordinate(41.512215, -81.603231));
@@ -200,14 +199,15 @@ namespace CWRUtility
                 addresses.Add("Office of Multicultural Affairs", new GeoCoordinate(41.502806, -81.608253));
                 addresses.Add("South Residential Village Area Office", new GeoCoordinate(41.501098, -81.602847));
                 addresses.Add("Student Employment", new GeoCoordinate(41.503617, -81.609079));
+                addresses.Add("Dennys", new GeoCoordinate(41.512028, -81.606033));
 
                 if (name != null && !"".Equals(name))
                 {
                     Pushpin inputPin = new Pushpin();
-                    System.Diagnostics.Debug.WriteLine(name);
                     inputPin.Location = addresses[name];
                     inputPin.Content = name;
                     outline.Children.Add(inputPin);
+                    actualMap.SetView(inputPin.Location, 17.0);
                 }
             }
             catch (KeyNotFoundException)
