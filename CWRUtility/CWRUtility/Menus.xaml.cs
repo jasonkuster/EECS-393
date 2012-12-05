@@ -28,7 +28,7 @@ namespace CWRUtility
         DateTime date3 = DateTime.Today;
         DateTime date4 = DateTime.Today;
         int WhatToShow = 0;
-
+        Boolean nono = true;
 
         public Menus()
         {
@@ -55,6 +55,7 @@ namespace CWRUtility
             if (date3.DayOfWeek == DayOfWeek.Saturday)
                 WhatToShow = 5;
             DateBox.SelectedItem = Days.ElementAt(WhatToShow);
+
         }
         // Event handler which runs after the feed is fully downloaded.
         private void webClient_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
@@ -75,10 +76,8 @@ namespace CWRUtility
                     this.State["feed"] = e.Result;
 
                     UpdateFeedList(e.Result);
-                
-                
-                
-                    int color = 17;
+                    DateBox.IsEnabled = true;
+                    ProgressBar.IsVisible = false;
                 
             }
         }
@@ -246,7 +245,7 @@ namespace CWRUtility
                         {
                             NM.Text = toBlock;
                             NM.FontSize = 45;
-                            NM.Foreground = new SolidColorBrush(Colors.Blue);
+                            NM.Foreground = new SolidColorBrush(Colors.White);
                             NM.TextAlignment = TextAlignment.Center;
                             NM.TextWrapping = TextWrapping.Wrap;
                             NM.Margin = new Thickness(128, 12, 12, 12);
@@ -255,7 +254,7 @@ namespace CWRUtility
                     }
                     else if (Leut[WhatToShow].ElementAt(k) == '=')
                     {
-                        k = k + 1;
+                        k = k + 2;
                         string toBlock = "";
                         while (!(Leut[WhatToShow].ElementAt(k) == '=') && (k != Leut[WhatToShow].Length))
                         {
@@ -267,8 +266,9 @@ namespace CWRUtility
                         NM.Text = toBlock;
                         NM.TextAlignment = TextAlignment.Left;
                         NM.FontSize = 35;
-                        NM.Foreground = new SolidColorBrush(Colors.Red);
+                        NM.Foreground =  new SolidColorBrush((Color) Application.Current.Resources["PhoneAccentColor"]);
                         NM.TextWrapping = TextWrapping.Wrap;
+                        //NM.Width = 465;
                         NM.Margin = new Thickness(12, 12, 12, 12);
                         this.feedListBox.Items.Add(NM);
                         }
@@ -290,6 +290,7 @@ namespace CWRUtility
                             NM.Foreground = new SolidColorBrush(Colors.LightGray);
                             NM.TextWrapping = TextWrapping.Wrap;
                             NM.Margin = new Thickness(12, 12, 12, 12);
+                            //NM.Width = 465;
                             this.feedListBox.Items.Add(NM);
                         }
                     }
@@ -330,6 +331,8 @@ namespace CWRUtility
             // advanced functionality that HttpWebRequest provides, such as the ability to send headers.
             WebClient webClient = new WebClient();
             // Subscribe to the DownloadStringCompleted event prior to downloading the RSS feed.
+            DateBox.IsEnabled = false;
+            ProgressBar.IsVisible = true;
             webClient.DownloadStringCompleted += new DownloadStringCompletedEventHandler(webClient_DownloadStringCompleted);
 
             // Download the RSS feed. DownloadStringAsync was used instead of OpenStreamAsync because we do not need 
@@ -352,6 +355,7 @@ namespace CWRUtility
 
         private void DateBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            nono = false;
             if (Leut[WhatToShow] != null)
             {
                 if (DateBox.SelectedItem == "Monday")
@@ -368,20 +372,22 @@ namespace CWRUtility
                     WhatToShow = 5;
                 if (DateBox.SelectedItem == "Sunday")
                     WhatToShow = 6;
-                feedListBox.SelectionMode = SelectionMode.Extended;
-                feedListBox1.SelectionMode = SelectionMode.Extended;
-                feedListBox2.SelectionMode = SelectionMode.Extended;
-                feedListBox.SelectAll();
-                feedListBox.SelectedItems.Clear();
-                    feedListBox1.SelectAll();
+               // feedListBox.SelectionMode = SelectionMode.Extended;
+                //feedListBox1.SelectionMode = SelectionMode.Extended;
+                //feedListBox2.SelectionMode = SelectionMode.Extended;
+                //feedListBox.SelectAll();
+                //feedListBox.SelectedItems.Clear();
+                 //   feedListBox1.SelectAll();
                     feedListBox1.Items.Clear();
-                    feedListBox2.SelectAll();
+                 //   feedListBox2.SelectAll();
                     feedListBox2.Items.Clear();
-                    feedListBox1.SelectionMode = SelectionMode.Single;
-                    feedListBox2.SelectionMode = SelectionMode.Single;
-                    feedListBox.SelectionMode = SelectionMode.Single;
+                //    feedListBox1.SelectionMode = SelectionMode.Single;
+                 //   feedListBox2.SelectionMode = SelectionMode.Single;
+                 //   feedListBox.SelectionMode = SelectionMode.Single;
                 UpdateLunchables();
+                
             }
+            nono = true;
         }
     }
 }

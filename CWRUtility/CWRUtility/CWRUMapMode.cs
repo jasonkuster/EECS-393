@@ -29,7 +29,7 @@ namespace CWRUtility
 
         protected override Range<double> GetZoomRange(GeoCoordinate center)
         {
-            return new Range<double>(15, 20);
+            return new Range<double>(14.5, 20);
         }
 
         public override bool ConstrainView(GeoCoordinate center, ref double zoomLevel, ref double heading, ref double pitch)
