@@ -266,7 +266,7 @@ namespace CWRUtility
                         NM.Text = toBlock;
                         NM.TextAlignment = TextAlignment.Left;
                         NM.FontSize = 35;
-                        NM.Foreground = new SolidColorBrush(Colors.Cyan);
+                        NM.Foreground =  new SolidColorBrush((Color) Application.Current.Resources["PhoneAccentColor"]);
                         NM.TextWrapping = TextWrapping.Wrap;
                         //NM.Width = 465;
                         NM.Margin = new Thickness(12, 12, 12, 12);
