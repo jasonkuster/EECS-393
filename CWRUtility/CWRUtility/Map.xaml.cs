@@ -181,7 +181,7 @@ namespace CWRUtility
             string uri = this.NavigationContext.QueryString["address"];
             if (uri != null)
             {
-                inputPin.Location = addresses
+             //   inputPin.Location = addresses
             }
         }
     }
