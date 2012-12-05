@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Resources;
 using Microsoft.Phone.Controls.Maps.Platform;
 using System.Windows.Media;
+using System.Collections.Generic;
 
 namespace CWRUtility
 {
@@ -16,6 +17,7 @@ namespace CWRUtility
         private MapLayer outline;
         private GeoCoordinateWatcher loc = null;
         private Pushpin currLoc = null;
+        private Pushpin inputPin = null;
 
         public Map()
         {
@@ -173,31 +175,14 @@ namespace CWRUtility
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-           // string uri = this.NavigationContext.QueryString["address"];
+
+            Dictionary<String, GeoCoordinate> addresses = new Dictionary<string,GeoCoordinate>();
+            
+            string uri = this.NavigationContext.QueryString["address"];
+            if (uri != null)
+            {
+                inputPin.Location = addresses
+            }
         }
-
-        
-
-        /* private void scroller_DoubleTap(object sender, System.Windows.Input.GestureEventArgs e)
-        {
-            ScrollViewer scroll = (ScrollViewer) sender;
-            //((Image) sender).RenderTransformOrigin = new Point(0,0);
-            Image scrollMap = (Image) scroll.Content;
-            scrollMap.Height = 100;
-            scroll.Content = scrollMap;
-            //
-            //(((Image) sender).RenderTransform as CompositeTransform).ScaleY = 0.5;
-        }*/
-
-        /*private void OnPinchStarted(object sender, PinchStartedGestureEventArgs e)
-        {
-         initialScale = atransform.ScaleX;
-        }
-
-         private void OnPinchDelta(object sender, PinchGestureEventArgs e)
-        {
-         atransform.ScaleX = initialScale * e.DistanceRatio;
-         atransform.ScaleY = initialScale * e.DistanceRatio;
-        }*/
     }
 }
