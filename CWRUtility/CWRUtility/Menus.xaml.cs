@@ -243,7 +243,7 @@ namespace CWRUtility
                         {
                             NM.Text = toBlock;
                             NM.FontSize = 45;
-                            NM.Foreground = new SolidColorBrush(Colors.Blue);
+                            NM.Foreground = new SolidColorBrush(Colors.White);
                             NM.TextAlignment = TextAlignment.Center;
                             NM.TextWrapping = TextWrapping.Wrap;
                             NM.Margin = new Thickness(128, 12, 12, 12);
@@ -264,7 +264,7 @@ namespace CWRUtility
                         NM.Text = toBlock;
                         NM.TextAlignment = TextAlignment.Left;
                         NM.FontSize = 35;
-                        NM.Foreground = new SolidColorBrush(Colors.Red);
+                        NM.Foreground = new SolidColorBrush(Colors.Cyan);
                         NM.TextWrapping = TextWrapping.Wrap;
                         NM.Margin = new Thickness(12, 12, 12, 12);
                         this.feedListBox.Items.Add(NM);
