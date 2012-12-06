@@ -1,0 +1,58 @@
+\documentclass[pdftex,12pt,letter]{article}
+\usepackage{fancyhdr}
+\usepackage{enumerate}
+\usepackage{tabularx}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{placeins}
+\usepackage[justification=justified,singlelinecheck=false]{caption}
+\pagestyle{fancy}
+\makeatletter
+  \renewcommand\@seccntformat[1]{\csname the#1\endcsname.\quad}
+\makeatother
+
+\newcolumntype {Y}{ >{\raggedright \arraybackslash }X}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
+\captionsetup{labelformat=empty}
+
+\begin{document}
+
+\begin{titlepage}
+\begin{flushright}
+\HRule \\[0.4cm]
+{ \bfseries
+{\huge  User Manual\\[1cm]}
+{\Large for\\[1cm]}
+{\huge CWRUtility\large}\\[4cm]}
+{\large KOALAA Development\\[1cm]December 7, 2012}
+\end{flushright}
+\end{titlepage}
+\tableofcontents{}
+
+\newpage
+\section{Overview}
+\subsection{Summary}
+For students, faculty, or visitors to Case Western Reserve University campus who struggle with using the myriad of resources CWRU provides, CWRUtility is an app which will solve these problems. It is an elegantly designed mobile application which will provide useful information and centralize the services students use most.
+\begin{enumerate}[FE-1:]
+\item Main Page: Displays a start page with information on and links to the other features.
+\item NextBus: Integrates with NextBus, Inc. to provide a schedule for the "greenie" system.
+\item Campus Map: Provides map of CWRU campus.
+\item eSuds: Integrates with the e-Suds online system which provides laundry information.
+\item Directory: Displays locations, phone numbers and descriptions for Case's on campus resources.
+\item Menus: Displays the dinning selections for both major dining halls.
+\item Case News: Integrates with \emph{The Case Daily} and \emph{The Observer} to display daily news.
+\end{enumerate} 
+\subsection{Using Internet}
+Jason maybe do a quick plug here about how to have a windows phone connect to the wi-fi on campus or your own data plan.
+
+\section{Main Page}
+The Main Page is the first page you will view when you open the CWRUtility application. On it is a list of 6 resources: NextBus, Campus Map, eSuds, Directory, Menus, and Case News. 
+
+\section{Next Bus}
+\subsection{Selections}
+To get the schedule of a "greenie" bus relevant to your interest, customize which route, direction, and stop you want to view information for. To do this tap, using your finger, the grey boxes which are set to "Circle Link", "To Circle Station", and "Cleveland Museum of Art" by default. This will change your phone's screen to a list of the available options for that selection. After making selections for route, direction, and stop get estimates for when the bus will arrive by tapping the "Go" button. This will update the 3 numbers near the top of the screen: these numbers describe the how soon, measured in minutes, until that the bus will visit that stop in the selected direction. These numbers will update as time passes. However if you revise what route, direction, or stop you would like to view information for you will need to hit the go button again. Please note that not all bus routes run all day, for example the North Loop only runs after 5:30 PM, and so if the route you wish to view is not currently running instead of loading a countdown for bus arrivals "No Prediction Available" will be loaded at the top of the screen. 
+\subsection{Set Default}
+Below the "Go" button is a Star with a '+' sign in the lower corner. This button may be used to set a default route, direction, and stop. By choosing a default bus route, direction, and stop these will be what route, direction, and stop are automatically set to instead of  "Circle Link", "To Circle Station", and "Cleveland Museum of Art" when you reopen the app. Additionally the arrival times for these busses will be displayed on the Main Page as well right next to the Next Bus feature name.
+
+
+\end{document}
