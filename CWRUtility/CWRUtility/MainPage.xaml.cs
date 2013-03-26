@@ -126,13 +126,19 @@ namespace CWRUtility
 
         void client_OpenReadCompleted(object sender, OpenReadCompletedEventArgs e)
         {
-            Stream data = e.Result as Stream;
-            StreamReader reader = new StreamReader(data);
-            HtmlDocument busPredictions = new HtmlDocument();
-            busPredictions.Load(reader);
-            data.Close();
-            reader.Close();
-            ParseHtml(busPredictions);
+            if (e.Error != null)
+            {
+            }
+            else
+            {
+                Stream data = e.Result as Stream;
+                StreamReader reader = new StreamReader(data);
+                HtmlDocument busPredictions = new HtmlDocument();
+                busPredictions.Load(reader);
+                data.Close();
+                reader.Close();
+                ParseHtml(busPredictions);
+            }
         }
 
         private void ParseHtml(HtmlDocument busPredictions)
@@ -219,13 +225,19 @@ namespace CWRUtility
 
         void esClient_OpenReadCompleted(object sender, OpenReadCompletedEventArgs e)
         {
-            Stream data = e.Result as Stream;
-            StreamReader reader = new StreamReader(data);
-            HtmlDocument sudsTimes = new HtmlDocument();
-            sudsTimes.Load(reader);
-            data.Close();
-            reader.Close();
-            DisplayStates(sudsTimes);
+            if (e.Error != null)
+            {
+            }
+            else
+            {
+                Stream data = e.Result as Stream;
+                StreamReader reader = new StreamReader(data);
+                HtmlDocument sudsTimes = new HtmlDocument();
+                sudsTimes.Load(reader);
+                data.Close();
+                reader.Close();
+                DisplayStates(sudsTimes);
+            }
         }
 
         private void DisplayStates(HtmlDocument sudsTimes)
