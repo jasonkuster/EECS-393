@@ -94,6 +94,7 @@
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
             <shell:ApplicationBarIconButton x:Name="defButton" IconUri="/icons/appbar.favs.addto.rest.png" Text="set default" Click="defButton_Click"/>
+            <shell:ApplicationBarIconButton x:Name="mapButton" IconUri="/icons/eye.png" Text="open map" Click="mapButton_Click"/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
     

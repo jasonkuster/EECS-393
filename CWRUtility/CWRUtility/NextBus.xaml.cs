@@ -20,7 +20,7 @@ namespace CWRUtility
     public partial class NextBus : PhoneApplicationPage
     {
         public IsolatedStorageSettings settings = IsolatedStorageSettings.ApplicationSettings;
-        public Dictionary<string, Dictionary<string, Dictionary<string, Uri>>> buses { get; private set; }
+        public static Dictionary<string, Dictionary<string, Dictionary<string, string[]>>> buses { get; private set; }
         DispatcherTimer timer;
         Uri currentUri;
 
@@ -90,18 +90,18 @@ namespace CWRUtility
 
         #region bus dictionary creation
 
-        private void createBusLists()
+        private static void createBusLists()
         {
-            buses = new Dictionary<string, Dictionary<string, Dictionary<string, Uri>>>();
+            buses = new Dictionary<string, Dictionary<string, Dictionary<string, string[]>>>();
             List<string> routes = new List<string>() { "Circle Link", "Commuter Shuttle", "Evening Shuttle North", "Evening Shuttle South" };
             foreach (string route in routes)
             {
-                buses.Add(route, new Dictionary<string, Dictionary<string, Uri>>());
+                buses.Add(route, new Dictionary<string, Dictionary<string, string[]>>());
                 addDirections(route);
             }
         }
 
-        private void addDirections(string route)
+        private static void addDirections(string route)
         {
             List<string> directions = new List<string>();
             switch (route)
@@ -125,7 +125,7 @@ namespace CWRUtility
             }
         }
 
-        private Dictionary<string, Uri> getStopDict(string route, string dir)
+        private static Dictionary<string, string[]> getStopDict(string route, string dir)
         {
             string nbRoute = "";
             string nbDirection = "";
@@ -205,15 +205,34 @@ namespace CWRUtility
             return generateStopDict(nbRoute, nbDirection, stops, uris);
         }
 
-        private Dictionary<string, Uri> generateStopDict(string nbRoute, string nbDirection, List<string> stops, List<string> uri_parts)
+        private static Dictionary<string, string[]> generateStopDict(string nbRoute, string nbDirection, List<string> stops, List<string> uri_parts)
         {
-            Dictionary<string, Uri> stopDict = new Dictionary<string, Uri>();
+            Dictionary<string, string[]> stopDict = new Dictionary<string, string[]>();
             for (int i = 0; i < stops.Count; i++)
             {
-                stopDict.Add(stops[i], new Uri("http://www.nextbus.com/predictor/fancyNewPredictionLayer.jsp?a=case-western&r="+nbRoute+"&d="+nbDirection+"&s="
-                    + uri_parts[i] + "&ts=" + uri_parts[i + 1]));
+                stopDict.Add(stops[i], new string[]{nbRoute, nbDirection, uri_parts[i], uri_parts[i + 1]});
             }
             return stopDict;
+        }
+
+        private Uri getBusUri()
+        {
+            string route = (string)routePicker.SelectedItem;
+            string direction = (string)dirPicker.SelectedItem;
+            string stop = (string)stopPicker.SelectedItem;
+            string[] routes = buses[route][direction][stop];
+            return new Uri("http://www.nextbus.com/predictor/fancyNewPredictionLayer.jsp?a=case-western&r=" 
+                + routes[0] + "&d=" + routes[1] + "&s=" + routes[2] + "&ts=" + routes[3]);
+        }
+
+        private Uri getMapUri()
+        {
+            string route = (string)routePicker.SelectedItem;
+            string direction = (string)dirPicker.SelectedItem;
+            string stop = (string)stopPicker.SelectedItem;
+            string[] routes = buses[route][direction][stop];
+            return new Uri("http://www.nextbus.com/googleMap/?a=case-western&r="
+                + routes[0] + "&d=" + routes[1] + "&s=" + routes[2]);
         }
 
         #endregion
@@ -260,11 +279,9 @@ namespace CWRUtility
         
         private void getBusPrediction()
         {
-            string route = (string)routePicker.SelectedItem;
-            string direction = (string)dirPicker.SelectedItem;
             string stop = (string)stopPicker.SelectedItem;
             predTextBlock.Text = stop;
-            currentUri = buses[route][direction][stop];
+            currentUri = getBusUri();
             LockUI();
             GetHtml(currentUri);
         }
@@ -374,8 +391,8 @@ namespace CWRUtility
             string route = (string)routePicker.SelectedItem;
             string direction = (string)dirPicker.SelectedItem;
             string stop = (string)stopPicker.SelectedItem;
-            string uri = buses[route][direction][stop].ToString();
-            string fav = route + '!' + direction + '!' + stop + '!' + uri;
+            Uri uri = getBusUri();
+            string fav = route + '!' + direction + '!' + stop + '!' + uri.ToString();
             settings["nbDefault"] = fav;
             MessageBox.Show(stop + " set as default.", "Default Set", MessageBoxButton.OK);
             getBusPrediction();
@@ -405,6 +422,13 @@ namespace CWRUtility
             routePicker.IsEnabled = true;
             dirPicker.IsEnabled = true;
             stopPicker.IsEnabled = true;
+        }
+
+        private void mapButton_Click(object sender, EventArgs e)
+        {
+            var wbt = new Microsoft.Phone.Tasks.WebBrowserTask();
+            wbt.Uri = getMapUri();
+            wbt.Show();
         }
     }
 }
