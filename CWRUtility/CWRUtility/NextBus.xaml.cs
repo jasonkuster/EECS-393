@@ -296,13 +296,20 @@ namespace CWRUtility
 
         void client_OpenReadCompleted(object sender, OpenReadCompletedEventArgs e)
         {
-            Stream data = e.Result as Stream;
-            StreamReader reader = new StreamReader(data);
-            HtmlDocument busPredictions = new HtmlDocument();
-            busPredictions.Load(reader);
-            data.Close();
-            reader.Close();
-            DisplayPredictions(busPredictions);
+            if (e.Error != null)
+            {
+                MessageBox.Show("An error occurred while downloading predictions. Please try again.", "Error", MessageBoxButton.OK);
+            }
+            else
+            {
+                Stream data = e.Result as Stream;
+                StreamReader reader = new StreamReader(data);
+                HtmlDocument busPredictions = new HtmlDocument();
+                busPredictions.Load(reader);
+                data.Close();
+                reader.Close();
+                DisplayPredictions(busPredictions);
+            }
         }
 
         private void DisplayPredictions(HtmlDocument busPredictions)

@@ -83,13 +83,20 @@ namespace CWRUtility
 
         void esClient_OpenReadCompleted(object sender, OpenReadCompletedEventArgs e)
         {
-            Stream data = e.Result as Stream;
-            StreamReader reader = new StreamReader(data);
-            HtmlDocument sudsTimes = new HtmlDocument();
-            sudsTimes.Load(reader);
-            data.Close();
-            reader.Close();
-            DisplayStates(sudsTimes);
+            if (e.Error != null)
+            {
+                MessageBox.Show("An error occurred while downloading the times. Please try again.", "Error", MessageBoxButton.OK);
+            }
+            else
+            {
+                Stream data = e.Result as Stream;
+                StreamReader reader = new StreamReader(data);
+                HtmlDocument sudsTimes = new HtmlDocument();
+                sudsTimes.Load(reader);
+                data.Close();
+                reader.Close();
+                DisplayStates(sudsTimes);
+            }
         }
 
         private void DisplayStates(HtmlDocument sudsTimes)
