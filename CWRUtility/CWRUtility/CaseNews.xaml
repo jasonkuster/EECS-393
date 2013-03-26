@@ -41,7 +41,7 @@
     						<DataTemplate>
     							<StackPanel VerticalAlignment="Top">
     								<TextBlock FontSize="24" x:Name="feedTitle" TextWrapping="Wrap" Margin="12,0,0,0" HorizontalAlignment="Left" Foreground="{StaticResource PhoneAccentBrush}" Text="{Binding Title.Text}" />
-    								<TextBlock x:Name="feedSummary" Style="{StaticResource PhoneTextSmallStyle}" Foreground="White" TextWrapping="Wrap" Margin="12,0,0,0" Text="{Binding Summary.Text}" />
+                                    <TextBlock x:Name="feedSummary" Style="{StaticResource PhoneTextSmallStyle}" Foreground="{StaticResource PhoneForegroundBrush}" TextWrapping="Wrap" Margin="12,0,0,0" Text="{Binding Summary.Text}" />
     								<TextBlock x:Name="feedPubDate" Foreground="{StaticResource PhoneSubtleBrush}" Margin="12,0,0,10" Text="{Binding PublishDate.DateTime}" />
     								<TextBlock x:Name="uri" Text="{Binding BaseUri.AbsolutePath}"/>
     							</StackPanel>
